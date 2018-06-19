@@ -38,8 +38,21 @@ main() {
   local FILE_SHARED_PARAMETERS="${ADMINPASSWORD} ${PASSMOUNT} ${DISKURL} ${DISKUSERNAME}"
 
 
-  # az account set -s "$SUBSCRIPTION"
+  az account set -s "$SUBSCRIPTION"
 
+  VM_SIZE=$(get_vmsize $CONFIG_FILE)
+  VM_CORES=$(get_cores $CONFIG_FILE)
+  number_instances=$(get_instances $CONFIG_FILE)
+  # echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
+  echo "$VM_SIZE $VM_CORES $number_instances $LOCATION $TEMPLATE_FILE"
+  ./main.sh $BENCHMARK \
+    ${FILE_SHARED_PARAMETERS} \
+    ${number_instances} \
+    ${VM_SIZE} \
+    ${VM_CORES} \
+    ${TEMPLATE_FILE} \
+    ${LOCATION} 2>&1 | tee -a complete_${VM_SIZE}_${number_instances}.log
+  sleep 5
 
 
   # for cores in $CONFIGURE_CORES
@@ -72,20 +85,7 @@ main() {
   # done
 
 
-	VM_SIZE="Standard_D4_v3"
-	VM_CORES=4
-  number_instances=2
-	# echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
-  echo "$VM_SIZE $VM_CORES $number_instances $LOCATION"
-  ./main.sh $BENCHMARK \
-            ${FILE_SHARED_PARAMETERS} \
-            ${number_instances} \
-            ${VM_SIZE} \
-            ${VM_CORES} \
-            ${TEMPLATE_FILE} \
-            ${LOCATION} 2>&1 | tee -a complete_${VM_SIZE}_${number_instances}.log
-  sleep 5
-	
+
 
 }
 main

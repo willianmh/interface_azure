@@ -44,7 +44,7 @@ main() {
   # variables to use with a FILESHARE system. If you are running SPITZ
   # $ QUOTA (in Gib) is the size of your fileshare system
   # $ FILESHARE is the name of yout fileshare system which each vm is going to mount
-  local QUOTA=15
+  local QUOTA=50
   # manipulate file share name --> remove special characters, and to lowerCaseFy
   local FILESHARE="${BENCHMARK}${NUMBER_INSTANCES}x${VM_SIZE}"
   FILESHARE=$(remove_special_characters $FILESHARE)
@@ -76,10 +76,10 @@ main() {
 
 
   # discomment if your application needs a fileshare system, like SPITZ
-  # create_fileshare $FILESHARE \
-  #                   $PASSMOUNT \
-  #                   $DISKUSERNAME \
-  #                   $QUOTA
+  create_fileshare $FILESHARE \
+                    $PASSMOUNT \
+                    $DISKUSERNAME \
+                    $QUOTA
 
   # If your application needs a fileshare system, add $FILESHARE as the last parameter in create_machines
   create_machines $RESOURCE_GROUP \
@@ -92,7 +92,7 @@ main() {
                   $ADMIN_PUB_KEY \
                   $NUMBER_INSTANCES # $FILESHARE (optional)
 
-  setup_ssh_keys $RESOURCE_GROUP
+  local SSH_ADDR=$(setup_ssh_keys $RESOURCE_GROUP)
 
   # discomment if application needs hostfile, like if you are running MPI
   local PATH_TO_HOSTFILE=$(generate_hostfile $NUMBER_INSTANCES)
@@ -113,6 +113,7 @@ main() {
   #           $NUMBER_INSTANCES \
   #           $VM_SIZE_FORMATTED
 
+  ssh $SSH_ADDR
 
 
 }

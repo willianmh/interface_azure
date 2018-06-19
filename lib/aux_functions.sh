@@ -242,3 +242,11 @@ get_templatefile() {
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
+
+get_vmsize() {
+  local CONFIG_FILE=$1
+
+  echo $(grep vmsize $CONFIG_FILE | \
+                    sed 's/^.*(//' | \
+                    sed 's/.$//')
+}
