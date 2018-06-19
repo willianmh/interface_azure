@@ -1,0 +1,7 @@
+Timestep   1438; Sim Time  86280.0s; Wall      0.062s
+ Timestep   1439; Sim Time  86340.0s; Wall      0.062s
+ Timestep   1440; Sim Time  86400.0s; Wall      1.875s
+
+ === Time integration ends; Total run time=1845.5s ===
+
+ ****** BRAMS execution ends ******
