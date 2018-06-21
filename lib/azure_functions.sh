@@ -1,5 +1,5 @@
 #!/bin/bash
-source config.sh
+source lib/config.sh
 
 init_log() {
  	mkdir -p ${LOG_DIR}
@@ -16,7 +16,7 @@ create_group() {
 	local RESOURCE_GROUP=$1
 	local LOCATION=$2
 
-	write_log "Creating group ${RESOURCE_GROUP} in location ${region}"
+	write_log "Creating group ${RESOURCE_GROUP} in location ${LOCATION}"
 
 	az group create --name $RESOURCE_GROUP --location ${LOCATION}
   sleep 15
@@ -101,7 +101,7 @@ create_machines() {
 
 	echo "num_instances=$NUMBER_INSTANCES"
 	for (( i = 1; i <= $NUMBER_INSTANCES; i++ )); do
-      createMachines $i \
+      createMachine $i \
                       ${RESOURCE_GROUP} \
                       ${TEMPLATE_FILE} \
                       ${VM_SIZE} \
@@ -109,7 +109,7 @@ create_machines() {
                       ${PASSMOUNT} \
                       ${DISKURL}${DISKUSERNAME} \
                       ${DISKUSERNAME} \
-                      ${ADMIN_PUB_KEY} \
+                      ${ADMIN_PUB_KEY} &
       # create_machine "$machine_name$sufix" $resource_group $template_file $vm_size "$vm_name$sufix" "$dns_label$sufix" "$admin_password" "$password_mount" "$admin_public_key" 	&
 	    sleep 20
 	done

@@ -4,9 +4,9 @@ readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
 
-. ./azure_functions.sh --source-only
-source aux_functions.sh
-source bench/brams.sh
+source lib/azure_functions.sh
+source lib/aux_functions.sh
+source lib/bench/brams.sh
 
 
 main() {
