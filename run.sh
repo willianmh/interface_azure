@@ -43,6 +43,8 @@ main() {
   VM_SIZE=$(get_vmsize $CONFIG_FILE)
   VM_CORES=$(get_cores $CONFIG_FILE)
   number_instances=$(get_instances $CONFIG_FILE)
+  mkdir -p complete_logs
+
   # echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
   echo "$VM_SIZE $VM_CORES $number_instances $LOCATION $TEMPLATE_FILE"
   ./lib/main.sh $BENCHMARK \
@@ -51,7 +53,7 @@ main() {
     ${VM_SIZE} \
     ${VM_CORES} \
     ${TEMPLATE_FILE} \
-    ${LOCATION} 2>&1 | tee -a complete_${VM_SIZE}_${number_instances}.log
+    ${LOCATION} 2>&1 | tee -a complete_logs/${VM_SIZE}_${number_instances}.log
   sleep 5
 
 
