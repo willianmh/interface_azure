@@ -113,7 +113,7 @@ main() {
   #           $NUMBER_INSTANCES \
   #           $VM_SIZE_FORMATTED
 
-  ssh $SSH_ADDR
+  # ssh $SSH_ADDR
 
 
 }

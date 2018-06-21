@@ -45,7 +45,7 @@ main() {
   number_instances=$(get_instances $CONFIG_FILE)
   # echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
   echo "$VM_SIZE $VM_CORES $number_instances $LOCATION $TEMPLATE_FILE"
-  ./main.sh $BENCHMARK \
+  ./lib/main.sh $BENCHMARK \
     ${FILE_SHARED_PARAMETERS} \
     ${number_instances} \
     ${VM_SIZE} \
