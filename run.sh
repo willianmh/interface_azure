@@ -6,8 +6,8 @@ readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
 
 
-source azure_functions.sh
-source aux_functions.sh
+source lib/azure_functions.sh
+source lib/aux_functions.sh
 
 
 
