@@ -77,8 +77,7 @@ create_machine() {
                                             scriptParameterDiskUrl=$DISKURL \
                                             scriptParameterUsername=$DISKUSERNAME \
                                             adminPublicKey="$ADMIN_PUB_KEY" \
-                                            imageSourceID="$IMAGE"
-                                            >> $LOG_FILE
+                                            imageSourceID="$IMAGE" >> $LOG_FILE
 
 	write_log "machine $MACHINE_NAME $VM_NAME created"
 }
