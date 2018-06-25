@@ -1,1 +1,5 @@
 *.config
+fileshares
+groups
+log/
+ssh_addrs
