@@ -166,7 +166,7 @@ check_network_connection() {
 get_benchmark() {
 local CONFIG_FILE=$1
 
-  echo $(grep benchmark $CONFIG_FILE | \
+  echo $(grep -w "benchmark" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -174,7 +174,7 @@ local CONFIG_FILE=$1
 get_location() {
 local CONFIG_FILE=$1
 
-  echo $(grep location $CONFIG_FILE | \
+  echo $(grep -w "location" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -182,7 +182,7 @@ local CONFIG_FILE=$1
 get_subscription() {
 local CONFIG_FILE=$1
 
-  echo $(grep subscription $CONFIG_FILE | \
+  echo $(grep -w "subscription" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -190,7 +190,7 @@ local CONFIG_FILE=$1
 get_cores() {
 local CONFIG_FILE=$1
 
-  echo $(grep cores $CONFIG_FILE | \
+  echo $(grep -w "cores" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/[^a-zA-Z0-9]/ /g')
 }
@@ -198,7 +198,7 @@ local CONFIG_FILE=$1
 get_instances() {
 local CONFIG_FILE=$1
 
-  echo $(grep instances $CONFIG_FILE | \
+  echo $(grep -w "instances" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/[^a-zA-Z0-9]/ /g')
 }
@@ -206,7 +206,7 @@ local CONFIG_FILE=$1
 get_adminpassword() {
 local CONFIG_FILE=$1
 
-  echo $(grep adminpassword $CONFIG_FILE | \
+  echo $(grep -w "adminpassword" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -214,7 +214,7 @@ local CONFIG_FILE=$1
 get_passmount() {
 local CONFIG_FILE=$1
 
-  echo $(grep passmount $CONFIG_FILE | \
+  echo $(grep -w "passmount" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -222,7 +222,7 @@ local CONFIG_FILE=$1
 get_diskurl() {
 local CONFIG_FILE=$1
 
-  echo $(grep diskurl $CONFIG_FILE | \
+  echo $(grep -w "diskurl" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -230,7 +230,7 @@ local CONFIG_FILE=$1
 get_diskusername() {
 local CONFIG_FILE=$1
 
-  echo $(grep diskusername $CONFIG_FILE | \
+  echo $(grep -w "diskusername" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -238,7 +238,7 @@ local CONFIG_FILE=$1
 get_templatefile() {
   local CONFIG_FILE=$1
 
-  echo $(grep template $CONFIG_FILE | \
+  echo $(grep -w "template" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
@@ -246,15 +246,15 @@ get_templatefile() {
 get_vmsize() {
   local CONFIG_FILE=$1
 
-  echo $(grep vmsize $CONFIG_FILE | \
+  echo $(grep -w "vmsize" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
 
-get_vmsize() {
+get_image() {
   local CONFIG_FILE=$1
 
-  echo $(grep image $CONFIG_FILE | \
+  echo $(grep -w "image" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
