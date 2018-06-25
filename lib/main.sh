@@ -92,7 +92,8 @@ main() {
                   $NUMBER_INSTANCES \
                   $IMAGE # $FILESHARE (optional)
 
-  local SSH_ADDR=$(setup_ssh_keys $RESOURCE_GROUP)
+
+  SSH_ADDR=$(setup_ssh_keys $RESOURCE_GROUP)
 
   # discomment if application needs hostfile, like if you are running MPI
   local PATH_TO_HOSTFILE=$(generate_hostfile $NUMBER_INSTANCES)

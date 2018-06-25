@@ -191,14 +191,14 @@ setup_ssh_keys() {
 
   # add access credential for all vm's
   for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
-    echo " Copy id from $hostname"
+    # echo " Copy id from $hostname"
     ssh-keygen -R $hostname
     ssh-keygen -R `dig +short $hostname`
     ssh-keyscan -H $hostname >> ~/.ssh/known_hosts
   done
 
   # get the coordinator address
-  local SSH_ADDR=`grep "ssh " ${LOG_FILE} | tail -n 1 | sed -e 's/^.*username/username/' -e 's/.$//'`
+  SSH_ADDR=`grep "ssh " ${LOG_FILE} | tail -n 1 | sed -e 's/^.*username/username/' -e 's/.$//'`
 
   is_empty "${SSH_ADDR}" \
     && delete_group ${RESOURCE_GROUP}
@@ -209,7 +209,7 @@ setup_ssh_keys() {
   # copy coordinator (master) credential to all slaves
   scp ${SSH_ADDR}:.ssh/id_rsa.pub ${LOG_DIR}/id_rsa_coodinator_${RESOURCE_GROUP}.pub
   for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
-      echo "Put ssh key on $hostname"
+      # echo "Put ssh key on $hostname"
       ssh-copy-id -f -i ${LOG_DIR}/id_rsa_coodinator_${RESOURCE_GROUP}.pub "username@${hostname}"
   done
 
