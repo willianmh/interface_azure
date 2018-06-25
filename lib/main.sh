@@ -100,18 +100,17 @@ main() {
 # *******************************************************************
 
   #
-  # local BRAMSDIR="/home/username/BRAMS"
-  # local BRAMSDIRBIN="/home/username/bin"
-  # local SAMPLEDIR="/home/username/meteo-only"
-  #
-  # run_brams $SSH_ADDR \
-  #           $BRAMSDIR \
-  #           $BRAMSDIRBIN \
-  #           $SAMPLEDIR \
-  #           $NUMBER_INSTANCES \
-  #           $VM_SIZE_FORMATTED
+  local BRAMSDIR="/home/username/BRAMS"
+  local BRAMSDIRBIN="/home/username/bin"
+  local SAMPLEDIR="/home/username/meteo-only"
 
-  # ssh $SSH_ADDR
+  run_brams $SSH_ADDR \
+            $BRAMSDIR \
+            $BRAMSDIRBIN \
+            $SAMPLEDIR \
+            $NUMBER_INSTANCES \
+            $VM_SIZE_FORMATTED \
+            $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
 
 
 }
