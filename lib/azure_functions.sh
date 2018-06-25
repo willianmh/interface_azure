@@ -66,7 +66,7 @@ create_machine() {
 
 	write_log "creating machine $MACHINE_NAME $VM_NAME"
 
-	az group deployment create --name "$machine_name" \
+	az group deployment create --name "$MACHINE_NAME" \
                               --resource-group "$RESOURCE_GROUP" \
 		    	                    --template-file "$TEMPLATE_FILE" \
                               --parameters vmSize="$VM_SIZE" \
