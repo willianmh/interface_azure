@@ -43,7 +43,7 @@ main() {
   # variables to use with a FILESHARE system. If you are running SPITZ
   # $ QUOTA (in Gib) is the size of your fileshare system
   # $ FILESHARE is the name of yout fileshare system which each vm is going to mount
-  local QUOTA=50
+  local QUOTA=15
   # manipulate file share name --> remove special characters, and to lowerCaseFy
   local FILESHARE="${BENCHMARK}${NUMBER_INSTANCES}x${VM_SIZE}"
   FILESHARE=$(remove_special_characters $FILESHARE)

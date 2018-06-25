@@ -86,14 +86,14 @@ create_machines() {
   local TEMPLATE_FILE=${2}
   local VM_SIZE=${3}
 
-  local ADMIN_PASSWORD=${5}
-	local PASSMOUNT=${6}
-  local DISKURL=${7}
-  local DISKUSERNAME=${8}
+  local ADMIN_PASSWORD=${4}
+	local PASSMOUNT=${5}
+  local DISKURL=${6}
+  local DISKUSERNAME=${7}
 
-	local NUMBER_INSTANCES=${9}
+	local NUMBER_INSTANCES=${8}
 
-  local FILESHARE=${10}
+  local FILESHARE=${9}
 
   is_not_empty $FILESHARE \
     && DISKUSERNAME=$FILESHARE
