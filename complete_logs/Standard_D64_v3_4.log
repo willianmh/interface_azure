@@ -1,0 +1,331 @@
++ local BENCHMARK=joey
++ local ADMINPASSWORD=Senha123
++ local PASSMOUNT=3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ==
++ local DISKURL=//scarif.file.core.windows.net/
++ local DISKUSERNAME=scarif
++ local NUMBER_INSTANCES=4
++ local VM_SIZE=Standard_D64_v3
++ local NUMBER_PROCESSORS=64
++ local TEMPLATE_FILE=azuredeploy_w_image.json
++ local LOCATION=southcentralus
++ local RESOURCE_GROUP=legion19896
+++ remove_special_characters Standard_D64_v3
+++ local var=Standard_D64_v3
++++ sed 's/[^a-zA-Z0-9]//g'
+++ echo StandardD64v3
++ local VM_SIZE_FORMATTED=StandardD64v3
+++ to_lower_case StandardD64v3
+++ local var=StandardD64v3
++++ sed 's/./\L&/g'
+++ echo standardd64v3
++ VM_SIZE_FORMATTED=standardd64v3
+++ cat /home/willian/.ssh/id_rsa.pub
++ local 'ADMIN_PUB_KEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJlLci424t4GFTg0JtkDtUyVdzZ/+5w/pDP9SxJkFCmznHGwquc2uMnbsLoZXyw2mjTjpUWIfN3yx567UlDITxQg1pdjpS0vEITvsjt4yQ5g2n8rr/wSq6p2a0S4cggCJfoaDvPjqwRgGOyjGBibsbRDUHQBwCeFpwyNCpJiJkg2jCB1d+KpU8esBbhblZezZXCZwIv8Yr3up+Mrkuq1RD/zt7AypwHKwckiohoeRCL4JwBbvild0jeIg5VUfQBRYxHYkgAsdxed9EL7LeZXope6q1Hj7XPRy/ZrGCi7etYZJxUtvjdaQeC4T7mH4AnWWboFmyREKZt+0/9epQuzX4Qm6VSXeuHOcCjyelQKBLdLBG2QxGtRuRTCn55Uzfa9kop258rsDfwoevxarY8SdyIEa6gMl7sd+IrsxzmhIq6UU5Y8aIAahRLOiBZBasYKL3hQpaQnTSU1NICIHvg0UvajP5Zkeoa1F5uuwSJBQpYYexR6H7UMHpUS7GFwGG/9oE0UfyyRwPuyDVNV26SWqurEZLT685Wpm7JTew6qRCtD875T1WrA/1mi9mtue95fLRm0tQQmRZ5rbODymbvDv+XCvwyu4p3djwg1/rfwchXkhOWD48+ssnjUG7lv3JD6u66WXBRaKtlpLjRZezODTxiR7JCkcAhWK8v7y3jb3/0Q== will.hayashida07@gmail.com'
++ local QUOTA=50
++ local FILESHARE=joey4xStandard_D64_v3
+++ remove_special_characters joey4xStandard_D64_v3
+++ local var=joey4xStandard_D64_v3
++++ sed 's/[^a-zA-Z0-9]//g'
+++ echo joey4xStandardD64v3
++ FILESHARE=joey4xStandardD64v3
+++ to_lower_case joey4xStandardD64v3
+++ local var=joey4xStandardD64v3
++++ sed 's/./\L&/g'
+++ echo joey4xstandardd64v3
++ FILESHARE=joey4xstandardd64v3
++ LOG_DIR=log/joey/Standard_D64_v3_4
++ RESULTS_DIR=results/joey/Standard_D64_v3_4
++ mkdir -p log
++ mkdir -p results
++ mkdir -p log/joey
++ mkdir -p results/joey
++ mkdir -p results/joey/Standard_D64_v3_4
++ LOG_FILE=log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++ init_log
++ mkdir -p log/joey/Standard_D64_v3_4
++ write_log start
++ local msg=start
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:53:07 -03 2018 start'
+Thu Jun 21 19:53:07 -03 2018 start
++ create_group legion19896 southcentralus
++ local RESOURCE_GROUP=legion19896
++ local LOCATION=southcentralus
++ write_log 'Creating group legion19896 in location southcentralus'
++ local 'msg=Creating group legion19896 in location southcentralus'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:53:07 -03 2018 Creating group legion19896 in location southcentralus'
+Thu Jun 21 19:53:07 -03 2018 Creating group legion19896 in location southcentralus
++ az group create --name legion19896 --location southcentralus
+{
+  "id": "/subscriptions/845870fa-9220-4a9a-83b2-89121da7a33a/resourceGroups/legion19896",
+  "location": "southcentralus",
+  "managedBy": null,
+  "name": "legion19896",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null
+}
++ sleep 15
++ '[' '!' 0 -eq 0 ']'
++ write_log 'group created'
++ local 'msg=group created'
+++ date
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++ echo 'Thu Jun 21 19:53:27 -03 2018 group created'
+Thu Jun 21 19:53:27 -03 2018 group created
++ touch groups
++ echo legion19896
++ create_fileshare joey4xstandardd64v3 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== scarif 50
++ local FILESHARE=joey4xstandardd64v3
++ local PASSMOUNT=3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ==
++ local DISKUSERNAME=scarif
++ local QUOTA=50
++ write_log 'Creating storage share joey4xstandardd64v3'
++ local 'msg=Creating storage share joey4xstandardd64v3'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:53:27 -03 2018 Creating storage share joey4xstandardd64v3'
+Thu Jun 21 19:53:27 -03 2018 Creating storage share joey4xstandardd64v3
++ az storage share create --name joey4xstandardd64v3 --account-key 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== --account-name scarif --quota 50
+{
+  "created": false
+}
++ sleep 15
++ write_log 'Storage share joey4xstandardd64v3 created'
++ local 'msg=Storage share joey4xstandardd64v3 created'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:53:45 -03 2018 Storage share joey4xstandardd64v3 created'
+Thu Jun 21 19:53:45 -03 2018 Storage share joey4xstandardd64v3 created
++ touch fileshares
++ echo joey4xstandardd64v3
++ echo legion19896 azuredeploy_w_image.json Standard_D64_v3 Senha123 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== //scarif.file.core.windows.net/ scarif ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJlLci424t4GFTg0JtkDtUyVdzZ/+5w/pDP9SxJkFCmznHGwquc2uMnbsLoZXyw2mjTjpUWIfN3yx567UlDITxQg1pdjpS0vEITvsjt4yQ5g2n8rr/wSq6p2a0S4cggCJfoaDvPjqwRgGOyjGBibsbRDUHQBwCeFpwyNCpJiJkg2jCB1d+KpU8esBbhblZezZXCZwIv8Yr3up+Mrkuq1RD/zt7AypwHKwckiohoeRCL4JwBbvild0jeIg5VUfQBRYxHYkgAsdxed9EL7LeZXope6q1Hj7XPRy/ZrGCi7etYZJxUtvjdaQeC4T7mH4AnWWboFmyREKZt+0/9epQuzX4Qm6VSXeuHOcCjyelQKBLdLBG2QxGtRuRTCn55Uzfa9kop258rsDfwoevxarY8SdyIEa6gMl7sd+IrsxzmhIq6UU5Y8aIAahRLOiBZBasYKL3hQpaQnTSU1NICIHvg0UvajP5Zkeoa1F5uuwSJBQpYYexR6H7UMHpUS7GFwGG/9oE0UfyyRwPuyDVNV26SWqurEZLT685Wpm7JTew6qRCtD875T1WrA/1mi9mtue95fLRm0tQQmRZ5rbODymbvDv+XCvwyu4p3djwg1/rfwchXkhOWD48+ssnjUG7lv3JD6u66WXBRaKtlpLjRZezODTxiR7JCkcAhWK8v7y3jb3/0Q== will.hayashida07@gmail.com 4
+legion19896 azuredeploy_w_image.json Standard_D64_v3 Senha123 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== //scarif.file.core.windows.net/ scarif ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJlLci424t4GFTg0JtkDtUyVdzZ/+5w/pDP9SxJkFCmznHGwquc2uMnbsLoZXyw2mjTjpUWIfN3yx567UlDITxQg1pdjpS0vEITvsjt4yQ5g2n8rr/wSq6p2a0S4cggCJfoaDvPjqwRgGOyjGBibsbRDUHQBwCeFpwyNCpJiJkg2jCB1d+KpU8esBbhblZezZXCZwIv8Yr3up+Mrkuq1RD/zt7AypwHKwckiohoeRCL4JwBbvild0jeIg5VUfQBRYxHYkgAsdxed9EL7LeZXope6q1Hj7XPRy/ZrGCi7etYZJxUtvjdaQeC4T7mH4AnWWboFmyREKZt+0/9epQuzX4Qm6VSXeuHOcCjyelQKBLdLBG2QxGtRuRTCn55Uzfa9kop258rsDfwoevxarY8SdyIEa6gMl7sd+IrsxzmhIq6UU5Y8aIAahRLOiBZBasYKL3hQpaQnTSU1NICIHvg0UvajP5Zkeoa1F5uuwSJBQpYYexR6H7UMHpUS7GFwGG/9oE0UfyyRwPuyDVNV26SWqurEZLT685Wpm7JTew6qRCtD875T1WrA/1mi9mtue95fLRm0tQQmRZ5rbODymbvDv+XCvwyu4p3djwg1/rfwchXkhOWD48+ssnjUG7lv3JD6u66WXBRaKtlpLjRZezODTxiR7JCkcAhWK8v7y3jb3/0Q== will.hayashida07@gmail.com 4
+++ setup_ssh_keys legion19896
+++ local RESOURCE_GROUP=legion19896
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ sed -e 's/^.*@//' -e 's/.$//'
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ tail -n 1
++++ sed -e 's/^.*username/username/' -e 's/.$//'
+++ local SSH_ADDR=
+++ is_empty ''
+++ local var=
+++ [[ -z '' ]]
+++ delete_group legion19896
+++ local RESOURCE_GROUP=legion19896
+++ write_log 'Deleting group legion19896'
+++ local 'msg=Deleting group legion19896'
+++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ date
+++ echo 'Thu Jun 21 19:53:45 -03 2018 Deleting group legion19896'
+++ az group delete --name legion19896 --yes --no-wait
+++ ssh 'ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '\'''\'' '
+ssh: Could not resolve hostname ssh-keygen -f ~/.ssh/id_rsa -t rsa -n '' : Name or service not known
+++ scp :.ssh/id_rsa.pub log/joey/Standard_D64_v3_4/id_rsa_coodinator_legion19896.pub
+cp: cannot stat ':.ssh/id_rsa.pub': No such file or directory
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ sed -e 's/^.*@//' -e 's/.$//'
+++ ssh
+usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+           [-D [bind_address:]port] [-E log_file] [-e escape_char]
+           [-F configfile] [-I pkcs11] [-i identity_file]
+           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]
+           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]
+           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]
+           [user@]hostname [command]
+++ echo
+++ echo
++ local 'SSH_ADDR=Thu Jun 21 19:53:45 -03 2018 Deleting group legion19896'
+++ generate_hostfile 4
+++ local NUMBER_INSTANCES=4
+++ rm log/joey/Standard_D64_v3_4/hostfile
+rm: cannot remove 'log/joey/Standard_D64_v3_4/hostfile': No such file or directory
++++ seq 4 7
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.4
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.5
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.6
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.7
+++ echo log/joey/Standard_D64_v3_4/hostile
++ local PATH_TO_HOSTFILE=log/joey/Standard_D64_v3_4/hostile
++ local BENCHMARK=joey
++ local ADMINPASSWORD=Senha123
++ local PASSMOUNT=3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ==
++ local DISKURL=//scarif.file.core.windows.net/
++ local DISKUSERNAME=scarif
++ local NUMBER_INSTANCES=4
++ local VM_SIZE=Standard_D64_v3
++ local NUMBER_PROCESSORS=64
++ local TEMPLATE_FILE=azuredeploy_w_image.json
++ local LOCATION=southcentralus
++ local RESOURCE_GROUP=legion3786
+++ remove_special_characters Standard_D64_v3
+++ local var=Standard_D64_v3
++++ sed 's/[^a-zA-Z0-9]//g'
+++ echo StandardD64v3
++ local VM_SIZE_FORMATTED=StandardD64v3
+++ to_lower_case StandardD64v3
+++ local var=StandardD64v3
++++ sed 's/./\L&/g'
+++ echo standardd64v3
++ VM_SIZE_FORMATTED=standardd64v3
++ local QUOTA=50
++ local FILESHARE=joey4xStandard_D64_v3
+++ remove_special_characters joey4xStandard_D64_v3
+++ local var=joey4xStandard_D64_v3
++++ sed 's/[^a-zA-Z0-9]//g'
+++ echo joey4xStandardD64v3
++ FILESHARE=joey4xStandardD64v3
+++ to_lower_case joey4xStandardD64v3
+++ local var=joey4xStandardD64v3
++++ sed 's/./\L&/g'
+++ echo joey4xstandardd64v3
++ FILESHARE=joey4xstandardd64v3
++ LOG_DIR=log/joey/Standard_D64_v3_4
++ RESULTS_DIR=results/joey/Standard_D64_v3_4
++ mkdir -p log
++ mkdir -p results
++ mkdir -p log/joey
++ mkdir -p results/joey
++ mkdir -p results/joey/Standard_D64_v3_4
++ LOG_FILE=log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++ init_log
++ mkdir -p log/joey/Standard_D64_v3_4
++ write_log start
++ local msg=start
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:57:01 -03 2018 start'
+Thu Jun 21 19:57:01 -03 2018 start
++ create_group legion3786 southcentralus
++ local RESOURCE_GROUP=legion3786
++ local LOCATION=southcentralus
++ write_log 'Creating group legion3786 in location southcentralus'
++ local 'msg=Creating group legion3786 in location southcentralus'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:57:01 -03 2018 Creating group legion3786 in location southcentralus'
+Thu Jun 21 19:57:01 -03 2018 Creating group legion3786 in location southcentralus
++ az group create --name legion3786 --location southcentralus
+{
+  "id": "/subscriptions/845870fa-9220-4a9a-83b2-89121da7a33a/resourceGroups/legion3786",
+  "location": "southcentralus",
+  "managedBy": null,
+  "name": "legion3786",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null
+}
++ sleep 15
++ '[' '!' 0 -eq 0 ']'
++ write_log 'group created'
++ local 'msg=group created'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:57:19 -03 2018 group created'
+Thu Jun 21 19:57:19 -03 2018 group created
++ touch groups
++ echo legion3786
++ create_fileshare joey4xstandardd64v3 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== scarif 50
++ local FILESHARE=joey4xstandardd64v3
++ local PASSMOUNT=3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ==
++ local DISKUSERNAME=scarif
++ local QUOTA=50
++ write_log 'Creating storage share joey4xstandardd64v3'
++ local 'msg=Creating storage share joey4xstandardd64v3'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:57:19 -03 2018 Creating storage share joey4xstandardd64v3'
+Thu Jun 21 19:57:19 -03 2018 Creating storage share joey4xstandardd64v3
++ az storage share create --name joey4xstandardd64v3 --account-key 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== --account-name scarif --quota 50
+{
+  "created": false
+}
++ sleep 15
++ write_log 'Storage share joey4xstandardd64v3 created'
++ local 'msg=Storage share joey4xstandardd64v3 created'
++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
+++ date
++ echo 'Thu Jun 21 19:57:35 -03 2018 Storage share joey4xstandardd64v3 created'
+Thu Jun 21 19:57:35 -03 2018 Storage share joey4xstandardd64v3 created
++ touch fileshares
++ echo joey4xstandardd64v3
++ create_machines legion3786 azuredeploy_w_image.json Standard_D64_v3 Senha123 3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ== //scarif.file.core.windows.net/ scarif 4
++ local RESOURCE_GROUP=legion3786
++ local TEMPLATE_FILE=azuredeploy_w_image.json
++ local VM_SIZE=Standard_D64_v3
++ local ADMIN_PASSWORD=3Ap6mjpcOEYEeUD+bb0CTCr273/tQWnxiROuHYCK1buc/0sBuW3UHwc3KoKGkwDiswQ8eQrQiVGl8ZxxvAAKuQ==
++ local PASSMOUNT=//scarif.file.core.windows.net/
++ local DISKURL=scarif
++ local DISKUSERNAME=4
++ local NUMBER_INSTANCES=
++ local FILESHARE=
++ is_not_empty
++ local var=
++ [[ -n '' ]]
++ echo num_instances=
+num_instances=
++ (( i = 1 ))
++ (( i <=  ))
+lib/azure_functions.sh: line 102: ((: i <= : syntax error: operand expected (error token is "<= ")
++ wait
++ sleep 190
+++ setup_ssh_keys legion3786
+++ local RESOURCE_GROUP=legion3786
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ sed -e 's/^.*@//' -e 's/.$//'
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ tail -n 1
++++ sed -e 's/^.*username/username/' -e 's/.$//'
+++ local SSH_ADDR=
+++ is_empty ''
+++ local var=
+++ [[ -z '' ]]
+++ delete_group legion3786
+++ local RESOURCE_GROUP=legion3786
+++ write_log 'Deleting group legion3786'
+++ local 'msg=Deleting group legion3786'
+++ tee -a log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ date
+++ echo 'Thu Jun 21 20:00:45 -03 2018 Deleting group legion3786'
+++ az group delete --name legion3786 --yes --no-wait
+++ ssh 'ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '\'''\'' '
+ssh: Could not resolve hostname ssh-keygen -f ~/.ssh/id_rsa -t rsa -n '' : Name or service not known
+++ scp :.ssh/id_rsa.pub log/joey/Standard_D64_v3_4/id_rsa_coodinator_legion3786.pub
+cp: cannot stat ':.ssh/id_rsa.pub': No such file or directory
++++ grep 'ssh ' log/joey/Standard_D64_v3_4/Standard_D64_v3_4.log
++++ sed -e 's/^.*@//' -e 's/.$//'
+++ ssh
+usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+           [-D [bind_address:]port] [-E log_file] [-e escape_char]
+           [-F configfile] [-I pkcs11] [-i identity_file]
+           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]
+           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]
+           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]
+           [user@]hostname [command]
+++ echo
+++ echo
++ local 'SSH_ADDR=Thu Jun 21 20:00:45 -03 2018 Deleting group legion3786'
+++ generate_hostfile 4
+++ local NUMBER_INSTANCES=4
+++ rm log/joey/Standard_D64_v3_4/hostfile
++++ seq 4 7
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.4
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.5
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.6
+++ for host in `seq 4 $((${NUMBER_INSTANCES}+3))`
+++ echo 10.0.0.7
+++ echo log/joey/Standard_D64_v3_4/hostile
++ local PATH_TO_HOSTFILE=log/joey/Standard_D64_v3_4/hostile

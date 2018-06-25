@@ -8,7 +8,7 @@ readonly ARGS="$@"
 
 source lib/azure_functions.sh
 source lib/aux_functions.sh
-
+publicIPAddressName
 
 
 main() {

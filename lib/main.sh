@@ -39,7 +39,6 @@ main() {
   VM_SIZE_FORMATTED=$(to_lower_case $VM_SIZE_FORMATTED )
   # VM_SIZE_FORMATTED is something like: standarda3v2
 
-  local ADMIN_PUB_KEY="$(cat ~/.ssh/id_rsa.pub)"
 
   # variables to use with a FILESHARE system. If you are running SPITZ
   # $ QUOTA (in Gib) is the size of your fileshare system
@@ -89,7 +88,6 @@ main() {
                   $PASSMOUNT \
                   $DISKURL \
                   $DISKUSERNAME \
-                  $ADMIN_PUB_KEY \
                   $NUMBER_INSTANCES # $FILESHARE (optional)
 
   local SSH_ADDR=$(setup_ssh_keys $RESOURCE_GROUP)
