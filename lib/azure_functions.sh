@@ -100,7 +100,7 @@ create_machines() {
 
 	echo "num_instances=$NUMBER_INSTANCES"
 	for (( i = 1; i <= $NUMBER_INSTANCES; i++ )); do
-      createMachine $i \
+      create_machine $i \
                       ${RESOURCE_GROUP} \
                       ${TEMPLATE_FILE} \
                       ${VM_SIZE} \

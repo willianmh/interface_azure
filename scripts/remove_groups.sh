@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for i in $(cat ../../groups)
+for i in $(cat ../groups)
 do
 	echo $i
 	# az group delete --resource-group $i --yes --no-wait
