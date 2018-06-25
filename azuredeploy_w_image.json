@@ -238,7 +238,7 @@
         },
         "storageProfile": {
           "imageReference": {
-            "id": "parameters('imageSourceID')"
+            "id": "[parameters('imageSourceID')]"
           },
           "osDisk": {
             "createOption": "FromImage",
