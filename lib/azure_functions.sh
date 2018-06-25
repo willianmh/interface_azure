@@ -229,8 +229,6 @@ setup_ssh_keys() {
 EOF
 
   echo $SSH_ADDR >> ssh_addrs
-  echo $SSH_ADDR
-  set -x
 }
 
 create_image() {
