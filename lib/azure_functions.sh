@@ -50,7 +50,7 @@ create_machine() {
 	local VM_SIZE=$4
 
   local ADMIN_PASSWORD=$5
-	local PASSMOUNT=$6
+  local PASSMOUNT=$6
   local DISKURL=$7
   local DISKUSERNAME=$8
 
@@ -113,7 +113,6 @@ create_machines() {
                       ${DISKURL}${DISKUSERNAME} \
                       ${DISKUSERNAME} \
                       $IMAGE &
-      # create_machine "$machine_name$sufix" $resource_group $template_file $vm_size "$vm_name$sufix" "$dns_label$sufix" "$admin_password" "$password_mount" "$admin_public_key" 	&
 	    sleep 20
 	done
 	wait
@@ -185,8 +184,9 @@ generate_hostfile() {
 
 setup_ssh_keys() {
   local RESOURCE_GROUP=$1
-   set +x
-   echo $LOG_FILE > grep_ssh
+
+
+  echo $LOG_FILE > grep_ssh
   grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//' >> grep_ssh
 
   # add access credential for all vm's
