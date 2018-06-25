@@ -187,7 +187,8 @@ generate_hostfile() {
 setup_ssh_keys() {
   local RESOURCE_GROUP=$1
    set +x
-  grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//' > grep_ssh
+   echo $LOG_FILE > grep_ssh
+  grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//' >> grep_ssh
 
   # add access credential for all vm's
   for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
