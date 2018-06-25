@@ -250,3 +250,11 @@ get_vmsize() {
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
+
+get_vmsize() {
+  local CONFIG_FILE=$1
+
+  echo $(grep image $CONFIG_FILE | \
+                    sed 's/^.*(//' | \
+                    sed 's/.$//')
+}

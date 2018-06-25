@@ -31,7 +31,8 @@ main() {
   local NUMBER_PROCESSORS=${8}
 
   local TEMPLATE_FILE=${9}
-  local LOCATION=${10}
+  local IMAGE=${10}
+  local LOCATION=${11}
 
   local RESOURCE_GROUP=legion${RANDOM}
 
@@ -88,7 +89,8 @@ main() {
                   $PASSMOUNT \
                   $DISKURL \
                   $DISKUSERNAME \
-                  $NUMBER_INSTANCES # $FILESHARE (optional)
+                  $NUMBER_INSTANCES \
+                  $IMAGE # $FILESHARE (optional)
 
   local SSH_ADDR=$(setup_ssh_keys $RESOURCE_GROUP)
 

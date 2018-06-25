@@ -54,6 +54,8 @@ create_machine() {
   local DISKURL=$7
   local DISKUSERNAME=$8
 
+  local IMAGE=$9
+
   local ADMIN_PUB_KEY="$(cat ~/.ssh/id_rsa.pub)"
 
 
@@ -75,6 +77,7 @@ create_machine() {
                                             scriptParameterDiskUrl=$DISKURL \
                                             scriptParameterUsername=$DISKUSERNAME \
                                             adminPublicKey="$ADMIN_PUB_KEY" \
+                                            imageSourceID="$IMAGE"
                                             >> $LOG_FILE
 
 	write_log "machine $MACHINE_NAME $VM_NAME created"
@@ -93,7 +96,9 @@ create_machines() {
 
 	local NUMBER_INSTANCES=${8}
 
-  local FILESHARE=${9}
+  local IMAGE=${9}
+
+  local FILESHARE=${10}
 
   is_not_empty $FILESHARE \
     && DISKUSERNAME=$FILESHARE
@@ -107,7 +112,8 @@ create_machines() {
                       ${ADMINPASSWORD} \
                       ${PASSMOUNT} \
                       ${DISKURL}${DISKUSERNAME} \
-                      ${DISKUSERNAME} &
+                      ${DISKUSERNAME} \
+                      $IMAGE &
       # create_machine "$machine_name$sufix" $resource_group $template_file $vm_size "$vm_name$sufix" "$dns_label$sufix" "$admin_password" "$password_mount" "$admin_public_key" 	&
 	    sleep 20
 	done

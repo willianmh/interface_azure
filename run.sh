@@ -34,6 +34,7 @@ main() {
   local DISKUSERNAME=$(get_diskusername $CONFIG_FILE)
 
   local TEMPLATE_FILE=$(get_templatefile $CONFIG_FILE)
+  local IMAGE=$(get_image $CONFIG_FILE)
 
   local FILE_SHARED_PARAMETERS="${ADMINPASSWORD} ${PASSMOUNT} ${DISKURL} ${DISKUSERNAME}"
 
@@ -53,6 +54,7 @@ main() {
     ${VM_SIZE} \
     ${VM_CORES} \
     ${TEMPLATE_FILE} \
+    ${IMAGE} \
     ${LOCATION} 2>&1 | tee -a complete_logs/${VM_SIZE}_${number_instances}.log
   sleep 5
 
