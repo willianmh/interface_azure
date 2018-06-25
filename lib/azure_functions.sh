@@ -104,7 +104,7 @@ create_machines() {
     && DISKUSERNAME=$FILESHARE
 
 	echo "num_instances=$NUMBER_INSTANCES"
-	for (( i = 1; i <= $NUMBER_INSTANCES; i++ )); do
+	for (( i = 0; i <= $NUMBER_INSTANCES; i++ )); do
       create_machine $i \
                       ${RESOURCE_GROUP} \
                       ${TEMPLATE_FILE} \
@@ -186,6 +186,8 @@ generate_hostfile() {
 
 setup_ssh_keys() {
   local RESOURCE_GROUP=$1
+   set +x
+  grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//' > grep_ssh
 
   # add access credential for all vm's
   for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
@@ -228,7 +230,7 @@ EOF
 
   echo $SSH_ADDR >> ssh_addrs
   echo $SSH_ADDR
-
+  set -x
 }
 
 create_image() {
