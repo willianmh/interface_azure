@@ -23,7 +23,7 @@ run_brams() {
   scp ${LOG_DIR}/hostfile ${SSH_ADDR}:meteo-only
 
   echo $TOTAL_CORES > total_cores
-  scp total_cores ${SSH_ADDR}:meteo_only
+  scp total_cores ${SSH_ADDR}:meteo-only
 
   ssh ${SSH_ADDR} << EOF
     set -x

@@ -37,8 +37,10 @@ main() {
 
   local FILE_SHARED_PARAMETERS="${ADMINPASSWORD} ${PASSMOUNT} ${DISKURL} ${DISKUSERNAME}"
 
+  local MODE=$(get_mode $CONFIG_FILE)
 
   az account set -s "$SUBSCRIPTION"
+  echo $PROGDIR
 
   # VM_SIZE=$(get_vmsize $CONFIG_FILE)
   # VM_CORES=$(get_cores $CONFIG_FILE)
@@ -57,8 +59,6 @@ main() {
   #   ${LOCATION} 2>&1 | tee -a complete_logs/${VM_SIZE}_${number_instances}.log
   # sleep 5
 
-  local MODE=$(get_mode $CONFIG_FILE)
-
 
   for cores in $CONFIGURE_CORES
   do
@@ -66,43 +66,45 @@ main() {
   	do
   		for instance in $(cat machines/vm_sizes_${LOCATION}_$cores)
   		do
-
+        
   			VM_SIZE=$(sed 's/,.*//' <<<$instance )
   			VM_CORES=$(sed 's/[^,]*,\([^,]*\).*/\1/' <<<$instance )
+  			# echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
 
-        # character '#' means that VM_SIZE is commented
+        # character '#' means thtatz
   			if [ ! -z $(grep "#" <<< "$instance") ]
   			then
           echo "$VM_SIZE comentada"
   			else
           if [ "$MODE" = "parallel" ]
           then
-            echo -e "$number_instances\t$VM_CORES\t$VM_SIZE"
+            echo "$VM_SIZE $VM_CORES $number_instances running parallel"
             ./lib/main.sh $BENCHMARK \
-                      ${FILE_SHARED_PARAMETERS} \
-                      ${number_instances} \
-                      ${VM_SIZE} \
-                      ${VM_CORES} \
-                      ${TEMPLATE_FILE} \
-                      ${LOCATION} 2>&1 | \
-                      tee -a complete_${VM_SIZE}_${number_instances}.log &
+                          ${FILE_SHARED_PARAMETERS} \
+                          ${number_instances} \
+                          ${VM_SIZE} \
+                          ${VM_CORES} \
+                          ${TEMPLATE_FILE} \
+                          ${IMAGE} \
+                          ${LOCATION} 2>&1 | \
+                          tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
             sleep 5
           else
-            echo -e "$number_instances\t$VM_CORES\t$VM_SIZE"
+            echo "$VM_SIZE $VM_CORES $number_instances running sequencial"
             ./lib/main.sh $BENCHMARK \
-                      ${FILE_SHARED_PARAMETERS} \
-                      ${number_instances} \
-                      ${VM_SIZE} \
-                      ${VM_CORES} \
-                      ${TEMPLATE_FILE} \
-                      ${LOCATION} 2>&1 | \
-                      tee -a complete_${VM_SIZE}_${number_instances}.log
+                          ${FILE_SHARED_PARAMETERS} \
+                          ${number_instances} \
+                          ${VM_SIZE} \
+                          ${VM_CORES} \
+                          ${TEMPLATE_FILE} \
+                          ${IMAGE} \
+                          ${LOCATION} 2>&1 | \
+                          tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
             sleep 5
           fi
   			fi
   		done
       wait
-      echo "****************************************"
   	done
   done
 
