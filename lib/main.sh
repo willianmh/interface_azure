@@ -15,7 +15,8 @@ main() {
   # CONFIGURE ENVIROMENT
   # *******************************************************************
 
-  set -x
+  is_not_empty $DEBUG \
+    && set -x
 
   local BENCHMARK=${1}
   # read arguments

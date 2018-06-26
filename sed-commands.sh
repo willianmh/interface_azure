@@ -21,3 +21,6 @@ sed 's/./\L&/g'
 
 # remove until @
 sed 's/^.*@//'
+
+# remove after @
+sed 's/[@].*$//'

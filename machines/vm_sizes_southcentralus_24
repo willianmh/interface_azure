@@ -1,3 +1,7 @@
-Standard_NC24,24,224,64,4.32,5.203
-Standard_NC24r,24,224,64,4.752,5.724
-Standard_NV24,24,224,64,4.6,5.4
+Standard_NV24,24
+Standard_NC24rs_v3,24
+Standard_NC24s_v3,24
+Standard_NC24,24
+Standard_NC24r,24
+Standard_NC24rs_v2,24
+Standard_NC24s_v2,24

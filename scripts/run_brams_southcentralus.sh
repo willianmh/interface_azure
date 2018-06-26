@@ -47,8 +47,10 @@ MAXWAIT=`echo "$MAXWAIT-$MINWAIT" | bc`
 
 createMachines(){
     echo "Creating the machine number $1"
-    az group deployment create --name "${1}unit${RANDOM}" --resource-group ${GROUP_NAME} \
-    --template-file azuredeploy_w_imageBrams.json --parameters vmSize="${VM_SIZE}" vmName="${1}rebel${VM_SIZE_FORMATTED}" dnsLabelPrefix="my${GROUP_NAME}dnsprefix${1}" \
+    az group deployment create --name "${1}unit${RANDOM}" \
+                                --resource-group ${GROUP_NAME} \
+                                --template-file azuredeploy_w_imageBrams.json \
+                                --parameters vmSize="${VM_SIZE}" vmName="${1}rebel${VM_SIZE_FORMATTED}" dnsLabelPrefix="my${GROUP_NAME}dnsprefix${1}" \
     adminPassword=$2 scriptParameterPassMount=$3 scriptParameterDiskUrl=$4 scriptParameterUsername=$5 adminPublicKey="`cat ~/.ssh/id_rsa.pub`" >> ${LOG_FILE}
 }
 

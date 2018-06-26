@@ -43,7 +43,7 @@ delete_group() {
 
 create_machine() {
 
-  local MACHINE_NAME="${1}unit${RANDOM}"
+  local DEPLOY_NAME="${1}unit${RANDOM}"
 
   local RESOURCE_GROUP=$2
 	local TEMPLATE_FILE=$3
@@ -64,9 +64,9 @@ create_machine() {
 
 
 
-	write_log "creating machine $MACHINE_NAME $VM_NAME"
+	write_log "creating machine $DEPLOY_NAME $VM_NAME"
 
-	az group deployment create --name "$MACHINE_NAME" \
+	az group deployment create --debug --name "$DEPLOY_NAME" \
                               --resource-group "$RESOURCE_GROUP" \
 		    	                    --template-file "$TEMPLATE_FILE" \
                               --parameters vmSize="$VM_SIZE" \
@@ -79,7 +79,7 @@ create_machine() {
                                             adminPublicKey="$ADMIN_PUB_KEY" \
                                             imageSourceID="$IMAGE" >> $LOG_FILE
 
-	write_log "machine $MACHINE_NAME $VM_NAME created"
+	write_log "machine $DEPLOY_NAME $VM_NAME created"
 }
 
 create_machines() {

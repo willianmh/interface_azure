@@ -1,7 +1,9 @@
 #!/bin/bash
+readonly PROGDIR=$(readlink -m $(dirname $0))
 
+PARENT_DIR=$(sed 's/\/[^\/]*$//'<<<$PROGDIR)
 
-for i in $(cat ../groups)
+for i in $(cat $PARENT_DIR/groups)
 do
 	echo $i
 	# az group delete --resource-group $i --yes --no-wait

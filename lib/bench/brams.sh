@@ -18,7 +18,7 @@ run_brams() {
   scp -r $BRAMSDIRBIN $SSH_ADDR:
   scp -r $SAMPLEDIR $SSH_ADDR:
 
-  scp bench/brams_dir.sh ${SSH_ADDR}:
+  scp lib/bench/brams_dir.sh ${SSH_ADDR}:
   ssh ${SSH_ADDR} ./brams_dir.sh ${NUMBER_INSTANCES}
 
 
@@ -32,7 +32,7 @@ run_brams() {
     cd meteo-only
     export TMPDIR=./tmp
     ulimit -s 65536
-    # /opt/mpich3/bin/mpirun -n `cat total_cores` -f hostfile ./brams 2>&1 | tee log_brams_meteo_only.out
+    /opt/mpich3/bin/mpirun -n `cat total_cores` -f hostfile ./brams 2>&1 | tee log_brams_meteo_only.out
 EOF
 
   scp ${SSH_ADDR}:meteo-only/log_brams_meteo_only.out $RESULTS_DIR/log_meteo_only_${VM_SIZE_FORMATTED}.out
