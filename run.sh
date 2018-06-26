@@ -78,7 +78,7 @@ main() {
           if [ "$MODE" = "parallel" ]
           then
             echo -e "$number_instances\t$VM_CORES\t$VM_SIZE"
-            ./main.sh $BENCHMARK \
+            ./lib/main.sh $BENCHMARK \
                       ${FILE_SHARED_PARAMETERS} \
                       ${number_instances} \
                       ${VM_SIZE} \
@@ -89,7 +89,7 @@ main() {
             sleep 5
           else
             echo -e "$number_instances\t$VM_CORES\t$VM_SIZE"
-            ./main.sh $BENCHMARK \
+            ./lib/main.sh $BENCHMARK \
                       ${FILE_SHARED_PARAMETERS} \
                       ${number_instances} \
                       ${VM_SIZE} \
