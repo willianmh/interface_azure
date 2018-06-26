@@ -38,7 +38,7 @@ readonly PROGDIR=$(readlink -m $(dirname $0))
 # done
 
 az vm list-sizes -l southcentralus --output tsv > sizes
-cut -f 3,4 sizes | tr "\\t" "," > vm_sizes_southcentralus
+cut -f 3,4 sizes | tr "\\t" "," | sed 's/-/_/g' > vm_sizes_southcentralus
 
 
 PARENT_DIR=$(sed 's/\/[^\/]*$//'<<<$PROGDIR)

@@ -258,3 +258,11 @@ get_image() {
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
+
+get_mode() {
+  local CONFIG_FILE=$1
+
+  echo $(grep -w "mode" $CONFIG_FILE | \
+                    sed 's/^.*(//' | \
+                    sed 's/.$//')
+}

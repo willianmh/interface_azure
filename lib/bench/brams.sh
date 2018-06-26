@@ -3,16 +3,14 @@
 
 run_brams() {
 
-  local SSH_ADDR=$1
+  local BRAMSDIR=$1
+  local BRAMSDIRBIN=$2
+  local SAMPLEDIR=$3
 
-  local BRAMSDIR=$2
-  local BRAMSDIRBIN=$3
-  local SAMPLEDIR=$4
+  local NUMBER_INSTANCES=$4
 
-  local NUMBER_INSTANCES=$5
-
-  local VM_SIZE_FORMATTED=$6
-  local TOTAL_CORES=$7
+  local VM_SIZE_FORMATTED=$5
+  local TOTAL_CORES=$6
 
   scp -r $BRAMSDIR $SSH_ADDR:
   scp -r $BRAMSDIRBIN $SSH_ADDR:

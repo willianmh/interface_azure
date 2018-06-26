@@ -77,10 +77,10 @@ main() {
 
 
   # discomment if your application needs a fileshare system, like SPITZ
-  create_fileshare $FILESHARE \
-                    $PASSMOUNT \
-                    $DISKUSERNAME \
-                    $QUOTA
+  # create_fileshare $FILESHARE \
+  #                   $PASSMOUNT \
+  #                   $DISKUSERNAME \
+  #                   $QUOTA
 
   # If your application needs a fileshare system, add $FILESHARE as the last parameter in create_machines
   create_machines $RESOURCE_GROUP \
@@ -100,22 +100,21 @@ main() {
   local PATH_TO_HOSTFILE=$(generate_hostfile $NUMBER_INSTANCES)
 
 # *******************************************************************
-# BENCHMARK --
+# BENCHMARK - running application
 # *******************************************************************
 
-  #
   local BRAMSDIR="/home/username/BRAMS"
   local BRAMSDIRBIN="/home/username/bin"
   local SAMPLEDIR="/home/username/meteo-only"
 
-  run_brams $SSH_ADDR \
-            $BRAMSDIR \
+  run_brams $BRAMSDIR \
             $BRAMSDIRBIN \
             $SAMPLEDIR \
             $NUMBER_INSTANCES \
             $VM_SIZE_FORMATTED \
             $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
 
+  delete_group $RESOURCE_GROUP
 
 }
 
