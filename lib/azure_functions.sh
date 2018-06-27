@@ -66,7 +66,19 @@ create_machine() {
 
 	write_log "creating machine $DEPLOY_NAME $VM_NAME"
 
-	az group deployment create --debug --name "$DEPLOY_NAME" \
+  # az group deployment create --verbose --name "$DEPLOY_NAME" \
+  #                             --resource-group "$RESOURCE_GROUP" \
+	# 	    	                    --template-file azuredeploy_w_imageBrams.json \
+  #                             --parameters vmSize="$VM_SIZE" \
+  #                                           vmName="$VM_NAME" \
+  #                                           dnsLabelPrefix="$DNS_LABEL" \
+  #                                           adminPassword="$ADMIN_PASSWORD" \
+  #                                           scriptParameterPassMount="$PASSMOUNT" \
+  #                                           scriptParameterDiskUrl=$DISKURL \
+  #                                           scriptParameterUsername=$DISKUSERNAME \
+  #                                           adminPublicKey="$ADMIN_PUB_KEY" >> $LOG_FILE
+
+	az group deployment create --verbose --name "$DEPLOY_NAME" \
                               --resource-group "$RESOURCE_GROUP" \
 		    	                    --template-file "$TEMPLATE_FILE" \
                               --parameters vmSize="$VM_SIZE" \
@@ -78,6 +90,8 @@ create_machine() {
                                             scriptParameterUsername=$DISKUSERNAME \
                                             adminPublicKey="$ADMIN_PUB_KEY" \
                                             imageSourceID="$IMAGE" >> $LOG_FILE
+
+
 
 	write_log "machine $DEPLOY_NAME $VM_NAME created"
 }

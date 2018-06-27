@@ -66,7 +66,7 @@ main() {
   	do
   		for instance in $(cat machines/vm_sizes_${LOCATION}_$cores)
   		do
-        
+
   			VM_SIZE=$(sed 's/,.*//' <<<$instance )
   			VM_CORES=$(sed 's/[^,]*,\([^,]*\).*/\1/' <<<$instance )
   			# echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
