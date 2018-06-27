@@ -78,7 +78,7 @@ create_machine() {
   #                                           scriptParameterUsername=$DISKUSERNAME \
   #                                           adminPublicKey="$ADMIN_PUB_KEY" >> $LOG_FILE
 
-	az group deployment create --verbose --name "$DEPLOY_NAME" \
+	az group deployment create --name "$DEPLOY_NAME" \
                               --resource-group "$RESOURCE_GROUP" \
 		    	                    --template-file "$TEMPLATE_FILE" \
                               --parameters vmSize="$VM_SIZE" \
