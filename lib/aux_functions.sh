@@ -34,7 +34,7 @@ cmdline() {
               verbose=1  # Each -v adds 1 to verbosity.
               ;;
           -x|--debug)
-              readonly DEBUG='-x'
+              export DEBUG='-x'
               set -x
               ;;
           -l|--location)
