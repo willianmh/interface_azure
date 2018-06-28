@@ -99,7 +99,7 @@ main() {
                           ${TEMPLATE_FILE} \
                           ${IMAGE} \
                           ${LOCATION} 2>&1 | \
-                          tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
+                          tee -a complete_logs/${VM_SIZE}_${number_instances}.log
             sleep 5
           fi
   			fi
