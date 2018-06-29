@@ -24,3 +24,9 @@ sed 's/^.*@//'
 
 # remove after @
 sed 's/[@].*$//'
+
+# remove after last /
+sed 's/\/[^\/]*$//'
+
+# remove after second last /
+sed -e 's/\/[^\/]*$//;s/\/[^\/]*$//'
