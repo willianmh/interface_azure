@@ -11,15 +11,16 @@ source $INTERFACE_DIR/lib/aux_functions.sh
 postprocess() {
   local VM_SIZE=$1
 
-  local FILE=$(cat $INTERFACE_DIR/results/brams/$VM_SIZE/*.out)
-
-  is_not_empty $FILE \
-    && TIME=$(grep "Time integration ends" <<<$FILE | \
-                sed 's/^.*time=//;s/=//g')
+  local TIME=$(cat $INTERFACE_DIR/results/brams/$VM_SIZE/*.out | \
+      grep "Time integration ends" | \
+      sed 's/^.*time=//;s/=//g')
 
   is_not_empty $TIME \
-    && echo "$VM_SIZE,$TIME"
+    && echo "$VM_SIZE,$TIME" >> time_brams.out
 }
+
+echo "BRAMS execution model" > time_brams.out
+
 
 
 for experiment in $(ls $INTERFACE_DIR/results/brams)
