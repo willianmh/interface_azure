@@ -18,14 +18,15 @@ create_group() {
 
 	write_log "Creating group ${RESOURCE_GROUP} in location ${LOCATION}"
 
-	az group create --name $RESOURCE_GROUP --location ${LOCATION}
+	az group create $VERBOSE --name $RESOURCE_GROUP \
+                            --location ${LOCATION}
   sleep 15
 
 	if [ ! $? -eq 0 ]; then
 		msg="Failed to create group ${RESOURCE_GROUP} exiting"
 		echo "$msg"
 		write_log "$msg"
-	    exit
+	  die "$msg"
 	fi
 	write_log "group created"
 
@@ -38,12 +39,73 @@ delete_group() {
 
 	write_log "Deleting group ${RESOURCE_GROUP}"
 
-	az group delete --name $RESOURCE_GROUP --yes --no-wait
+	az group delete $VERBOSE --name $RESOURCE_GROUP --yes --no-wait
 }
+
+deploy() {
+  local DEPLOY_NAME="deploy${RANDOM}"
+
+  local RESOURCE_GROUP=${1}
+  local LOCATION=${2}
+
+	local TEMPLATE_FILE=${3}
+
+  local ADMIN_USERNAME=${4}
+  local ADMIN_PASSWORD=${5}
+
+  local ADMIN_PUB_KEY="$(cat ~/.ssh/id_rsa.pub)"
+
+
+	local DNS_LABEL="my${RANDOM}dnsprefix"
+
+  local VM_SIZE=${6}
+  local VM_NAME="m"
+  local IMAGE=${7}
+
+  local NUMBER_INSTANCES=${8}
+
+  write_log "deployment $DEPLOY_NAME created, deploying $NUMBER_INSTANCES machines"
+
+  az group deployment create $VERBOSE --name $DEPLOY_NAME \
+                                        --resource-group $RESOURCE_GROUP \
+                                        --template-file $TEMPLATE_FILE \
+                                        --parameters adminUsername=$ADMIN_USERNAME \
+                                                      adminPassword=$ADMIN_PASSWORD \
+                                                      adminPublicKey="$ADMIN_PUB_KEY" \
+                                                      dnsLabelPrefix=$DNS_LABEL \
+                                                      vmSize=$VM_SIZE \
+                                                      vmName=$VM_NAME \
+                                                      imageSourceID="$IMAGE" \
+                                                      numberOfInstances=$NUMBER_INSTANCES >> $LOG_FILE
+
+  sleep 5
+
+  local DEPLOY_STATE=$(az group deployment show --resource-group $RESOURCE_GROUP \
+                            --name $DEPLOY_NAME | \
+                            grep provisioningState | \
+                            sed 's/^.*://;s/[^a-zA-Z0-9]//g')
+
+  if [ ! "$DEPLOY_STATE" = "Succeeded" ]
+  then
+    echo "Something goes wrong"
+    write_log "Deploy failed"
+    delete_group $RESOURCE_GROUP
+    die "ERROR: Deployment failed"
+  fi
+
+  for i in `seq 0 $((${NUMBER_INSTANCES}-1))`
+  do
+    echo "ssh ${ADMIN_USERNAME}@${DNS_LABEL}${i}.${LOCATION}.cloudapp.azure.com" >> $LOG_FILE
+  done
+
+  echo "Deployment finished"
+  write_log "Deploy finished"
+}
+
 
 create_machine() {
 
-  local DEPLOY_NAME="${1}unit${RANDOM}"
+  local DEPLOY_NAME="${1}deploy${RANDOM}"
 
   local RESOURCE_GROUP=$2
 	local TEMPLATE_FILE=$3
@@ -59,8 +121,8 @@ create_machine() {
   local ADMIN_PUB_KEY="$(cat ~/.ssh/id_rsa.pub)"
 
 
-	local VM_NAME="${1}v${RESOURCE_GROUP}"
-	local DNS_LABEL="${RESOURCE_GROUP}dnsprefix${1}"
+	local VM_NAME="${1}${RESOURCE_GROUP}"
+	local DNS_LABEL="my${RANDOM}dnsprefix${1}"
 
 
 
@@ -78,7 +140,7 @@ create_machine() {
   #                                           scriptParameterUsername=$DISKUSERNAME \
   #                                           adminPublicKey="$ADMIN_PUB_KEY" >> $LOG_FILE
 
-	az group deployment create --name "$DEPLOY_NAME" \
+	az group deployment create $VERBOSE --name "$DEPLOY_NAME" \
                               --resource-group "$RESOURCE_GROUP" \
 		    	                    --template-file "$TEMPLATE_FILE" \
                               --parameters vmSize="$VM_SIZE" \
@@ -91,7 +153,9 @@ create_machine() {
                                             adminPublicKey="$ADMIN_PUB_KEY" \
                                             imageSourceID="$IMAGE" >> $LOG_FILE
 
-
+  local DEPLOY_RESULT=$(az group deployment show --name "$DEPLOY_NAME" \
+                            --resource-group "$RESOURCE_GROUP")
+  echo $DEPLOY_RESULT >> deploy_result
 
 	write_log "machine $DEPLOY_NAME $VM_NAME created"
 }
@@ -117,7 +181,7 @@ create_machines() {
     && DISKUSERNAME=$FILESHARE
 
 	echo "num_instances=$NUMBER_INSTANCES"
-	for (( i = 0; i <= $NUMBER_INSTANCES; i++ )); do
+	for (( i = 1; i <= $NUMBER_INSTANCES; i++ )); do
       create_machine $i \
                       ${RESOURCE_GROUP} \
                       ${TEMPLATE_FILE} \
@@ -134,6 +198,7 @@ create_machines() {
 
 }
 
+
 create_fileshare() {
 
   local FILESHARE=$1
@@ -143,7 +208,7 @@ create_fileshare() {
 
   write_log "Creating storage share $FILESHARE"
 
-  az storage share create --name ${FILESHARE} \
+  az storage share create $VERBOSE --name ${FILESHARE} \
                           --account-key ${PASSMOUNT} \
                           --account-name ${DISKUSERNAME} \
                           --quota ${QUOTA}
@@ -163,7 +228,7 @@ mount_fileshare() {
   local PASSMOUNT=${3}
   local DISKURL=${4}
   local DISKUSERNAME=${5}
-
+  # tem coisa errada aqui
   sudo mkdir -p ${MOUNTPOINT}
   sudo mount -t cifs ${DISKURL}${FILESHARE} \
                     /home/username/${FILESHARE} \
@@ -178,9 +243,9 @@ delete_fileshare() {
 
   write_log "Deleting storage share $FILESHARE"
 
-  az storage share delete --name ${FILESHARE} \
-                          --account-name ${DISKUSERNAME} \
-                          --account-key ${PASSMOUNT}
+  az storage share delete $VERBOSE --name ${FILESHARE} \
+                                    --account-name ${DISKUSERNAME} \
+                                    --account-key ${PASSMOUNT}
 
   write_log "Storage share $FILESHARE deleted"
 }
@@ -201,10 +266,10 @@ setup_ssh_keys() {
 
 
   echo $LOG_FILE > grep_ssh
-  grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//' >> grep_ssh
+  grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' >> grep_ssh
 
   # add access credential for all vm's
-  for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
+  for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//'`; do
     # echo " Copy id from $hostname"
     ssh-keygen -R $hostname
     ssh-keygen -R `dig +short $hostname`
@@ -212,7 +277,7 @@ setup_ssh_keys() {
   done
 
   # get the coordinator address
-  SSH_ADDR=`grep "ssh " ${LOG_FILE} | tail -n 1 | sed -e 's/^.*username/username/' -e 's/.$//'`
+  SSH_ADDR=`grep "ssh " ${LOG_FILE} | tail -n 1 | sed -e 's/^.*username/username/'`
 
   is_empty "${SSH_ADDR}" \
     && delete_group ${RESOURCE_GROUP}
@@ -222,7 +287,7 @@ setup_ssh_keys() {
 
   # copy coordinator (master) credential to all slaves
   scp ${SSH_ADDR}:.ssh/id_rsa.pub ${LOG_DIR}/id_rsa_coodinator_${RESOURCE_GROUP}.pub
-  for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//' -e 's/.$//'`; do
+  for hostname in `grep "ssh " ${LOG_FILE} | sed -e 's/^.*@//'`; do
       # echo "Put ssh key on $hostname"
       ssh-copy-id -f -i ${LOG_DIR}/id_rsa_coodinator_${RESOURCE_GROUP}.pub "username@${hostname}"
   done
@@ -259,12 +324,11 @@ create_image() {
 
   create_group $IMG_RESOURCE_GROUP $LOCATION
 
-  az vm create \
-  --resource-group $IMG_RESOURCE_GROUP \
-  --name $IMG_VM_NAME \
-  --image $IMG_IMAGE \
-  --admin-username $IMG_USERNAME \
-  --generate-ssh-keys > tmp_img_$RESOURCE_GROUP_$IMG_VM_NAME.out
+  az vm create $VERBOSE --resource-group $IMG_RESOURCE_GROUP \
+                        --name $IMG_VM_NAME \
+                        --image $IMG_IMAGE \
+                        --admin-username $IMG_USERNAME \
+                        --generate-ssh-keys > tmp_img_$RESOURCE_GROUP_$IMG_VM_NAME.out
 
   local SSH_ADDR=${IMG_USERNAME}@$( grep "publicIpAddress" tmp_img_$RESOURCE_GROUP_$IMG_VM_NAME.out | \
                     cut -c 23- | \
@@ -297,15 +361,15 @@ create_image() {
 EOF
 
   # To create an image, the VM needs to be deallocated
-  az vm deallocate \
+  az vm deallocate $VERBOSE \
     --resource-group $IMG_RESOURCE_GROUP \
     --name $IMG_VM_NAME
   # Finally, set the state of the VM as generalized so the Azure platform knows the VM has been generalized. You can only create an image from a generalized VM.
-  az vm generalize \
+  az vm generalize $VERBOSE \
     --resource-group $IMG_RESOURCE_GROUP \
     --name $IMG_VM_NAME
   # Now you can create an image of the VM
-  az image create \
+  az image create $VERBOSE \
     --resource-group $IMG_RESOURCE_GROUP \
     --name $IMG_NAME \
     --source $IMG_VM_NAME > tmp_img_create.log

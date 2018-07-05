@@ -32,6 +32,7 @@ cmdline() {
           #     ;;
           -v|--verbose)
               verbose=1  # Each -v adds 1 to verbosity.
+              export VERBOSE='-x'
               ;;
           -x|--debug)
               export DEBUG='-x'
@@ -211,6 +212,14 @@ local CONFIG_FILE=$1
                     sed 's/.$//')
 }
 
+get_adminusername() {
+local CONFIG_FILE=$1
+
+  echo $(grep -w "adminusername" $CONFIG_FILE | \
+                    sed 's/^.*(//' | \
+                    sed 's/.$//')
+}
+
 get_passmount() {
 local CONFIG_FILE=$1
 
@@ -263,6 +272,14 @@ get_mode() {
   local CONFIG_FILE=$1
 
   echo $(grep -w "mode" $CONFIG_FILE | \
+                    sed 's/^.*(//' | \
+                    sed 's/.$//')
+}
+
+get_role() {
+  local CONFIG_FILE=$1
+
+  echo $(grep -w "role" $CONFIG_FILE | \
                     sed 's/^.*(//' | \
                     sed 's/.$//')
 }
