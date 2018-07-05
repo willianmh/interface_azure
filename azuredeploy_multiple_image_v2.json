@@ -173,9 +173,9 @@
       }
     },
     {
+      "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[concat(parameters('vmName'), copyIndex())]",
-      "apiVersion": "2016-04-30-preview",
       "location": "[parameters('location')]",
       "copy": {
         "name": "virtualMachineLoop",
