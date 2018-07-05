@@ -32,7 +32,7 @@ cmdline() {
           #     ;;
           -v|--verbose)
               verbose=1  # Each -v adds 1 to verbosity.
-              export VERBOSE='-x'
+              export VERBOSE="--verbose"
               ;;
           -x|--debug)
               export DEBUG='-x'
