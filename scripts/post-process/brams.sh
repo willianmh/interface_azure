@@ -34,8 +34,8 @@ is_empty $CONFIG_FILE \
 echo "BRAMS execution model" > time_brams.out
 
 
-local CONFIGURE_CORES=$(get_cores $CONFIG_FILE)
-local CONFIGURE_INSTANCES=$(get_instances $CONFIG_FILE)
+CONFIGURE_CORES=$(get_cores $CONFIG_FILE)
+CONFIGURE_INSTANCES=$(get_instances $CONFIG_FILE)
 
 for cores in $CONFIGURE_CORES
 do
