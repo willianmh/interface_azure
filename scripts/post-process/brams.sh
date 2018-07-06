@@ -31,6 +31,9 @@ cmdline $ARGS
 is_empty $CONFIG_FILE \
   && die 'ERROR: run.sh needs a configure file. Try $ run.sh -h.'
 
+is_empty $LOCATION \
+  && LOCATION="$(get_location $CONFIG_FILE)"
+
 echo "BRAMS execution model" > time_brams.out
 
 
