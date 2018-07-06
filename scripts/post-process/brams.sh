@@ -25,7 +25,7 @@ postprocess() {
     && echo "$VM_SIZE,$TIME" >> time_brams.out
 }
 
-cmd $ARGS
+cmdline $ARGS
 
 
 is_empty $CONFIG_FILE \
