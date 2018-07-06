@@ -50,7 +50,7 @@ do
       for number_instances in $CONFIGURE_INSTANCES
       do
 
-      local VM_SIZE=$(sed 's/,.*//' <<<$instance )
+      VM_SIZE=$(sed 's/,.*//' <<<$instance )
 
       if [ ! -z $(grep "#" <<< "$instance") ]
       then
