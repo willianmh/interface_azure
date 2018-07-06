@@ -46,7 +46,7 @@
     "numberOfInstances": {
       "type": "int",
       "defaultValue": 2,
-      "minValue": 2,
+      "minValue": 1,
       "maxValue": 100,
       "metadata": {
         "description": "Number of VMs to deploy, limit 5 since this sample is using a single storage account"

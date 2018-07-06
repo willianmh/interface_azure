@@ -28,3 +28,30 @@ do
   is_dir $INTERFACE_DIR/results/brams/$experiment \
     && postprocess $experiment
 done
+
+
+local CONFIGURE_CORES=$(get_cores $CONFIG_FILE)
+local CONFIGURE_INSTANCES=$(get_instances $CONFIG_FILE)
+
+for cores in $CONFIGURE_CORES
+do
+
+  echo "$cores cores" >> time_brams.out
+
+    for instance in in $(cat $INTERFACE_DIR/machines/vm_sizes_${LOCATION}_$cores)
+    do
+      for number_instances in $CONFIGURE_INSTANCES
+      do
+
+      local VM_SIZE=$(sed 's/,.*//' <<<$instance )
+
+      if [ ! -z $(grep "#" <<< "$instance") ]
+      then
+        echo "$VM_SIZE commented"
+      else
+      is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
+        && postprocess ${VM_SIZE} ${number_instances}
+      fi
+    done
+  done
+done
