@@ -76,7 +76,7 @@ deploy() {
                                                       vmSize=$VM_SIZE \
                                                       vmName=$VM_NAME \
                                                       imageSourceID="$IMAGE" \
-                                                      numberOfInstances=$NUMBER_INSTANCES >> $LOG_FILE
+                                                      numberOfInstances=$NUMBER_INSTANCES 2>&1 | tee -a $LOG_FILE
 
   sleep 5
 
@@ -151,7 +151,7 @@ create_machine() {
                                             scriptParameterDiskUrl=$DISKURL \
                                             scriptParameterUsername=$DISKUSERNAME \
                                             adminPublicKey="$ADMIN_PUB_KEY" \
-                                            imageSourceID="$IMAGE" >> $LOG_FILE
+                                            imageSourceID="$IMAGE" 2>&1 | tee
 
   local DEPLOY_RESULT=$(az group deployment show --name "$DEPLOY_NAME" \
                             --resource-group "$RESOURCE_GROUP")
