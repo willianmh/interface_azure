@@ -10,9 +10,14 @@ source $INTERFACE_DIR/lib/aux_functions.sh
 
 postprocess() {
   local VM_SIZE=$1
+  local NUMBER_INSTANCES=$2
 
-  local TIME=$(cat $INTERFACE_DIR/results/brams/$VM_SIZE/*.out | \
-      grep "Time integration ends" | \
+  local VM_SIZE_FORMATTED=$(remove_special_characters $VM_SIZE )
+  VM_SIZE_FORMATTED=$(to_lower_case $VM_SIZE_FORMATTED )
+
+  local FILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/log_meteo_only_${VM_SIZE_FORMATTED}.out
+
+  local TIME=$(grep "Time integration ends" $FILE | \
       sed 's/^.*time=//;s/=//g')
 
   is_not_empty $TIME \
@@ -20,14 +25,6 @@ postprocess() {
 }
 
 echo "BRAMS execution model" > time_brams.out
-
-
-
-for experiment in $(ls $INTERFACE_DIR/results/brams)
-do
-  is_dir $INTERFACE_DIR/results/brams/$experiment \
-    && postprocess $experiment
-done
 
 
 local CONFIGURE_CORES=$(get_cores $CONFIG_FILE)
