@@ -7,6 +7,7 @@ readonly ARGS="$@"
 INTERFACE_DIR=$(sed -e 's/interface_azure.*$/interface_azure/'<<<$PROGDIR)
 source $INTERFACE_DIR/lib/aux_functions.sh
 
+set -x
 
 postprocess() {
   local VM_SIZE=$1
@@ -23,6 +24,12 @@ postprocess() {
   is_not_empty $TIME \
     && echo "$VM_SIZE,$TIME" >> time_brams.out
 }
+
+cmd $ARGS
+
+
+is_empty $CONFIG_FILE \
+  && die 'ERROR: run.sh needs a configure file. Try $ run.sh -h.'
 
 echo "BRAMS execution model" > time_brams.out
 
