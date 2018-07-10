@@ -7,7 +7,7 @@ readonly ARGS="$@"
 INTERFACE_DIR=$(sed -e 's/interface_azure.*$/interface_azure/'<<<$PROGDIR)
 source $INTERFACE_DIR/lib/aux_functions.sh
 
-set -x
+# set -x
 
 postprocess() {
   local VM_SIZE=$1
@@ -18,11 +18,24 @@ postprocess() {
 
   local FILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/log_meteo_only_${VM_SIZE_FORMATTED}.out
 
-  local TIME=$(grep "Time integration ends" $FILE | \
-      sed 's/^.*time=//;s/=//g')
+  local DIR=$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)
 
-  is_not_empty $TIME \
-    && echo "$VM_SIZE,$TIME" >> time_brams.out
+
+  if [ -z $DIR ]
+  then
+    echo "0.00" | tr '\n' ',' >> time_brams.out
+  else
+    local TIME=$(grep "Time integration ends" $FILE | \
+      sed 's/^.*time=//;s/=//g;s/..$//')
+
+    is_not_empty $TIME \
+      && echo "$TIME" | tr '\n' ',' >> time_brams.out
+
+    is_empty $TIME \
+      && echo "0.00" | tr '\n' ',' >> time_brams.out
+
+  fi
+
 }
 
 cmdline $ARGS
@@ -40,25 +53,38 @@ echo "BRAMS execution model" > time_brams.out
 CONFIGURE_CORES=$(get_cores $CONFIG_FILE)
 CONFIGURE_INSTANCES=$(get_instances $CONFIG_FILE)
 
+sleep 1
+
 for cores in $CONFIGURE_CORES
 do
 
   echo "$cores cores" >> time_brams.out
 
-    for instance in in $(cat $INTERFACE_DIR/machines/vm_sizes_${LOCATION}_$cores)
-    do
+  for instance in $(cat $INTERFACE_DIR/machines/vm_sizes_${LOCATION}_$cores)
+  do
+
+    VM_SIZE=$(sed 's/,.*//' <<<$instance )
+
+    if [ ! -z $(grep "#" <<< "$instance") ]
+    then
+      echo "$VM_SIZE commented"
+    else
+      echo "$VM_SIZE" | tr '\n' ',' >>time_brams.out
+
       for number_instances in $CONFIGURE_INSTANCES
       do
+        echo "$instance $number_instances"
+        # set -x
 
-      VM_SIZE=$(sed 's/,.*//' <<<$instance )
+        is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
+          && postprocess ${VM_SIZE} ${number_instances}
 
-      if [ ! -z $(grep "#" <<< "$instance") ]
-      then
-        echo "$VM_SIZE commented"
-      else
-      is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
-        && postprocess ${VM_SIZE} ${number_instances}
-      fi
-    done
+        is_not_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
+          && echo "0.00" | tr '\n' ',' >> time_brams.out
+        # set +x
+      done
+      echo "" >> time_brams.out
+    fi
   done
 done
+sed -ie 's/\,[^\,]*$//' time_brams.out

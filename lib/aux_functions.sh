@@ -141,7 +141,13 @@ is_dir() {
 
     [[ -d $dir ]]
 }
-test
+
+is_not_dir() {
+    local dir=$1
+
+    [[ ! -d $dir ]]
+}
+
 to_lower_case() {
   local var=$1
 
