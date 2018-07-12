@@ -69,7 +69,7 @@ do
     then
       echo "$VM_SIZE commented"
     else
-      echo "$VM_SIZE" | tr '\n' ',' >>time_brams.out
+      echo "$VM_SIZE" | tr '\n' ',' >> time_brams.out
 
       for number_instances in $CONFIGURE_INSTANCES
       do
@@ -87,4 +87,4 @@ do
     fi
   done
 done
-sed -ie 's/\,[^\,]*$//' time_brams.out
+sed -i 's/\,[^\,]*$//' time_brams.out

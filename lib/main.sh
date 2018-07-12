@@ -128,9 +128,10 @@ main() {
             $SAMPLEDIR \
             $NUMBER_INSTANCES \
             $VM_SIZE_FORMATTED \
-            $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
+            64
+            # $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
 
-  delete_group $RESOURCE_GROUP
+  # delete_group $RESOURCE_GROUP
 
 }
 
