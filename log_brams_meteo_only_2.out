@@ -1,0 +1,1835 @@
++-----------------------------------------------------
+! BRAMS version 5.01 (http://brams.cptec.inpe.br) on INITIAL run
+! input namelist filename is RAMSIN
+! parallel execution with 64 processes
++-----------------------------------------------------
+
+----------------------------NAMELIST VARIABLES-------------------------------
+
+ CONFIGURATION FOR GRID:   1
+       NNXP=  60       NNYP=  60       NNZP=  35    NXTNEST=   0    NSTRATX=   1
+            	    NSTRATY=   1     IDIFFK=   1    NNDTRAT=   1    NNQPARM=   5     NINEST=   1
+Using default domain decomposition
+ Closure type for Grell Parametrization is: PB
+  NNSHCU=   0
+  NJNEST=   1     NKNEST=   1    NNSTTOP=   1    NNSTBOT=   1   ITOPTFLG=   1
+ ISSTFLG=   1   IVEGTFLG=   1   ISOILFLG=   1   NOFILFLG=   2    NDVIFLG=   1
+ 
+  NGRIDS=   1     NESTZ1=   0     NESTZ2=   0    INITIAL=   2    IOUTPUT=   2     NUDLAT=   5     IF_ADAP=   0
+IPOS=   2
+ INITFLD=   0     IHTRAN=   1    NACOUST=   3     KWRITE=   0
+ IUPDSST=   1    ICORFLG=   1      IEXEV=   2   IMASSFLX=   0   VVELDAMP=   0     NSLCON=   6       IBND=   1
+    JBND=   1      LSFLG=   0       NFPT=   0    IDELTAT=   0    ISWRTYP=   6    ILWRTYP=   6
+  LONRAD=   1    IMONTH1=   1     IDATE1=  27     IYEAR1=2014     ITIME1=   0      ISFCL=   5
+  NVGCON=   7       NPLT=   0     IPSFLG=   1     ITSFLG=   0    IRTSFLG=   3
+  IUSFLG=   0   MKCOLTAB=   0        NZG=   7        NZS=   1   IUPDNDVI=   1
+  NPATCH=   4    NVEGPAT=   3
+  MCPHYS_TYPE=   2      LEVEL=   3     ICLOUD=   5     IDRIZ=   5
+  ICCNLEV=   0     IRIME=   1     IPLAWS=   0
+   IRAIN=   5      IPRIS=   6      ISNOW=   5      IAGGR=   5     IGRAUP=   5
+   IHAIL=   5     NADDSC=   0
+ 
+ TOPTENH= 0.00000E+00        TOPTWVL= 0.30000E+01        CENTLAT=-0.12500E+01
+ CENTLON=-0.50500E+02            CSX= 0.32000E+00            CSZ= 0.35000E+00
+   XKHKM= 0.30000E+01          ZKHKM= 0.30000E+01          AKMIN= 0.10000E+01
+   GRIDU= 0.00000E+00          GRIDV= 0.00000E+00
+dyncore_flag=   0  ADVMNT=   0        GHOSTZONELENGTH=   3
+ 
+   TIMMAX= 0.86400E+05         TIMSTR= 0.00000E+00         FRQHIS= 0.86400E+06
+   FRQANL= 0.36000E+04         FRQPRT= 0.21600E+05        TNUDLAT= 0.36000E+04
+  TNUDTOP= 0.10800E+05       TNUDCENT= 0.00000E+00        ZNUDTOP= 0.15000E+05
+   DTLONG= 0.60000E+02         DELTAX= 0.30000E+05         DELTAY= 0.30000E+05
+  POLELAT=-0.12500E+01        POLELON=-0.50500E+02         DELTAZ= 0.10000E+03
+    DZRAT= 0.11000E+01          DZMAX= 0.10000E+04
+    CPHAS= 0.20000E+02         DISTIM= 0.40000E+03         RADFRQ= 0.12000E+04
+   CONFRQ= 0.60000E+03         WCLDBS= 0.50000E-03
+   SHCUFRQ= 0.60000E+03
+  PCTLCON= 0.10000E+01         ZROUGH= 0.50000E-01         ALBEDO= 0.20000E+00
+   SEATMP= 0.29500E+03         DTHCON= 0.00000E+00         DRTCON= 0.00000E+00
+    CPARM= 0.30000E+03          RPARM= 0.10000E-02          PPARM= 0.10000E+06
+    SPARM= 0.10000E-02          APARM= 0.10000E-02          GPARM= 0.10000E-02
+    HPARM= 0.30000E-02    DPARM= 0.10000E+00
+    CNPARM= 0.40000E-05    GNPARM= 0.30000E-03    EPSIL= 0.10000E+00
+    G3D_SPREAD=   0
+   ITOPTFN=/dados/denis.eiras/bin/test_area/shared_
+    ISSTFN=./datain/SST/2014/W                     
+   IVEGTFN=/dados/denis.eiras/bin/test_area/shared_
+   ISOILFN=/dados/denis.eiras/bin/test_area/shared_
+    NDVIFN=./shared_datain/SURFACE_DATA/NDVI-MODIS_
+  COLTABFN=./tables/micro/ct2.0
+  MAPAOTFILE=./tables/rad_carma/infMapAOT.vfm
+   VARFPFX=./dataout/IVAR/meteo-only
+   SSTFPFX=./dataout/SFC/sst
+  NDVIFPFX=./dataout/SFC/ndv
+  EXPNME=BRAMS version 5.2                       
+ RUNTYPE=INITIAL         TIMEUNIT=  h
+  HFILIN=NONE                                    
+ HFILOUT=./dataout/HIS/MO                        
+ AFILOUT=./dataout/ANL/meteo-only                
+ SOIL_MOIST = i
+ SOIL_MOIST_FAIL = l
+ USDATA_IN =./datain/UMIDADE/GL_SM.GPNR.            
+ USMODEL_IN=./dataout/UMIDADE/GL_SM.GPNR.           
+  SLMSTR=  0.45      SLZ=-12.250      STGOFF=    0.00 
+           0.45           -7.250                 0.00 
+           0.30           -4.250                 0.00 
+           0.25           -2.250                 0.00 
+           0.22           -1.000                 0.00 
+           0.22           -0.350                 0.00 
+           0.22           -0.100                 0.00
+ZZ=      0.0     20.0     46.0     80.0    120.0    165.0    220.0    290.0
+       380.0    480.0    590.0    720.0    870.0   1030.0   1200.0   1380.0
+      1595.0   1850.0   2120.0   2410.0   2715.0   3030.0   3400.0   3840.0
+      4380.0   5020.0   5800.0   6730.0   7700.0   8700.0   9700.0  10700.0
+     11700.0  12700.0  13700.0
+
+NSTRATZ1  2  2  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+          1  1  1  1  1  1  1  1  1  1  1  1
+
+NSTRATZ2  3  3  2  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
+          1  1  1  1  1  1  1  1  1  1  1  1
+
+GNU=     2.00 2.00 2.00 2.00 2.00 2.00 2.00
+     WINDFARM=0
+     WFFILE=                                        
+TEB_SPM module not activated: TEB_SPM= 0
+CCATT module NOT activated - CCATT= 0
+POST file prefix is ./dataout/POSPROCESS/METEO-ONLY
+   POST will write  15 fields: 
+   tempk   , rh   , rv   , sea_press   , ue_avg   , ve_avg   , w   , cape   , cine   , rlongup   , rlong   , rshort   , sst   , smoist 
+   vtype
+----------------------------NAMELIST VARIABLES ENDS--------------------------
+
+ === Domain decomposition for 00000001 grids with 00000064  cores ===
+      grid    node   x-beg   x-end   y-beg   y-end      cols
+         1       1       2       8       2       8      49
+         1       2       9      15       2       8      49
+         1       3      16      23       2       8      56
+         1       4      24      30       2       8      49
+         1       5      31      37       2       8      49
+         1       6      38      45       2       8      56
+         1       7      46      52       2       8      49
+         1       8      53      59       2       8      49
+         1       9       2       8       9      15      49
+         1      10       9      15       9      15      49
+         1      11      16      23       9      15      56
+         1      12      24      30       9      15      49
+         1      13      31      37       9      15      49
+         1      14      38      45       9      15      56
+         1      15      46      52       9      15      49
+         1      16      53      59       9      15      49
+         1      17       2       8      16      23      56
+         1      18       9      15      16      23      56
+         1      19      16      23      16      23      64
+         1      20      24      30      16      23      56
+         1      21      31      37      16      23      56
+         1      22      38      45      16      23      64
+         1      23      46      52      16      23      56
+         1      24      53      59      16      23      56
+         1      25       2       8      24      30      49
+         1      26       9      15      24      30      49
+         1      27      16      23      24      30      56
+         1      28      24      30      24      30      49
+         1      29      31      37      24      30      49
+         1      30      38      45      24      30      56
+         1      31      46      52      24      30      49
+         1      32      53      59      24      30      49
+         1      33       2       8      31      37      49
+         1      34       9      15      31      37      49
+         1      35      16      23      31      37      56
+         1      36      24      30      31      37      49
+         1      37      31      37      31      37      49
+         1      38      38      45      31      37      56
+         1      39      46      52      31      37      49
+         1      40      53      59      31      37      49
+         1      41       2       8      38      45      56
+         1      42       9      15      38      45      56
+         1      43      16      23      38      45      64
+         1      44      24      30      38      45      56
+         1      45      31      37      38      45      56
+         1      46      38      45      38      45      64
+         1      47      46      52      38      45      56
+         1      48      53      59      38      45      56
+         1      49       2       8      46      52      49
+         1      50       9      15      46      52      49
+         1      51      16      23      46      52      56
+         1      52      24      30      46      52      49
+         1      53      31      37      46      52      49
+         1      54      38      45      46      52      56
+         1      55      46      52      46      52      49
+         1      56      53      59      46      52      49
+         1      57       2       8      53      59      49
+         1      58       9      15      53      59      49
+         1      59      16      23      53      59      56
+         1      60      24      30      53      59      49
+         1      61      31      37      53      59      49
+         1      62      38      45      53      59      56
+         1      63      46      52      53      59      49
+         1      64      53      59      53      59      49
+
+  
+  
+  
+ -------------------------------------------------------------
+ -----------  SST Input File Inventory: Grid 1
+ -------------------------------------------------------------
+ 00000115000000   ./dataout/SFC/sst-W-0000-01-15-000000-g1.vfm
+ 00000122000000   ./dataout/SFC/sst-W-0000-01-22-000000-g1.vfm
+ ------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------------
+ -----------  NDVI Input File Inventory: Grid 1
+ -------------------------------------------------------------
+ 00000116120000   ./dataout/SFC/ndv-N-0000-01-16-120000-g1.vfm
+ 00000215000000   ./dataout/SFC/ndv-N-0000-02-15-000000-g1.vfm
+ 00000316120000   ./dataout/SFC/ndv-N-0000-03-16-120000-g1.vfm
+ 00000416000000   ./dataout/SFC/ndv-N-0000-04-16-000000-g1.vfm
+ 00000516120000   ./dataout/SFC/ndv-N-0000-05-16-120000-g1.vfm
+ 00000616000000   ./dataout/SFC/ndv-N-0000-06-16-000000-g1.vfm
+ 00000716120000   ./dataout/SFC/ndv-N-0000-07-16-120000-g1.vfm
+ 00000816120000   ./dataout/SFC/ndv-N-0000-08-16-120000-g1.vfm
+ 00000916000000   ./dataout/SFC/ndv-N-0000-09-16-000000-g1.vfm
+ 00001016120000   ./dataout/SFC/ndv-N-0000-10-16-120000-g1.vfm
+ 00001116000000   ./dataout/SFC/ndv-N-0000-11-16-000000-g1.vfm
+ 00001216120000   ./dataout/SFC/ndv-N-0000-12-16-120000-g1.vfm
+ ------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------------
+ -----------  SST Input File Inventory: Grid 1
+ -------------------------------------------------------------
+ 00000115000000   ./dataout/SFC/sst-W-0000-01-15-000000-g1.vfm
+ 00000122000000   ./dataout/SFC/sst-W-0000-01-22-000000-g1.vfm
+ ------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------------
+ -----------  NDVI Input File Inventory: Grid 1
+ -------------------------------------------------------------
+ 00000116120000   ./dataout/SFC/ndv-N-0000-01-16-120000-g1.vfm
+ 00000215000000   ./dataout/SFC/ndv-N-0000-02-15-000000-g1.vfm
+ 00000316120000   ./dataout/SFC/ndv-N-0000-03-16-120000-g1.vfm
+ 00000416000000   ./dataout/SFC/ndv-N-0000-04-16-000000-g1.vfm
+ 00000516120000   ./dataout/SFC/ndv-N-0000-05-16-120000-g1.vfm
+ 00000616000000   ./dataout/SFC/ndv-N-0000-06-16-000000-g1.vfm
+ 00000716120000   ./dataout/SFC/ndv-N-0000-07-16-120000-g1.vfm
+ 00000816120000   ./dataout/SFC/ndv-N-0000-08-16-120000-g1.vfm
+ 00000916000000   ./dataout/SFC/ndv-N-0000-09-16-000000-g1.vfm
+ 00001016120000   ./dataout/SFC/ndv-N-0000-10-16-120000-g1.vfm
+ 00001116000000   ./dataout/SFC/ndv-N-0000-11-16-000000-g1.vfm
+ 00001216120000   ./dataout/SFC/ndv-N-0000-12-16-120000-g1.vfm
+ ------------------------------------------------------
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Looking up Soil Moisture Date Files: 
+   usdata : ./datain/UMIDADE/GL_SM.GPNR.2014012700.vfm
+   usmodel: ./dataout/UMIDADE/GL_SM.GPNR.2014012700_g1.mod
+ ----------------------------------------------
+        Soil Moisture Initialization
+ ----------------------------------------------
+ -------------------------------------- Grid=           1
+ Opening soil moisture data= ./datain/UMIDADE/GL_SM.GPNR.2014012700.vfm
+ ======> changing the initial soil moisture - check ruser.f90 routine
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Varfile read of grid-           1
+ New varfile times:           1   0.00000000    
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Future varfile read of grid-           1
+ New varfile times:           2   0.00000000       21600.0000    
+
+---------------LOCATION AND DIMENSIONS OF GRID   1---------------------------
+
+  NW LAT/LON      NE LAT/LON (DEG)=   (  6.675, -58.467)    (  6.675, -42.533)
+        CENT LAT/LON (DEG)        =              ( -1.250, -50.500)
+  SW LAT/LON      SE LAT/LON (DEG)=   ( -9.151, -58.516)    ( -9.151, -42.484)
+
+     WEST COORD (KM)=  -885.000               EAST COORD (KM)=   885.000
+    SOUTH COORD (KM)=  -885.000              NORTH COORD (KM)=   885.000
+    BOTTOM COORD (M)=       0.0            TOP COORDINATE (M)=   17834.7
+         DELTA-X (M)=   30000.0                   DELTA-Y (M)=   30000.0
+  BOTTOM DELTA-Z (M)=     100.0
+
+ MAX N LAT=    6.701  MIN S LAT=   -9.201
+ MIN W LON=  -58.516 MAX E LON=  -42.484
+--------------------------------------------------------------------------------
+
+
+
+--------REFERENCE STATE (AVERAGE OVER DOMAIN)   SFC ELEV (M)=  125.3-------------
+
+    Z      U01D    V01D    DN01D    PI01D    PRESS    TH01D    THD      RT01D
+   (m)     (m/s)   (m/s)  (kg/m3)  (J/kgK)    (Pa)     (K)     (K)     (kg/kg)
+
+   -46.5   -3.17   -1.41   1.171   1008.58  101605.6  300.83  297.81   0.01663
+    48.8   -3.17   -1.41   1.162   1005.48  100515.1  300.83  297.81   0.01663
+   153.7   -3.37   -1.50   1.152   1002.06   99325.9  301.08  298.11   0.01630
+   269.1   -3.79   -1.69   1.139    998.31   98030.7  301.50  298.61   0.01585
+   396.0   -4.34   -1.90   1.126    994.19   96622.1  301.96  299.15   0.01540
+   535.6   -4.93   -2.13   1.111    989.66   95091.8  302.46  299.73   0.01492
+   689.1   -5.55   -2.36   1.096    984.69   93431.3  302.98  300.34   0.01441
+   858.0   -6.06   -2.54   1.079    979.23   91631.9  303.51  300.96   0.01388
+  1043.8   -6.37   -2.57   1.060    973.24   89685.0  304.15  301.70   0.01332
+  1248.2   -6.64   -2.55   1.039    966.66   87582.6  304.93  302.59   0.01270
+  1473.0   -6.77   -2.44   1.017    959.44   85317.1  305.84  303.61   0.01204
+  1720.3   -6.45   -2.32   0.993    951.53   82881.7  306.93  304.81   0.01143
+  1992.4   -5.80   -2.28   0.966    942.87   80270.3  308.18  306.15   0.01087
+  2291.6   -5.06   -2.25   0.938    933.37   77478.0  309.55  307.63   0.01027
+  2620.8   -4.24   -2.22   0.908    922.98   74501.1  311.07  309.25   0.00962
+  2982.8   -3.29   -2.15   0.875    911.60   71337.9  312.74  311.05   0.00893
+  3381.1   -1.93   -1.61   0.841    899.16   67989.1  314.61  313.07   0.00808
+  3819.2   -0.25   -0.67   0.804    885.55   64458.6  316.68  315.31   0.00712
+  4301.2    1.62    0.42   0.765    870.69   60753.4  318.97  317.78   0.00615
+  4831.3    3.68    1.63   0.724    854.47   56884.9  321.52  320.50   0.00519
+  5414.4    5.92    2.93   0.682    836.78   52869.0  324.32  323.48   0.00426
+  6055.9    7.67    3.54   0.637    817.48   48725.7  327.26  326.61   0.00328
+  6761.4    8.61    3.08   0.591    796.45   44479.7  330.34  329.88   0.00230
+  7537.6    9.55    2.86   0.545    773.54   40161.7  333.56  333.25   0.00151
+  8391.4   10.69    3.33   0.497    748.57   35807.6  336.80  336.61   0.00093
+  9335.4   11.99    4.15   0.448    721.23   31437.6  340.01  339.90   0.00052
+ 10333.8   13.10    3.79   0.402    692.58   27281.0  342.90  342.84   0.00027
+ 11334.7   13.68    1.85   0.359    664.07   23550.4  345.27  345.24   0.00013
+ 12334.7   13.85   -0.09   0.320    635.77   20222.6  347.35  347.34   0.00006
+ 13334.7   13.96   -2.08   0.284    607.66   17263.1  349.76  349.76   0.00003
+ 14334.7   13.16   -3.18   0.250    579.81   14650.0  353.96  353.96   0.00001
+ 15334.7   10.33   -1.49   0.215    552.50   12374.8  363.73  363.73   0.00001
+ 16334.7    7.46    0.25   0.185    525.98   10418.5  375.36  375.36   0.00000
+ 17334.7    5.66    0.89   0.155    500.54    8759.8  395.16  395.16   0.00000
+ 18334.7    4.61    0.65   0.129    476.49    7373.9  419.96  419.95   0.00000
+
+ === Grids Delta T ====
+ Grid, delta t, fraction of next coarser grid dt, acoustic steps per delta t
+    1    60.00                  1                           3
+
+ === Timestep Schedule requires 1 nested timesteps: ====
+ nts 1: Grid 1 advances dtlong
+
+ === Initial timestep info: ngrid, nndtrat, nnacoust,     dtlongn, sscourn,  sspct ===
+                               1        1         3       60.000    1.407   1.000
+
+ === Finish initialization; Wall(sec)=1.34
+
+ message=ThompMP: computing qr_acr_qg
+ message=ThompMP: computing qr_acr_qs
+ message=ThompMP: computing freezeH2O
+ Timestep      1; Sim Time     60.0s; Wall   1461.599s
+ Timestep      2; Sim Time    120.0s; Wall      0.015s
+ Timestep      3; Sim Time    180.0s; Wall      0.016s
+ Timestep      4; Sim Time    240.0s; Wall      0.015s
+ Timestep      5; Sim Time    300.0s; Wall      0.024s
+ Timestep      6; Sim Time    360.0s; Wall      0.014s
+ Timestep      7; Sim Time    420.0s; Wall      0.014s
+ Timestep      8; Sim Time    480.0s; Wall      0.015s
+ Timestep      9; Sim Time    540.0s; Wall      0.017s
+ Timestep     10; Sim Time    600.0s; Wall      0.015s
+ Timestep     11; Sim Time    660.0s; Wall      0.018s
+ Timestep     12; Sim Time    720.0s; Wall      0.015s
+ Timestep     13; Sim Time    780.0s; Wall      0.016s
+ Timestep     14; Sim Time    840.0s; Wall      0.018s
+ Timestep     15; Sim Time    900.0s; Wall      0.014s
+ Timestep     16; Sim Time    960.0s; Wall      0.017s
+ Timestep     17; Sim Time   1020.0s; Wall      0.016s
+ Timestep     18; Sim Time   1080.0s; Wall      0.016s
+ Timestep     19; Sim Time   1140.0s; Wall      0.017s
+ Timestep     20; Sim Time   1200.0s; Wall      0.016s
+ Timestep     21; Sim Time   1260.0s; Wall      0.095s
+ Timestep     22; Sim Time   1320.0s; Wall      0.014s
+ Timestep     23; Sim Time   1380.0s; Wall      0.021s
+ Timestep     24; Sim Time   1440.0s; Wall      0.013s
+ Timestep     25; Sim Time   1500.0s; Wall      0.017s
+ Timestep     26; Sim Time   1560.0s; Wall      0.017s
+ Timestep     27; Sim Time   1620.0s; Wall      0.017s
+ Timestep     28; Sim Time   1680.0s; Wall      0.016s
+ Timestep     29; Sim Time   1740.0s; Wall      0.019s
+ Timestep     30; Sim Time   1800.0s; Wall      0.015s
+ Timestep     31; Sim Time   1860.0s; Wall      0.019s
+ Timestep     32; Sim Time   1920.0s; Wall      0.018s
+ Timestep     33; Sim Time   1980.0s; Wall      0.022s
+ Timestep     34; Sim Time   2040.0s; Wall      0.019s
+ Timestep     35; Sim Time   2100.0s; Wall      0.015s
+ Timestep     36; Sim Time   2160.0s; Wall      0.021s
+ Timestep     37; Sim Time   2220.0s; Wall      0.017s
+ Timestep     38; Sim Time   2280.0s; Wall      0.022s
+ Timestep     39; Sim Time   2340.0s; Wall      0.016s
+ Timestep     40; Sim Time   2400.0s; Wall      0.017s
+ Timestep     41; Sim Time   2460.0s; Wall      0.088s
+ Timestep     42; Sim Time   2520.0s; Wall      0.018s
+ Timestep     43; Sim Time   2580.0s; Wall      0.017s
+ Timestep     44; Sim Time   2640.0s; Wall      0.017s
+ Timestep     45; Sim Time   2700.0s; Wall      0.017s
+ Timestep     46; Sim Time   2760.0s; Wall      0.017s
+ Timestep     47; Sim Time   2820.0s; Wall      0.019s
+ Timestep     48; Sim Time   2880.0s; Wall      0.019s
+ Timestep     49; Sim Time   2940.0s; Wall      0.017s
+ Timestep     50; Sim Time   3000.0s; Wall      0.017s
+ Timestep     51; Sim Time   3060.0s; Wall      0.021s
+ Timestep     52; Sim Time   3120.0s; Wall      0.018s
+ Timestep     53; Sim Time   3180.0s; Wall      0.020s
+ Timestep     54; Sim Time   3240.0s; Wall      0.017s
+ Timestep     55; Sim Time   3300.0s; Wall      0.017s
+ Timestep     56; Sim Time   3360.0s; Wall      0.017s
+ Timestep     57; Sim Time   3420.0s; Wall      0.018s
+ Timestep     58; Sim Time   3480.0s; Wall      0.017s
+ Timestep     59; Sim Time   3540.0s; Wall      0.022s
+ Timestep     60; Sim Time   3600.0s; Wall      0.243s
+ Timestep     61; Sim Time   3660.0s; Wall      0.090s
+ Timestep     62; Sim Time   3720.0s; Wall      0.018s
+ Timestep     63; Sim Time   3780.0s; Wall      0.018s
+ Timestep     64; Sim Time   3840.0s; Wall      0.018s
+ Timestep     65; Sim Time   3900.0s; Wall      0.019s
+ Timestep     66; Sim Time   3960.0s; Wall      0.018s
+ Timestep     67; Sim Time   4020.0s; Wall      0.022s
+ Timestep     68; Sim Time   4080.0s; Wall      0.022s
+ Timestep     69; Sim Time   4140.0s; Wall      0.018s
+ Timestep     70; Sim Time   4200.0s; Wall      0.018s
+ Timestep     71; Sim Time   4260.0s; Wall      0.021s
+ Timestep     72; Sim Time   4320.0s; Wall      0.023s
+ Timestep     73; Sim Time   4380.0s; Wall      0.016s
+ Timestep     74; Sim Time   4440.0s; Wall      0.019s
+ Timestep     75; Sim Time   4500.0s; Wall      0.018s
+ Timestep     76; Sim Time   4560.0s; Wall      0.018s
+ Timestep     77; Sim Time   4620.0s; Wall      0.019s
+ Timestep     78; Sim Time   4680.0s; Wall      0.018s
+ Timestep     79; Sim Time   4740.0s; Wall      0.019s
+ Timestep     80; Sim Time   4800.0s; Wall      0.018s
+ Timestep     81; Sim Time   4860.0s; Wall      0.099s
+ Timestep     82; Sim Time   4920.0s; Wall      0.017s
+ Timestep     83; Sim Time   4980.0s; Wall      0.019s
+ Timestep     84; Sim Time   5040.0s; Wall      0.018s
+ Timestep     85; Sim Time   5100.0s; Wall      0.026s
+ Timestep     86; Sim Time   5160.0s; Wall      0.022s
+ Timestep     87; Sim Time   5220.0s; Wall      0.016s
+ Timestep     88; Sim Time   5280.0s; Wall      0.018s
+ Timestep     89; Sim Time   5340.0s; Wall      0.019s
+ Timestep     90; Sim Time   5400.0s; Wall      0.020s
+ Timestep     91; Sim Time   5460.0s; Wall      0.020s
+ Timestep     92; Sim Time   5520.0s; Wall      0.019s
+ Timestep     93; Sim Time   5580.0s; Wall      0.019s
+ Timestep     94; Sim Time   5640.0s; Wall      0.019s
+ Timestep     95; Sim Time   5700.0s; Wall      0.019s
+ Timestep     96; Sim Time   5760.0s; Wall      0.019s
+ Timestep     97; Sim Time   5820.0s; Wall      0.019s
+ Timestep     98; Sim Time   5880.0s; Wall      0.019s
+ Timestep     99; Sim Time   5940.0s; Wall      0.019s
+ Timestep    100; Sim Time   6000.0s; Wall      0.023s
+ Timestep    101; Sim Time   6060.0s; Wall      0.089s
+ Timestep    102; Sim Time   6120.0s; Wall      0.019s
+ Timestep    103; Sim Time   6180.0s; Wall      0.020s
+ Timestep    104; Sim Time   6240.0s; Wall      0.020s
+ Timestep    105; Sim Time   6300.0s; Wall      0.026s
+ Timestep    106; Sim Time   6360.0s; Wall      0.017s
+ Timestep    107; Sim Time   6420.0s; Wall      0.020s
+ Timestep    108; Sim Time   6480.0s; Wall      0.018s
+ Timestep    109; Sim Time   6540.0s; Wall      0.019s
+ Timestep    110; Sim Time   6600.0s; Wall      0.025s
+ Timestep    111; Sim Time   6660.0s; Wall      0.022s
+ Timestep    112; Sim Time   6720.0s; Wall      0.019s
+ Timestep    113; Sim Time   6780.0s; Wall      0.019s
+ Timestep    114; Sim Time   6840.0s; Wall      0.020s
+ Timestep    115; Sim Time   6900.0s; Wall      0.021s
+ Timestep    116; Sim Time   6960.0s; Wall      0.017s
+ Timestep    117; Sim Time   7020.0s; Wall      0.019s
+ Timestep    118; Sim Time   7080.0s; Wall      0.022s
+ Timestep    119; Sim Time   7140.0s; Wall      0.018s
+ Timestep    120; Sim Time   7200.0s; Wall      0.257s
+ Timestep    121; Sim Time   7260.0s; Wall      0.095s
+ Timestep    122; Sim Time   7320.0s; Wall      0.020s
+ Timestep    123; Sim Time   7380.0s; Wall      0.019s
+ Timestep    124; Sim Time   7440.0s; Wall      0.020s
+ Timestep    125; Sim Time   7500.0s; Wall      0.021s
+ Timestep    126; Sim Time   7560.0s; Wall      0.019s
+ Timestep    127; Sim Time   7620.0s; Wall      0.020s
+ Timestep    128; Sim Time   7680.0s; Wall      0.023s
+ Timestep    129; Sim Time   7740.0s; Wall      0.020s
+ Timestep    130; Sim Time   7800.0s; Wall      0.020s
+ Timestep    131; Sim Time   7860.0s; Wall      0.026s
+ Timestep    132; Sim Time   7920.0s; Wall      0.017s
+ Timestep    133; Sim Time   7980.0s; Wall      0.019s
+ Timestep    134; Sim Time   8040.0s; Wall      0.026s
+ Timestep    135; Sim Time   8100.0s; Wall      0.018s
+ Timestep    136; Sim Time   8160.0s; Wall      0.019s
+ Timestep    137; Sim Time   8220.0s; Wall      0.020s
+ Timestep    138; Sim Time   8280.0s; Wall      0.020s
+ Timestep    139; Sim Time   8340.0s; Wall      0.021s
+ Timestep    140; Sim Time   8400.0s; Wall      0.018s
+ Timestep    141; Sim Time   8460.0s; Wall      0.095s
+ Timestep    142; Sim Time   8520.0s; Wall      0.020s
+ Timestep    143; Sim Time   8580.0s; Wall      0.019s
+ Timestep    144; Sim Time   8640.0s; Wall      0.020s
+ Timestep    145; Sim Time   8700.0s; Wall      0.022s
+ Timestep    146; Sim Time   8760.0s; Wall      0.018s
+ Timestep    147; Sim Time   8820.0s; Wall      0.019s
+ Timestep    148; Sim Time   8880.0s; Wall      0.020s
+ Timestep    149; Sim Time   8940.0s; Wall      0.020s
+ Timestep    150; Sim Time   9000.0s; Wall      0.020s
+ Timestep    151; Sim Time   9060.0s; Wall      0.022s
+ Timestep    152; Sim Time   9120.0s; Wall      0.020s
+ Timestep    153; Sim Time   9180.0s; Wall      0.020s
+ Timestep    154; Sim Time   9240.0s; Wall      0.023s
+ Timestep    155; Sim Time   9300.0s; Wall      0.025s
+ Timestep    156; Sim Time   9360.0s; Wall      0.019s
+ Timestep    157; Sim Time   9420.0s; Wall      0.027s
+ Timestep    158; Sim Time   9480.0s; Wall      0.023s
+ Timestep    159; Sim Time   9540.0s; Wall      0.024s
+ Timestep    160; Sim Time   9600.0s; Wall      0.026s
+ Timestep    161; Sim Time   9660.0s; Wall      0.098s
+ Timestep    162; Sim Time   9720.0s; Wall      0.020s
+ Timestep    163; Sim Time   9780.0s; Wall      0.024s
+ Timestep    164; Sim Time   9840.0s; Wall      0.018s
+ Timestep    165; Sim Time   9900.0s; Wall      0.020s
+ Timestep    166; Sim Time   9960.0s; Wall      0.020s
+ Timestep    167; Sim Time  10020.0s; Wall      0.020s
+ Timestep    168; Sim Time  10080.0s; Wall      0.019s
+ Timestep    169; Sim Time  10140.0s; Wall      0.023s
+ Timestep    170; Sim Time  10200.0s; Wall      0.019s
+ Timestep    171; Sim Time  10260.0s; Wall      0.025s
+ Timestep    172; Sim Time  10320.0s; Wall      0.023s
+ Timestep    173; Sim Time  10380.0s; Wall      0.019s
+ Timestep    174; Sim Time  10440.0s; Wall      0.020s
+ Timestep    175; Sim Time  10500.0s; Wall      0.020s
+ Timestep    176; Sim Time  10560.0s; Wall      0.020s
+ Timestep    177; Sim Time  10620.0s; Wall      0.020s
+ Timestep    178; Sim Time  10680.0s; Wall      0.025s
+ Timestep    179; Sim Time  10740.0s; Wall      0.020s
+ Timestep    180; Sim Time  10800.0s; Wall      0.249s
+ Timestep    181; Sim Time  10860.0s; Wall      0.097s
+ Timestep    182; Sim Time  10920.0s; Wall      0.021s
+ Timestep    183; Sim Time  10980.0s; Wall      0.018s
+ Timestep    184; Sim Time  11040.0s; Wall      0.022s
+ Timestep    185; Sim Time  11100.0s; Wall      0.024s
+ Timestep    186; Sim Time  11160.0s; Wall      0.019s
+ Timestep    187; Sim Time  11220.0s; Wall      0.023s
+ Timestep    188; Sim Time  11280.0s; Wall      0.022s
+ Timestep    189; Sim Time  11340.0s; Wall      0.018s
+ Timestep    190; Sim Time  11400.0s; Wall      0.020s
+ Timestep    191; Sim Time  11460.0s; Wall      0.022s
+ Timestep    192; Sim Time  11520.0s; Wall      0.019s
+ Timestep    193; Sim Time  11580.0s; Wall      0.020s
+ Timestep    194; Sim Time  11640.0s; Wall      0.023s
+ Timestep    195; Sim Time  11700.0s; Wall      0.019s
+ Timestep    196; Sim Time  11760.0s; Wall      0.019s
+ Timestep    197; Sim Time  11820.0s; Wall      0.020s
+ Timestep    198; Sim Time  11880.0s; Wall      0.019s
+ Timestep    199; Sim Time  11940.0s; Wall      0.020s
+ Timestep    200; Sim Time  12000.0s; Wall      0.024s
+ Timestep    201; Sim Time  12060.0s; Wall      0.095s
+ Timestep    202; Sim Time  12120.0s; Wall      0.019s
+ Timestep    203; Sim Time  12180.0s; Wall      0.019s
+ Timestep    204; Sim Time  12240.0s; Wall      0.020s
+ Timestep    205; Sim Time  12300.0s; Wall      0.022s
+ Timestep    206; Sim Time  12360.0s; Wall      0.018s
+ Timestep    207; Sim Time  12420.0s; Wall      0.024s
+ Timestep    208; Sim Time  12480.0s; Wall      0.020s
+ Timestep    209; Sim Time  12540.0s; Wall      0.019s
+ Timestep    210; Sim Time  12600.0s; Wall      0.020s
+ Timestep    211; Sim Time  12660.0s; Wall      0.024s
+ Timestep    212; Sim Time  12720.0s; Wall      0.020s
+ Timestep    213; Sim Time  12780.0s; Wall      0.020s
+ Timestep    214; Sim Time  12840.0s; Wall      0.020s
+ Timestep    215; Sim Time  12900.0s; Wall      0.020s
+ Timestep    216; Sim Time  12960.0s; Wall      0.019s
+ Timestep    217; Sim Time  13020.0s; Wall      0.019s
+ Timestep    218; Sim Time  13080.0s; Wall      0.020s
+ Timestep    219; Sim Time  13140.0s; Wall      0.020s
+ Timestep    220; Sim Time  13200.0s; Wall      0.022s
+ Timestep    221; Sim Time  13260.0s; Wall      0.096s
+ Timestep    222; Sim Time  13320.0s; Wall      0.017s
+ Timestep    223; Sim Time  13380.0s; Wall      0.019s
+ Timestep    224; Sim Time  13440.0s; Wall      0.023s
+ Timestep    225; Sim Time  13500.0s; Wall      0.019s
+ Timestep    226; Sim Time  13560.0s; Wall      0.019s
+ Timestep    227; Sim Time  13620.0s; Wall      0.024s
+ Timestep    228; Sim Time  13680.0s; Wall      0.018s
+ Timestep    229; Sim Time  13740.0s; Wall      0.020s
+ Timestep    230; Sim Time  13800.0s; Wall      0.020s
+ Timestep    231; Sim Time  13860.0s; Wall      0.021s
+ Timestep    232; Sim Time  13920.0s; Wall      0.022s
+ Timestep    233; Sim Time  13980.0s; Wall      0.020s
+ Timestep    234; Sim Time  14040.0s; Wall      0.018s
+ Timestep    235; Sim Time  14100.0s; Wall      0.020s
+ Timestep    236; Sim Time  14160.0s; Wall      0.020s
+ Timestep    237; Sim Time  14220.0s; Wall      0.022s
+ Timestep    238; Sim Time  14280.0s; Wall      0.017s
+ Timestep    239; Sim Time  14340.0s; Wall      0.020s
+ Timestep    240; Sim Time  14400.0s; Wall      0.244s
+ Timestep    241; Sim Time  14460.0s; Wall      0.093s
+ Timestep    242; Sim Time  14520.0s; Wall      0.026s
+ Timestep    243; Sim Time  14580.0s; Wall      0.020s
+ Timestep    244; Sim Time  14640.0s; Wall      0.017s
+ Timestep    245; Sim Time  14700.0s; Wall      0.020s
+ Timestep    246; Sim Time  14760.0s; Wall      0.019s
+ Timestep    247; Sim Time  14820.0s; Wall      0.020s
+ Timestep    248; Sim Time  14880.0s; Wall      0.020s
+ Timestep    249; Sim Time  14940.0s; Wall      0.019s
+ Timestep    250; Sim Time  15000.0s; Wall      0.019s
+ Timestep    251; Sim Time  15060.0s; Wall      0.025s
+ Timestep    252; Sim Time  15120.0s; Wall      0.023s
+ Timestep    253; Sim Time  15180.0s; Wall      0.023s
+ Timestep    254; Sim Time  15240.0s; Wall      0.018s
+ Timestep    255; Sim Time  15300.0s; Wall      0.020s
+ Timestep    256; Sim Time  15360.0s; Wall      0.020s
+ Timestep    257; Sim Time  15420.0s; Wall      0.019s
+ Timestep    258; Sim Time  15480.0s; Wall      0.020s
+ Timestep    259; Sim Time  15540.0s; Wall      0.019s
+ Timestep    260; Sim Time  15600.0s; Wall      0.020s
+ Timestep    261; Sim Time  15660.0s; Wall      0.093s
+ Timestep    262; Sim Time  15720.0s; Wall      0.020s
+ Timestep    263; Sim Time  15780.0s; Wall      0.019s
+ Timestep    264; Sim Time  15840.0s; Wall      0.022s
+ Timestep    265; Sim Time  15900.0s; Wall      0.025s
+ Timestep    266; Sim Time  15960.0s; Wall      0.017s
+ Timestep    267; Sim Time  16020.0s; Wall      0.023s
+ Timestep    268; Sim Time  16080.0s; Wall      0.017s
+ Timestep    269; Sim Time  16140.0s; Wall      0.020s
+ Timestep    270; Sim Time  16200.0s; Wall      0.019s
+ Timestep    271; Sim Time  16260.0s; Wall      0.021s
+ Timestep    272; Sim Time  16320.0s; Wall      0.020s
+ Timestep    273; Sim Time  16380.0s; Wall      0.020s
+ Timestep    274; Sim Time  16440.0s; Wall      0.019s
+ Timestep    275; Sim Time  16500.0s; Wall      0.021s
+ Timestep    276; Sim Time  16560.0s; Wall      0.018s
+ Timestep    277; Sim Time  16620.0s; Wall      0.020s
+ Timestep    278; Sim Time  16680.0s; Wall      0.021s
+ Timestep    279; Sim Time  16740.0s; Wall      0.020s
+ Timestep    280; Sim Time  16800.0s; Wall      0.019s
+ Timestep    281; Sim Time  16860.0s; Wall      0.097s
+ Timestep    282; Sim Time  16920.0s; Wall      0.019s
+ Timestep    283; Sim Time  16980.0s; Wall      0.019s
+ Timestep    284; Sim Time  17040.0s; Wall      0.020s
+ Timestep    285; Sim Time  17100.0s; Wall      0.020s
+ Timestep    286; Sim Time  17160.0s; Wall      0.019s
+ Timestep    287; Sim Time  17220.0s; Wall      0.021s
+ Timestep    288; Sim Time  17280.0s; Wall      0.020s
+ Timestep    289; Sim Time  17340.0s; Wall      0.025s
+ Timestep    290; Sim Time  17400.0s; Wall      0.020s
+ Timestep    291; Sim Time  17460.0s; Wall      0.023s
+ Timestep    292; Sim Time  17520.0s; Wall      0.019s
+ Timestep    293; Sim Time  17580.0s; Wall      0.020s
+ Timestep    294; Sim Time  17640.0s; Wall      0.019s
+ Timestep    295; Sim Time  17700.0s; Wall      0.024s
+ Timestep    296; Sim Time  17760.0s; Wall      0.016s
+ Timestep    297; Sim Time  17820.0s; Wall      0.020s
+ Timestep    298; Sim Time  17880.0s; Wall      0.021s
+ Timestep    299; Sim Time  17940.0s; Wall      0.024s
+ Timestep    300; Sim Time  18000.0s; Wall      0.272s
+ Timestep    301; Sim Time  18060.0s; Wall      0.092s
+ Timestep    302; Sim Time  18120.0s; Wall      0.022s
+ Timestep    303; Sim Time  18180.0s; Wall      0.020s
+ Timestep    304; Sim Time  18240.0s; Wall      0.019s
+ Timestep    305; Sim Time  18300.0s; Wall      0.023s
+ Timestep    306; Sim Time  18360.0s; Wall      0.021s
+ Timestep    307; Sim Time  18420.0s; Wall      0.017s
+ Timestep    308; Sim Time  18480.0s; Wall      0.019s
+ Timestep    309; Sim Time  18540.0s; Wall      0.020s
+ Timestep    310; Sim Time  18600.0s; Wall      0.020s
+ Timestep    311; Sim Time  18660.0s; Wall      0.021s
+ Timestep    312; Sim Time  18720.0s; Wall      0.020s
+ Timestep    313; Sim Time  18780.0s; Wall      0.020s
+ Timestep    314; Sim Time  18840.0s; Wall      0.020s
+ Timestep    315; Sim Time  18900.0s; Wall      0.019s
+ Timestep    316; Sim Time  18960.0s; Wall      0.020s
+ Timestep    317; Sim Time  19020.0s; Wall      0.019s
+ Timestep    318; Sim Time  19080.0s; Wall      0.020s
+ Timestep    319; Sim Time  19140.0s; Wall      0.020s
+ Timestep    320; Sim Time  19200.0s; Wall      0.021s
+ Timestep    321; Sim Time  19260.0s; Wall      0.093s
+ Timestep    322; Sim Time  19320.0s; Wall      0.022s
+ Timestep    323; Sim Time  19380.0s; Wall      0.018s
+ Timestep    324; Sim Time  19440.0s; Wall      0.023s
+ Timestep    325; Sim Time  19500.0s; Wall      0.020s
+ Timestep    326; Sim Time  19560.0s; Wall      0.019s
+ Timestep    327; Sim Time  19620.0s; Wall      0.021s
+ Timestep    328; Sim Time  19680.0s; Wall      0.022s
+ Timestep    329; Sim Time  19740.0s; Wall      0.017s
+ Timestep    330; Sim Time  19800.0s; Wall      0.020s
+ Timestep    331; Sim Time  19860.0s; Wall      0.026s
+ Timestep    332; Sim Time  19920.0s; Wall      0.020s
+ Timestep    333; Sim Time  19980.0s; Wall      0.020s
+ Timestep    334; Sim Time  20040.0s; Wall      0.020s
+ Timestep    335; Sim Time  20100.0s; Wall      0.020s
+ Timestep    336; Sim Time  20160.0s; Wall      0.023s
+ Timestep    337; Sim Time  20220.0s; Wall      0.017s
+ Timestep    338; Sim Time  20280.0s; Wall      0.020s
+ Timestep    339; Sim Time  20340.0s; Wall      0.021s
+ Timestep    340; Sim Time  20400.0s; Wall      0.022s
+ Timestep    341; Sim Time  20460.0s; Wall      0.094s
+ Timestep    342; Sim Time  20520.0s; Wall      0.021s
+ Timestep    343; Sim Time  20580.0s; Wall      0.019s
+ Timestep    344; Sim Time  20640.0s; Wall      0.020s
+ Timestep    345; Sim Time  20700.0s; Wall      0.021s
+ Timestep    346; Sim Time  20760.0s; Wall      0.020s
+ Timestep    347; Sim Time  20820.0s; Wall      0.020s
+ Timestep    348; Sim Time  20880.0s; Wall      0.026s
+ Timestep    349; Sim Time  20940.0s; Wall      0.018s
+ Timestep    350; Sim Time  21000.0s; Wall      0.025s
+ Timestep    351; Sim Time  21060.0s; Wall      0.023s
+ Timestep    352; Sim Time  21120.0s; Wall      0.024s
+ Timestep    353; Sim Time  21180.0s; Wall      0.018s
+ Timestep    354; Sim Time  21240.0s; Wall      0.020s
+ Timestep    355; Sim Time  21300.0s; Wall      0.020s
+ Timestep    356; Sim Time  21360.0s; Wall      0.020s
+ Timestep    357; Sim Time  21420.0s; Wall      0.021s
+ Timestep    358; Sim Time  21480.0s; Wall      0.021s
+ Timestep    359; Sim Time  21540.0s; Wall      0.021s
+ Timestep    360; Sim Time  21600.0s; Wall      0.252s
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Future varfile read of grid-           1
+ New varfile times:           3   21600.0000       43200.0000    
+ Timestep    361; Sim Time  21660.0s; Wall      0.133s
+ Timestep    362; Sim Time  21720.0s; Wall      0.022s
+ Timestep    363; Sim Time  21780.0s; Wall      0.019s
+ Timestep    364; Sim Time  21840.0s; Wall      0.021s
+ Timestep    365; Sim Time  21900.0s; Wall      0.020s
+ Timestep    366; Sim Time  21960.0s; Wall      0.021s
+ Timestep    367; Sim Time  22020.0s; Wall      0.020s
+ Timestep    368; Sim Time  22080.0s; Wall      0.023s
+ Timestep    369; Sim Time  22140.0s; Wall      0.020s
+ Timestep    370; Sim Time  22200.0s; Wall      0.021s
+ Timestep    371; Sim Time  22260.0s; Wall      0.022s
+ Timestep    372; Sim Time  22320.0s; Wall      0.021s
+ Timestep    373; Sim Time  22380.0s; Wall      0.022s
+ Timestep    374; Sim Time  22440.0s; Wall      0.020s
+ Timestep    375; Sim Time  22500.0s; Wall      0.021s
+ Timestep    376; Sim Time  22560.0s; Wall      0.021s
+ Timestep    377; Sim Time  22620.0s; Wall      0.023s
+ Timestep    378; Sim Time  22680.0s; Wall      0.026s
+ Timestep    379; Sim Time  22740.0s; Wall      0.022s
+ Timestep    380; Sim Time  22800.0s; Wall      0.018s
+ Timestep    381; Sim Time  22860.0s; Wall      0.096s
+ Timestep    382; Sim Time  22920.0s; Wall      0.025s
+ Timestep    383; Sim Time  22980.0s; Wall      0.018s
+ Timestep    384; Sim Time  23040.0s; Wall      0.024s
+ Timestep    385; Sim Time  23100.0s; Wall      0.025s
+ Timestep    386; Sim Time  23160.0s; Wall      0.019s
+ Timestep    387; Sim Time  23220.0s; Wall      0.022s
+ Timestep    388; Sim Time  23280.0s; Wall      0.025s
+ Timestep    389; Sim Time  23340.0s; Wall      0.022s
+ Timestep    390; Sim Time  23400.0s; Wall      0.027s
+ Timestep    391; Sim Time  23460.0s; Wall      0.023s
+ Timestep    392; Sim Time  23520.0s; Wall      0.020s
+ Timestep    393; Sim Time  23580.0s; Wall      0.021s
+ Timestep    394; Sim Time  23640.0s; Wall      0.025s
+ Timestep    395; Sim Time  23700.0s; Wall      0.020s
+ Timestep    396; Sim Time  23760.0s; Wall      0.019s
+ Timestep    397; Sim Time  23820.0s; Wall      0.021s
+ Timestep    398; Sim Time  23880.0s; Wall      0.020s
+ Timestep    399; Sim Time  23940.0s; Wall      0.021s
+ Timestep    400; Sim Time  24000.0s; Wall      0.022s
+ Timestep    401; Sim Time  24060.0s; Wall      0.098s
+ Timestep    402; Sim Time  24120.0s; Wall      0.023s
+ Timestep    403; Sim Time  24180.0s; Wall      0.027s
+ Timestep    404; Sim Time  24240.0s; Wall      0.018s
+ Timestep    405; Sim Time  24300.0s; Wall      0.022s
+ Timestep    406; Sim Time  24360.0s; Wall      0.021s
+ Timestep    407; Sim Time  24420.0s; Wall      0.023s
+ Timestep    408; Sim Time  24480.0s; Wall      0.019s
+ Timestep    409; Sim Time  24540.0s; Wall      0.021s
+ Timestep    410; Sim Time  24600.0s; Wall      0.021s
+ Timestep    411; Sim Time  24660.0s; Wall      0.023s
+ Timestep    412; Sim Time  24720.0s; Wall      0.025s
+ Timestep    413; Sim Time  24780.0s; Wall      0.021s
+ Timestep    414; Sim Time  24840.0s; Wall      0.021s
+ Timestep    415; Sim Time  24900.0s; Wall      0.026s
+ Timestep    416; Sim Time  24960.0s; Wall      0.018s
+ Timestep    417; Sim Time  25020.0s; Wall      0.020s
+ Timestep    418; Sim Time  25080.0s; Wall      0.021s
+ Timestep    419; Sim Time  25140.0s; Wall      0.023s
+ Timestep    420; Sim Time  25200.0s; Wall      0.254s
+ Timestep    421; Sim Time  25260.0s; Wall      0.094s
+ Timestep    422; Sim Time  25320.0s; Wall      0.021s
+ Timestep    423; Sim Time  25380.0s; Wall      0.025s
+ Timestep    424; Sim Time  25440.0s; Wall      0.027s
+ Timestep    425; Sim Time  25500.0s; Wall      0.020s
+ Timestep    426; Sim Time  25560.0s; Wall      0.021s
+ Timestep    427; Sim Time  25620.0s; Wall      0.025s
+ Timestep    428; Sim Time  25680.0s; Wall      0.020s
+ Timestep    429; Sim Time  25740.0s; Wall      0.020s
+ Timestep    430; Sim Time  25800.0s; Wall      0.022s
+ Timestep    431; Sim Time  25860.0s; Wall      0.023s
+ Timestep    432; Sim Time  25920.0s; Wall      0.022s
+ Timestep    433; Sim Time  25980.0s; Wall      0.021s
+ Timestep    434; Sim Time  26040.0s; Wall      0.021s
+ Timestep    435; Sim Time  26100.0s; Wall      0.024s
+ Timestep    436; Sim Time  26160.0s; Wall      0.020s
+ Timestep    437; Sim Time  26220.0s; Wall      0.025s
+ Timestep    438; Sim Time  26280.0s; Wall      0.028s
+ Timestep    439; Sim Time  26340.0s; Wall      0.020s
+ Timestep    440; Sim Time  26400.0s; Wall      0.021s
+ Timestep    441; Sim Time  26460.0s; Wall      0.099s
+ Timestep    442; Sim Time  26520.0s; Wall      0.020s
+ Timestep    443; Sim Time  26580.0s; Wall      0.022s
+ Timestep    444; Sim Time  26640.0s; Wall      0.026s
+ Timestep    445; Sim Time  26700.0s; Wall      0.016s
+ Timestep    446; Sim Time  26760.0s; Wall      0.024s
+ Timestep    447; Sim Time  26820.0s; Wall      0.020s
+ Timestep    448; Sim Time  26880.0s; Wall      0.021s
+ Timestep    449; Sim Time  26940.0s; Wall      0.021s
+ Timestep    450; Sim Time  27000.0s; Wall      0.022s
+ Timestep    451; Sim Time  27060.0s; Wall      0.024s
+ Timestep    452; Sim Time  27120.0s; Wall      0.021s
+ Timestep    453; Sim Time  27180.0s; Wall      0.022s
+ Timestep    454; Sim Time  27240.0s; Wall      0.021s
+ Timestep    455; Sim Time  27300.0s; Wall      0.026s
+ Timestep    456; Sim Time  27360.0s; Wall      0.021s
+ Timestep    457; Sim Time  27420.0s; Wall      0.023s
+ Timestep    458; Sim Time  27480.0s; Wall      0.019s
+ Timestep    459; Sim Time  27540.0s; Wall      0.022s
+ Timestep    460; Sim Time  27600.0s; Wall      0.021s
+ Timestep    461; Sim Time  27660.0s; Wall      0.096s
+ Timestep    462; Sim Time  27720.0s; Wall      0.022s
+ Timestep    463; Sim Time  27780.0s; Wall      0.029s
+ Timestep    464; Sim Time  27840.0s; Wall      0.020s
+ Timestep    465; Sim Time  27900.0s; Wall      0.022s
+ Timestep    466; Sim Time  27960.0s; Wall      0.022s
+ Timestep    467; Sim Time  28020.0s; Wall      0.021s
+ Timestep    468; Sim Time  28080.0s; Wall      0.026s
+ Timestep    469; Sim Time  28140.0s; Wall      0.024s
+ Timestep    470; Sim Time  28200.0s; Wall      0.022s
+ Timestep    471; Sim Time  28260.0s; Wall      0.021s
+ Timestep    472; Sim Time  28320.0s; Wall      0.025s
+ Timestep    473; Sim Time  28380.0s; Wall      0.021s
+ Timestep    474; Sim Time  28440.0s; Wall      0.021s
+ Timestep    475; Sim Time  28500.0s; Wall      0.023s
+ Timestep    476; Sim Time  28560.0s; Wall      0.020s
+ Timestep    477; Sim Time  28620.0s; Wall      0.022s
+ Timestep    478; Sim Time  28680.0s; Wall      0.022s
+ Timestep    479; Sim Time  28740.0s; Wall      0.026s
+ Timestep    480; Sim Time  28800.0s; Wall      0.254s
+ Timestep    481; Sim Time  28860.0s; Wall      0.099s
+ Timestep    482; Sim Time  28920.0s; Wall      0.023s
+ Timestep    483; Sim Time  28980.0s; Wall      0.023s
+ Timestep    484; Sim Time  29040.0s; Wall      0.020s
+ Timestep    485; Sim Time  29100.0s; Wall      0.022s
+ Timestep    486; Sim Time  29160.0s; Wall      0.020s
+ Timestep    487; Sim Time  29220.0s; Wall      0.021s
+ Timestep    488; Sim Time  29280.0s; Wall      0.021s
+ Timestep    489; Sim Time  29340.0s; Wall      0.021s
+ Timestep    490; Sim Time  29400.0s; Wall      0.021s
+ Timestep    491; Sim Time  29460.0s; Wall      0.024s
+ Timestep    492; Sim Time  29520.0s; Wall      0.021s
+ Timestep    493; Sim Time  29580.0s; Wall      0.021s
+ Timestep    494; Sim Time  29640.0s; Wall      0.023s
+ Timestep    495; Sim Time  29700.0s; Wall      0.022s
+ Timestep    496; Sim Time  29760.0s; Wall      0.021s
+ Timestep    497; Sim Time  29820.0s; Wall      0.022s
+ Timestep    498; Sim Time  29880.0s; Wall      0.025s
+ Timestep    499; Sim Time  29940.0s; Wall      0.021s
+ Timestep    500; Sim Time  30000.0s; Wall      0.028s
+ Timestep    501; Sim Time  30060.0s; Wall      0.091s
+ Timestep    502; Sim Time  30120.0s; Wall      0.022s
+ Timestep    503; Sim Time  30180.0s; Wall      0.021s
+ Timestep    504; Sim Time  30240.0s; Wall      0.022s
+ Timestep    505; Sim Time  30300.0s; Wall      0.026s
+ Timestep    506; Sim Time  30360.0s; Wall      0.020s
+ Timestep    507; Sim Time  30420.0s; Wall      0.020s
+ Timestep    508; Sim Time  30480.0s; Wall      0.020s
+ Timestep    509; Sim Time  30540.0s; Wall      0.021s
+ Timestep    510; Sim Time  30600.0s; Wall      0.024s
+ Timestep    511; Sim Time  30660.0s; Wall      0.024s
+ Timestep    512; Sim Time  30720.0s; Wall      0.021s
+ Timestep    513; Sim Time  30780.0s; Wall      0.021s
+ Timestep    514; Sim Time  30840.0s; Wall      0.021s
+ Timestep    515; Sim Time  30900.0s; Wall      0.022s
+ Timestep    516; Sim Time  30960.0s; Wall      0.024s
+ Timestep    517; Sim Time  31020.0s; Wall      0.021s
+ Timestep    518; Sim Time  31080.0s; Wall      0.021s
+ Timestep    519; Sim Time  31140.0s; Wall      0.022s
+ Timestep    520; Sim Time  31200.0s; Wall      0.022s
+ Timestep    521; Sim Time  31260.0s; Wall      0.099s
+ Timestep    522; Sim Time  31320.0s; Wall      0.021s
+ Timestep    523; Sim Time  31380.0s; Wall      0.022s
+ Timestep    524; Sim Time  31440.0s; Wall      0.023s
+ Timestep    525; Sim Time  31500.0s; Wall      0.023s
+ Timestep    526; Sim Time  31560.0s; Wall      0.020s
+ Timestep    527; Sim Time  31620.0s; Wall      0.021s
+ Timestep    528; Sim Time  31680.0s; Wall      0.022s
+ Timestep    529; Sim Time  31740.0s; Wall      0.020s
+ Timestep    530; Sim Time  31800.0s; Wall      0.021s
+ Timestep    531; Sim Time  31860.0s; Wall      0.025s
+ Timestep    532; Sim Time  31920.0s; Wall      0.022s
+ Timestep    533; Sim Time  31980.0s; Wall      0.020s
+ Timestep    534; Sim Time  32040.0s; Wall      0.022s
+ Timestep    535; Sim Time  32100.0s; Wall      0.021s
+ Timestep    536; Sim Time  32160.0s; Wall      0.022s
+ Timestep    537; Sim Time  32220.0s; Wall      0.021s
+ Timestep    538; Sim Time  32280.0s; Wall      0.021s
+ Timestep    539; Sim Time  32340.0s; Wall      0.022s
+ Timestep    540; Sim Time  32400.0s; Wall      0.293s
+ Timestep    541; Sim Time  32460.0s; Wall      0.097s
+ Timestep    542; Sim Time  32520.0s; Wall      0.024s
+ Timestep    543; Sim Time  32580.0s; Wall      0.019s
+ Timestep    544; Sim Time  32640.0s; Wall      0.022s
+ Timestep    545; Sim Time  32700.0s; Wall      0.021s
+ Timestep    546; Sim Time  32760.0s; Wall      0.021s
+ Timestep    547; Sim Time  32820.0s; Wall      0.021s
+ Timestep    548; Sim Time  32880.0s; Wall      0.025s
+ Timestep    549; Sim Time  32940.0s; Wall      0.020s
+ Timestep    550; Sim Time  33000.0s; Wall      0.021s
+ Timestep    551; Sim Time  33060.0s; Wall      0.024s
+ Timestep    552; Sim Time  33120.0s; Wall      0.021s
+ Timestep    553; Sim Time  33180.0s; Wall      0.022s
+ Timestep    554; Sim Time  33240.0s; Wall      0.029s
+ Timestep    555; Sim Time  33300.0s; Wall      0.020s
+ Timestep    556; Sim Time  33360.0s; Wall      0.018s
+ Timestep    557; Sim Time  33420.0s; Wall      0.021s
+ Timestep    558; Sim Time  33480.0s; Wall      0.020s
+ Timestep    559; Sim Time  33540.0s; Wall      0.021s
+ Timestep    560; Sim Time  33600.0s; Wall      0.020s
+ Timestep    561; Sim Time  33660.0s; Wall      0.099s
+ Timestep    562; Sim Time  33720.0s; Wall      0.018s
+ Timestep    563; Sim Time  33780.0s; Wall      0.021s
+ Timestep    564; Sim Time  33840.0s; Wall      0.021s
+ Timestep    565; Sim Time  33900.0s; Wall      0.025s
+ Timestep    566; Sim Time  33960.0s; Wall      0.019s
+ Timestep    567; Sim Time  34020.0s; Wall      0.023s
+ Timestep    568; Sim Time  34080.0s; Wall      0.018s
+ Timestep    569; Sim Time  34140.0s; Wall      0.024s
+ Timestep    570; Sim Time  34200.0s; Wall      0.019s
+ Timestep    571; Sim Time  34260.0s; Wall      0.023s
+ Timestep    572; Sim Time  34320.0s; Wall      0.025s
+ Timestep    573; Sim Time  34380.0s; Wall      0.018s
+ Timestep    574; Sim Time  34440.0s; Wall      0.020s
+ Timestep    575; Sim Time  34500.0s; Wall      0.022s
+ Timestep    576; Sim Time  34560.0s; Wall      0.021s
+ Timestep    577; Sim Time  34620.0s; Wall      0.021s
+ Timestep    578; Sim Time  34680.0s; Wall      0.025s
+ Timestep    579; Sim Time  34740.0s; Wall      0.020s
+ Timestep    580; Sim Time  34800.0s; Wall      0.021s
+ Timestep    581; Sim Time  34860.0s; Wall      0.094s
+ Timestep    582; Sim Time  34920.0s; Wall      0.020s
+ Timestep    583; Sim Time  34980.0s; Wall      0.021s
+ Timestep    584; Sim Time  35040.0s; Wall      0.024s
+ Timestep    585; Sim Time  35100.0s; Wall      0.021s
+ Timestep    586; Sim Time  35160.0s; Wall      0.020s
+ Timestep    587; Sim Time  35220.0s; Wall      0.020s
+ Timestep    588; Sim Time  35280.0s; Wall      0.020s
+ Timestep    589; Sim Time  35340.0s; Wall      0.021s
+ Timestep    590; Sim Time  35400.0s; Wall      0.021s
+ Timestep    591; Sim Time  35460.0s; Wall      0.023s
+ Timestep    592; Sim Time  35520.0s; Wall      0.021s
+ Timestep    593; Sim Time  35580.0s; Wall      0.021s
+ Timestep    594; Sim Time  35640.0s; Wall      0.021s
+ Timestep    595; Sim Time  35700.0s; Wall      0.021s
+ Timestep    596; Sim Time  35760.0s; Wall      0.022s
+ Timestep    597; Sim Time  35820.0s; Wall      0.021s
+ Timestep    598; Sim Time  35880.0s; Wall      0.020s
+ Timestep    599; Sim Time  35940.0s; Wall      0.021s
+ Timestep    600; Sim Time  36000.0s; Wall      0.276s
+ Timestep    601; Sim Time  36060.0s; Wall      0.088s
+ Timestep    602; Sim Time  36120.0s; Wall      0.022s
+ Timestep    603; Sim Time  36180.0s; Wall      0.022s
+ Timestep    604; Sim Time  36240.0s; Wall      0.019s
+ Timestep    605; Sim Time  36300.0s; Wall      0.021s
+ Timestep    606; Sim Time  36360.0s; Wall      0.021s
+ Timestep    607; Sim Time  36420.0s; Wall      0.022s
+ Timestep    608; Sim Time  36480.0s; Wall      0.020s
+ Timestep    609; Sim Time  36540.0s; Wall      0.021s
+ Timestep    610; Sim Time  36600.0s; Wall      0.022s
+ Timestep    611; Sim Time  36660.0s; Wall      0.023s
+ Timestep    612; Sim Time  36720.0s; Wall      0.021s
+ Timestep    613; Sim Time  36780.0s; Wall      0.020s
+ Timestep    614; Sim Time  36840.0s; Wall      0.024s
+ Timestep    615; Sim Time  36900.0s; Wall      0.019s
+ Timestep    616; Sim Time  36960.0s; Wall      0.023s
+ Timestep    617; Sim Time  37020.0s; Wall      0.021s
+ Timestep    618; Sim Time  37080.0s; Wall      0.022s
+ Timestep    619; Sim Time  37140.0s; Wall      0.020s
+ Timestep    620; Sim Time  37200.0s; Wall      0.021s
+ Timestep    621; Sim Time  37260.0s; Wall      0.088s
+ Timestep    622; Sim Time  37320.0s; Wall      0.020s
+ Timestep    623; Sim Time  37380.0s; Wall      0.026s
+ Timestep    624; Sim Time  37440.0s; Wall      0.021s
+ Timestep    625; Sim Time  37500.0s; Wall      0.021s
+ Timestep    626; Sim Time  37560.0s; Wall      0.020s
+ Timestep    627; Sim Time  37620.0s; Wall      0.021s
+ Timestep    628; Sim Time  37680.0s; Wall      0.021s
+ Timestep    629; Sim Time  37740.0s; Wall      0.021s
+ Timestep    630; Sim Time  37800.0s; Wall      0.024s
+ Timestep    631; Sim Time  37860.0s; Wall      0.023s
+ Timestep    632; Sim Time  37920.0s; Wall      0.021s
+ Timestep    633; Sim Time  37980.0s; Wall      0.020s
+ Timestep    634; Sim Time  38040.0s; Wall      0.022s
+ Timestep    635; Sim Time  38100.0s; Wall      0.020s
+ Timestep    636; Sim Time  38160.0s; Wall      0.021s
+ Timestep    637; Sim Time  38220.0s; Wall      0.020s
+ Timestep    638; Sim Time  38280.0s; Wall      0.022s
+ Timestep    639; Sim Time  38340.0s; Wall      0.020s
+ Timestep    640; Sim Time  38400.0s; Wall      0.021s
+ Timestep    641; Sim Time  38460.0s; Wall      0.094s
+ Timestep    642; Sim Time  38520.0s; Wall      0.024s
+ Timestep    643; Sim Time  38580.0s; Wall      0.020s
+ Timestep    644; Sim Time  38640.0s; Wall      0.021s
+ Timestep    645; Sim Time  38700.0s; Wall      0.021s
+ Timestep    646; Sim Time  38760.0s; Wall      0.021s
+ Timestep    647; Sim Time  38820.0s; Wall      0.020s
+ Timestep    648; Sim Time  38880.0s; Wall      0.024s
+ Timestep    649; Sim Time  38940.0s; Wall      0.019s
+ Timestep    650; Sim Time  39000.0s; Wall      0.021s
+ Timestep    651; Sim Time  39060.0s; Wall      0.022s
+ Timestep    652; Sim Time  39120.0s; Wall      0.022s
+ Timestep    653; Sim Time  39180.0s; Wall      0.021s
+ Timestep    654; Sim Time  39240.0s; Wall      0.020s
+ Timestep    655; Sim Time  39300.0s; Wall      0.021s
+ Timestep    656; Sim Time  39360.0s; Wall      0.021s
+ Timestep    657; Sim Time  39420.0s; Wall      0.022s
+ Timestep    658; Sim Time  39480.0s; Wall      0.021s
+ Timestep    659; Sim Time  39540.0s; Wall      0.021s
+ Timestep    660; Sim Time  39600.0s; Wall      0.259s
+ Timestep    661; Sim Time  39660.0s; Wall      0.092s
+ Timestep    662; Sim Time  39720.0s; Wall      0.022s
+ Timestep    663; Sim Time  39780.0s; Wall      0.019s
+ Timestep    664; Sim Time  39840.0s; Wall      0.023s
+ Timestep    665; Sim Time  39900.0s; Wall      0.020s
+ Timestep    666; Sim Time  39960.0s; Wall      0.021s
+ Timestep    667; Sim Time  40020.0s; Wall      0.022s
+ Timestep    668; Sim Time  40080.0s; Wall      0.021s
+ Timestep    669; Sim Time  40140.0s; Wall      0.022s
+ Timestep    670; Sim Time  40200.0s; Wall      0.021s
+ Timestep    671; Sim Time  40260.0s; Wall      0.024s
+ Timestep    672; Sim Time  40320.0s; Wall      0.020s
+ Timestep    673; Sim Time  40380.0s; Wall      0.021s
+ Timestep    674; Sim Time  40440.0s; Wall      0.025s
+ Timestep    675; Sim Time  40500.0s; Wall      0.020s
+ Timestep    676; Sim Time  40560.0s; Wall      0.022s
+ Timestep    677; Sim Time  40620.0s; Wall      0.022s
+ Timestep    678; Sim Time  40680.0s; Wall      0.021s
+ Timestep    679; Sim Time  40740.0s; Wall      0.022s
+ Timestep    680; Sim Time  40800.0s; Wall      0.026s
+ Timestep    681; Sim Time  40860.0s; Wall      0.089s
+ Timestep    682; Sim Time  40920.0s; Wall      0.031s
+ Timestep    683; Sim Time  40980.0s; Wall      0.020s
+ Timestep    684; Sim Time  41040.0s; Wall      0.022s
+ Timestep    685; Sim Time  41100.0s; Wall      0.027s
+ Timestep    686; Sim Time  41160.0s; Wall      0.017s
+ Timestep    687; Sim Time  41220.0s; Wall      0.021s
+ Timestep    688; Sim Time  41280.0s; Wall      0.021s
+ Timestep    689; Sim Time  41340.0s; Wall      0.021s
+ Timestep    690; Sim Time  41400.0s; Wall      0.020s
+ Timestep    691; Sim Time  41460.0s; Wall      0.025s
+ Timestep    692; Sim Time  41520.0s; Wall      0.020s
+ Timestep    693; Sim Time  41580.0s; Wall      0.022s
+ Timestep    694; Sim Time  41640.0s; Wall      0.021s
+ Timestep    695; Sim Time  41700.0s; Wall      0.020s
+ Timestep    696; Sim Time  41760.0s; Wall      0.021s
+ Timestep    697; Sim Time  41820.0s; Wall      0.021s
+ Timestep    698; Sim Time  41880.0s; Wall      0.028s
+ Timestep    699; Sim Time  41940.0s; Wall      0.022s
+ Timestep    700; Sim Time  42000.0s; Wall      0.021s
+ Timestep    701; Sim Time  42060.0s; Wall      0.093s
+ Timestep    702; Sim Time  42120.0s; Wall      0.019s
+ Timestep    703; Sim Time  42180.0s; Wall      0.020s
+ Timestep    704; Sim Time  42240.0s; Wall      0.024s
+ Timestep    705; Sim Time  42300.0s; Wall      0.019s
+ Timestep    706; Sim Time  42360.0s; Wall      0.021s
+ Timestep    707; Sim Time  42420.0s; Wall      0.028s
+ Timestep    708; Sim Time  42480.0s; Wall      0.018s
+ Timestep    709; Sim Time  42540.0s; Wall      0.021s
+ Timestep    710; Sim Time  42600.0s; Wall      0.027s
+ Timestep    711; Sim Time  42660.0s; Wall      0.021s
+ Timestep    712; Sim Time  42720.0s; Wall      0.020s
+ Timestep    713; Sim Time  42780.0s; Wall      0.021s
+ Timestep    714; Sim Time  42840.0s; Wall      0.021s
+ Timestep    715; Sim Time  42900.0s; Wall      0.021s
+ Timestep    716; Sim Time  42960.0s; Wall      0.020s
+ Timestep    717; Sim Time  43020.0s; Wall      0.025s
+ Timestep    718; Sim Time  43080.0s; Wall      0.018s
+ Timestep    719; Sim Time  43140.0s; Wall      0.024s
+ Timestep    720; Sim Time  43200.0s; Wall      0.215s
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Future varfile read of grid-           1
+ New varfile times:           4   43200.0000       64800.0000    
+ Timestep    721; Sim Time  43260.0s; Wall      0.131s
+ Timestep    722; Sim Time  43320.0s; Wall      0.027s
+ Timestep    723; Sim Time  43380.0s; Wall      0.020s
+ Timestep    724; Sim Time  43440.0s; Wall      0.026s
+ Timestep    725; Sim Time  43500.0s; Wall      0.020s
+ Timestep    726; Sim Time  43560.0s; Wall      0.022s
+ Timestep    727; Sim Time  43620.0s; Wall      0.029s
+ Timestep    728; Sim Time  43680.0s; Wall      0.023s
+ Timestep    729; Sim Time  43740.0s; Wall      0.018s
+ Timestep    730; Sim Time  43800.0s; Wall      0.021s
+ Timestep    731; Sim Time  43860.0s; Wall      0.022s
+ Timestep    732; Sim Time  43920.0s; Wall      0.020s
+ Timestep    733; Sim Time  43980.0s; Wall      0.021s
+ Timestep    734; Sim Time  44040.0s; Wall      0.020s
+ Timestep    735; Sim Time  44100.0s; Wall      0.021s
+ Timestep    736; Sim Time  44160.0s; Wall      0.021s
+ Timestep    737; Sim Time  44220.0s; Wall      0.024s
+ Timestep    738; Sim Time  44280.0s; Wall      0.024s
+ Timestep    739; Sim Time  44340.0s; Wall      0.019s
+ Timestep    740; Sim Time  44400.0s; Wall      0.020s
+ Timestep    741; Sim Time  44460.0s; Wall      0.089s
+ Timestep    742; Sim Time  44520.0s; Wall      0.020s
+ Timestep    743; Sim Time  44580.0s; Wall      0.020s
+ Timestep    744; Sim Time  44640.0s; Wall      0.021s
+ Timestep    745; Sim Time  44700.0s; Wall      0.021s
+ Timestep    746; Sim Time  44760.0s; Wall      0.023s
+ Timestep    747; Sim Time  44820.0s; Wall      0.018s
+ Timestep    748; Sim Time  44880.0s; Wall      0.021s
+ Timestep    749; Sim Time  44940.0s; Wall      0.019s
+ Timestep    750; Sim Time  45000.0s; Wall      0.020s
+ Timestep    751; Sim Time  45060.0s; Wall      0.022s
+ Timestep    752; Sim Time  45120.0s; Wall      0.019s
+ Timestep    753; Sim Time  45180.0s; Wall      0.021s
+ Timestep    754; Sim Time  45240.0s; Wall      0.021s
+ Timestep    755; Sim Time  45300.0s; Wall      0.019s
+ Timestep    756; Sim Time  45360.0s; Wall      0.021s
+ Timestep    757; Sim Time  45420.0s; Wall      0.020s
+ Timestep    758; Sim Time  45480.0s; Wall      0.020s
+ Timestep    759; Sim Time  45540.0s; Wall      0.018s
+ Timestep    760; Sim Time  45600.0s; Wall      0.024s
+ Timestep    761; Sim Time  45660.0s; Wall      0.087s
+ Timestep    762; Sim Time  45720.0s; Wall      0.021s
+ Timestep    763; Sim Time  45780.0s; Wall      0.020s
+ Timestep    764; Sim Time  45840.0s; Wall      0.021s
+ Timestep    765; Sim Time  45900.0s; Wall      0.020s
+ Timestep    766; Sim Time  45960.0s; Wall      0.023s
+ Timestep    767; Sim Time  46020.0s; Wall      0.023s
+ Timestep    768; Sim Time  46080.0s; Wall      0.021s
+ Timestep    769; Sim Time  46140.0s; Wall      0.024s
+ Timestep    770; Sim Time  46200.0s; Wall      0.020s
+ Timestep    771; Sim Time  46260.0s; Wall      0.028s
+ Timestep    772; Sim Time  46320.0s; Wall      0.018s
+ Timestep    773; Sim Time  46380.0s; Wall      0.021s
+ Timestep    774; Sim Time  46440.0s; Wall      0.023s
+ Timestep    775; Sim Time  46500.0s; Wall      0.019s
+ Timestep    776; Sim Time  46560.0s; Wall      0.021s
+ Timestep    777; Sim Time  46620.0s; Wall      0.020s
+ Timestep    778; Sim Time  46680.0s; Wall      0.020s
+ Timestep    779; Sim Time  46740.0s; Wall      0.021s
+ Timestep    780; Sim Time  46800.0s; Wall      0.253s
+ Timestep    781; Sim Time  46860.0s; Wall      0.091s
+ Timestep    782; Sim Time  46920.0s; Wall      0.020s
+ Timestep    783; Sim Time  46980.0s; Wall      0.022s
+ Timestep    784; Sim Time  47040.0s; Wall      0.021s
+ Timestep    785; Sim Time  47100.0s; Wall      0.020s
+ Timestep    786; Sim Time  47160.0s; Wall      0.021s
+ Timestep    787; Sim Time  47220.0s; Wall      0.021s
+ Timestep    788; Sim Time  47280.0s; Wall      0.020s
+ Timestep    789; Sim Time  47340.0s; Wall      0.021s
+ Timestep    790; Sim Time  47400.0s; Wall      0.027s
+ Timestep    791; Sim Time  47460.0s; Wall      0.028s
+ Timestep    792; Sim Time  47520.0s; Wall      0.018s
+ Timestep    793; Sim Time  47580.0s; Wall      0.020s
+ Timestep    794; Sim Time  47640.0s; Wall      0.021s
+ Timestep    795; Sim Time  47700.0s; Wall      0.022s
+ Timestep    796; Sim Time  47760.0s; Wall      0.020s
+ Timestep    797; Sim Time  47820.0s; Wall      0.020s
+ Timestep    798; Sim Time  47880.0s; Wall      0.021s
+ Timestep    799; Sim Time  47940.0s; Wall      0.020s
+ Timestep    800; Sim Time  48000.0s; Wall      0.021s
+ Timestep    801; Sim Time  48060.0s; Wall      0.091s
+ Timestep    802; Sim Time  48120.0s; Wall      0.023s
+ Timestep    803; Sim Time  48180.0s; Wall      0.020s
+ Timestep    804; Sim Time  48240.0s; Wall      0.020s
+ Timestep    805; Sim Time  48300.0s; Wall      0.021s
+ Timestep    806; Sim Time  48360.0s; Wall      0.020s
+ Timestep    807; Sim Time  48420.0s; Wall      0.026s
+ Timestep    808; Sim Time  48480.0s; Wall      0.017s
+ Timestep    809; Sim Time  48540.0s; Wall      0.024s
+ Timestep    810; Sim Time  48600.0s; Wall      0.020s
+ Timestep    811; Sim Time  48660.0s; Wall      0.023s
+ Timestep    812; Sim Time  48720.0s; Wall      0.020s
+ Timestep    813; Sim Time  48780.0s; Wall      0.022s
+ Timestep    814; Sim Time  48840.0s; Wall      0.022s
+ Timestep    815; Sim Time  48900.0s; Wall      0.019s
+ Timestep    816; Sim Time  48960.0s; Wall      0.023s
+ Timestep    817; Sim Time  49020.0s; Wall      0.022s
+ Timestep    818; Sim Time  49080.0s; Wall      0.019s
+ Timestep    819; Sim Time  49140.0s; Wall      0.021s
+ Timestep    820; Sim Time  49200.0s; Wall      0.020s
+ Timestep    821; Sim Time  49260.0s; Wall      0.086s
+ Timestep    822; Sim Time  49320.0s; Wall      0.020s
+ Timestep    823; Sim Time  49380.0s; Wall      0.020s
+ Timestep    824; Sim Time  49440.0s; Wall      0.021s
+ Timestep    825; Sim Time  49500.0s; Wall      0.020s
+ Timestep    826; Sim Time  49560.0s; Wall      0.021s
+ Timestep    827; Sim Time  49620.0s; Wall      0.020s
+ Timestep    828; Sim Time  49680.0s; Wall      0.021s
+ Timestep    829; Sim Time  49740.0s; Wall      0.021s
+ Timestep    830; Sim Time  49800.0s; Wall      0.020s
+ Timestep    831; Sim Time  49860.0s; Wall      0.030s
+ Timestep    832; Sim Time  49920.0s; Wall      0.022s
+ Timestep    833; Sim Time  49980.0s; Wall      0.021s
+ Timestep    834; Sim Time  50040.0s; Wall      0.020s
+ Timestep    835; Sim Time  50100.0s; Wall      0.023s
+ Timestep    836; Sim Time  50160.0s; Wall      0.024s
+ Timestep    837; Sim Time  50220.0s; Wall      0.019s
+ Timestep    838; Sim Time  50280.0s; Wall      0.021s
+ Timestep    839; Sim Time  50340.0s; Wall      0.021s
+ Timestep    840; Sim Time  50400.0s; Wall      0.265s
+ Timestep    841; Sim Time  50460.0s; Wall      0.089s
+ Timestep    842; Sim Time  50520.0s; Wall      0.021s
+ Timestep    843; Sim Time  50580.0s; Wall      0.021s
+ Timestep    844; Sim Time  50640.0s; Wall      0.021s
+ Timestep    845; Sim Time  50700.0s; Wall      0.021s
+ Timestep    846; Sim Time  50760.0s; Wall      0.020s
+ Timestep    847; Sim Time  50820.0s; Wall      0.020s
+ Timestep    848; Sim Time  50880.0s; Wall      0.021s
+ Timestep    849; Sim Time  50940.0s; Wall      0.023s
+ Timestep    850; Sim Time  51000.0s; Wall      0.020s
+ Timestep    851; Sim Time  51060.0s; Wall      0.024s
+ Timestep    852; Sim Time  51120.0s; Wall      0.023s
+ Timestep    853; Sim Time  51180.0s; Wall      0.019s
+ Timestep    854; Sim Time  51240.0s; Wall      0.020s
+ Timestep    855; Sim Time  51300.0s; Wall      0.021s
+ Timestep    856; Sim Time  51360.0s; Wall      0.020s
+ Timestep    857; Sim Time  51420.0s; Wall      0.020s
+ Timestep    858; Sim Time  51480.0s; Wall      0.021s
+ Timestep    859; Sim Time  51540.0s; Wall      0.020s
+ Timestep    860; Sim Time  51600.0s; Wall      0.020s
+ Timestep    861; Sim Time  51660.0s; Wall      0.090s
+ Timestep    862; Sim Time  51720.0s; Wall      0.021s
+ Timestep    863; Sim Time  51780.0s; Wall      0.026s
+ Timestep    864; Sim Time  51840.0s; Wall      0.018s
+ Timestep    865; Sim Time  51900.0s; Wall      0.021s
+ Timestep    866; Sim Time  51960.0s; Wall      0.021s
+ Timestep    867; Sim Time  52020.0s; Wall      0.020s
+ Timestep    868; Sim Time  52080.0s; Wall      0.020s
+ Timestep    869; Sim Time  52140.0s; Wall      0.028s
+ Timestep    870; Sim Time  52200.0s; Wall      0.024s
+ Timestep    871; Sim Time  52260.0s; Wall      0.019s
+ Timestep    872; Sim Time  52320.0s; Wall      0.020s
+ Timestep    873; Sim Time  52380.0s; Wall      0.020s
+ Timestep    874; Sim Time  52440.0s; Wall      0.020s
+ Timestep    875; Sim Time  52500.0s; Wall      0.025s
+ Timestep    876; Sim Time  52560.0s; Wall      0.020s
+ Timestep    877; Sim Time  52620.0s; Wall      0.019s
+ Timestep    878; Sim Time  52680.0s; Wall      0.020s
+ Timestep    879; Sim Time  52740.0s; Wall      0.021s
+ Timestep    880; Sim Time  52800.0s; Wall      0.020s
+ Timestep    881; Sim Time  52860.0s; Wall      0.091s
+ Timestep    882; Sim Time  52920.0s; Wall      0.020s
+ Timestep    883; Sim Time  52980.0s; Wall      0.025s
+ Timestep    884; Sim Time  53040.0s; Wall      0.019s
+ Timestep    885; Sim Time  53100.0s; Wall      0.020s
+ Timestep    886; Sim Time  53160.0s; Wall      0.020s
+ Timestep    887; Sim Time  53220.0s; Wall      0.022s
+ Timestep    888; Sim Time  53280.0s; Wall      0.019s
+ Timestep    889; Sim Time  53340.0s; Wall      0.021s
+ Timestep    890; Sim Time  53400.0s; Wall      0.024s
+ Timestep    891; Sim Time  53460.0s; Wall      0.021s
+ Timestep    892; Sim Time  53520.0s; Wall      0.021s
+ Timestep    893; Sim Time  53580.0s; Wall      0.022s
+ Timestep    894; Sim Time  53640.0s; Wall      0.019s
+ Timestep    895; Sim Time  53700.0s; Wall      0.027s
+ Timestep    896; Sim Time  53760.0s; Wall      0.022s
+ Timestep    897; Sim Time  53820.0s; Wall      0.020s
+ Timestep    898; Sim Time  53880.0s; Wall      0.021s
+ Timestep    899; Sim Time  53940.0s; Wall      0.021s
+ Timestep    900; Sim Time  54000.0s; Wall      0.278s
+ Timestep    901; Sim Time  54060.0s; Wall      0.090s
+ Timestep    902; Sim Time  54120.0s; Wall      0.020s
+ Timestep    903; Sim Time  54180.0s; Wall      0.027s
+ Timestep    904; Sim Time  54240.0s; Wall      0.025s
+ Timestep    905; Sim Time  54300.0s; Wall      0.020s
+ Timestep    906; Sim Time  54360.0s; Wall      0.021s
+ Timestep    907; Sim Time  54420.0s; Wall      0.025s
+ Timestep    908; Sim Time  54480.0s; Wall      0.020s
+ Timestep    909; Sim Time  54540.0s; Wall      0.023s
+ Timestep    910; Sim Time  54600.0s; Wall      0.020s
+ Timestep    911; Sim Time  54660.0s; Wall      0.025s
+ Timestep    912; Sim Time  54720.0s; Wall      0.020s
+ Timestep    913; Sim Time  54780.0s; Wall      0.022s
+ Timestep    914; Sim Time  54840.0s; Wall      0.021s
+ Timestep    915; Sim Time  54900.0s; Wall      0.024s
+ Timestep    916; Sim Time  54960.0s; Wall      0.023s
+ Timestep    917; Sim Time  55020.0s; Wall      0.020s
+ Timestep    918; Sim Time  55080.0s; Wall      0.021s
+ Timestep    919; Sim Time  55140.0s; Wall      0.020s
+ Timestep    920; Sim Time  55200.0s; Wall      0.021s
+ Timestep    921; Sim Time  55260.0s; Wall      0.089s
+ Timestep    922; Sim Time  55320.0s; Wall      0.021s
+ Timestep    923; Sim Time  55380.0s; Wall      0.028s
+ Timestep    924; Sim Time  55440.0s; Wall      0.019s
+ Timestep    925; Sim Time  55500.0s; Wall      0.020s
+ Timestep    926; Sim Time  55560.0s; Wall      0.025s
+ Timestep    927; Sim Time  55620.0s; Wall      0.022s
+ Timestep    928; Sim Time  55680.0s; Wall      0.025s
+ Timestep    929; Sim Time  55740.0s; Wall      0.022s
+ Timestep    930; Sim Time  55800.0s; Wall      0.026s
+ Timestep    931; Sim Time  55860.0s; Wall      0.022s
+ Timestep    932; Sim Time  55920.0s; Wall      0.020s
+ Timestep    933; Sim Time  55980.0s; Wall      0.023s
+ Timestep    934; Sim Time  56040.0s; Wall      0.019s
+ Timestep    935; Sim Time  56100.0s; Wall      0.021s
+ Timestep    936; Sim Time  56160.0s; Wall      0.021s
+ Timestep    937; Sim Time  56220.0s; Wall      0.019s
+ Timestep    938; Sim Time  56280.0s; Wall      0.022s
+ Timestep    939; Sim Time  56340.0s; Wall      0.019s
+ Timestep    940; Sim Time  56400.0s; Wall      0.021s
+ Timestep    941; Sim Time  56460.0s; Wall      0.091s
+ Timestep    942; Sim Time  56520.0s; Wall      0.029s
+ Timestep    943; Sim Time  56580.0s; Wall      0.019s
+ Timestep    944; Sim Time  56640.0s; Wall      0.020s
+ Timestep    945; Sim Time  56700.0s; Wall      0.020s
+ Timestep    946; Sim Time  56760.0s; Wall      0.020s
+ Timestep    947; Sim Time  56820.0s; Wall      0.021s
+ Timestep    948; Sim Time  56880.0s; Wall      0.023s
+ Timestep    949; Sim Time  56940.0s; Wall      0.021s
+ Timestep    950; Sim Time  57000.0s; Wall      0.020s
+ Timestep    951; Sim Time  57060.0s; Wall      0.024s
+ Timestep    952; Sim Time  57120.0s; Wall      0.020s
+ Timestep    953; Sim Time  57180.0s; Wall      0.021s
+ Timestep    954; Sim Time  57240.0s; Wall      0.021s
+ Timestep    955; Sim Time  57300.0s; Wall      0.025s
+ Timestep    956; Sim Time  57360.0s; Wall      0.026s
+ Timestep    957; Sim Time  57420.0s; Wall      0.018s
+ Timestep    958; Sim Time  57480.0s; Wall      0.022s
+ Timestep    959; Sim Time  57540.0s; Wall      0.020s
+ Timestep    960; Sim Time  57600.0s; Wall      0.277s
+ Timestep    961; Sim Time  57660.0s; Wall      0.094s
+ Timestep    962; Sim Time  57720.0s; Wall      0.020s
+ Timestep    963; Sim Time  57780.0s; Wall      0.021s
+ Timestep    964; Sim Time  57840.0s; Wall      0.020s
+ Timestep    965; Sim Time  57900.0s; Wall      0.021s
+ Timestep    966; Sim Time  57960.0s; Wall      0.023s
+ Timestep    967; Sim Time  58020.0s; Wall      0.018s
+ Timestep    968; Sim Time  58080.0s; Wall      0.021s
+ Timestep    969; Sim Time  58140.0s; Wall      0.020s
+ Timestep    970; Sim Time  58200.0s; Wall      0.022s
+ Timestep    971; Sim Time  58260.0s; Wall      0.022s
+ Timestep    972; Sim Time  58320.0s; Wall      0.025s
+ Timestep    973; Sim Time  58380.0s; Wall      0.021s
+ Timestep    974; Sim Time  58440.0s; Wall      0.021s
+ Timestep    975; Sim Time  58500.0s; Wall      0.020s
+ Timestep    976; Sim Time  58560.0s; Wall      0.024s
+ Timestep    977; Sim Time  58620.0s; Wall      0.022s
+ Timestep    978; Sim Time  58680.0s; Wall      0.018s
+ Timestep    979; Sim Time  58740.0s; Wall      0.024s
+ Timestep    980; Sim Time  58800.0s; Wall      0.020s
+ Timestep    981; Sim Time  58860.0s; Wall      0.096s
+ Timestep    982; Sim Time  58920.0s; Wall      0.021s
+ Timestep    983; Sim Time  58980.0s; Wall      0.020s
+ Timestep    984; Sim Time  59040.0s; Wall      0.022s
+ Timestep    985; Sim Time  59100.0s; Wall      0.024s
+ Timestep    986; Sim Time  59160.0s; Wall      0.020s
+ Timestep    987; Sim Time  59220.0s; Wall      0.020s
+ Timestep    988; Sim Time  59280.0s; Wall      0.022s
+ Timestep    989; Sim Time  59340.0s; Wall      0.021s
+ Timestep    990; Sim Time  59400.0s; Wall      0.022s
+ Timestep    991; Sim Time  59460.0s; Wall      0.024s
+ Timestep    992; Sim Time  59520.0s; Wall      0.022s
+ Timestep    993; Sim Time  59580.0s; Wall      0.022s
+ Timestep    994; Sim Time  59640.0s; Wall      0.019s
+ Timestep    995; Sim Time  59700.0s; Wall      0.020s
+ Timestep    996; Sim Time  59760.0s; Wall      0.021s
+ Timestep    997; Sim Time  59820.0s; Wall      0.021s
+ Timestep    998; Sim Time  59880.0s; Wall      0.025s
+ Timestep    999; Sim Time  59940.0s; Wall      0.017s
+ Timestep   1000; Sim Time  60000.0s; Wall      0.022s
+ Timestep   1001; Sim Time  60060.0s; Wall      0.090s
+ Timestep   1002; Sim Time  60120.0s; Wall      0.026s
+ Timestep   1003; Sim Time  60180.0s; Wall      0.024s
+ Timestep   1004; Sim Time  60240.0s; Wall      0.024s
+ Timestep   1005; Sim Time  60300.0s; Wall      0.018s
+ Timestep   1006; Sim Time  60360.0s; Wall      0.027s
+ Timestep   1007; Sim Time  60420.0s; Wall      0.019s
+ Timestep   1008; Sim Time  60480.0s; Wall      0.021s
+ Timestep   1009; Sim Time  60540.0s; Wall      0.020s
+ Timestep   1010; Sim Time  60600.0s; Wall      0.024s
+ Timestep   1011; Sim Time  60660.0s; Wall      0.024s
+ Timestep   1012; Sim Time  60720.0s; Wall      0.021s
+ Timestep   1013; Sim Time  60780.0s; Wall      0.019s
+ Timestep   1014; Sim Time  60840.0s; Wall      0.024s
+ Timestep   1015; Sim Time  60900.0s; Wall      0.018s
+ Timestep   1016; Sim Time  60960.0s; Wall      0.020s
+ Timestep   1017; Sim Time  61020.0s; Wall      0.024s
+ Timestep   1018; Sim Time  61080.0s; Wall      0.025s
+ Timestep   1019; Sim Time  61140.0s; Wall      0.021s
+ Timestep   1020; Sim Time  61200.0s; Wall      0.239s
+ Timestep   1021; Sim Time  61260.0s; Wall      0.093s
+ Timestep   1022; Sim Time  61320.0s; Wall      0.021s
+ Timestep   1023; Sim Time  61380.0s; Wall      0.020s
+ Timestep   1024; Sim Time  61440.0s; Wall      0.025s
+ Timestep   1025; Sim Time  61500.0s; Wall      0.022s
+ Timestep   1026; Sim Time  61560.0s; Wall      0.023s
+ Timestep   1027; Sim Time  61620.0s; Wall      0.021s
+ Timestep   1028; Sim Time  61680.0s; Wall      0.021s
+ Timestep   1029; Sim Time  61740.0s; Wall      0.020s
+ Timestep   1030; Sim Time  61800.0s; Wall      0.021s
+ Timestep   1031; Sim Time  61860.0s; Wall      0.022s
+ Timestep   1032; Sim Time  61920.0s; Wall      0.020s
+ Timestep   1033; Sim Time  61980.0s; Wall      0.019s
+ Timestep   1034; Sim Time  62040.0s; Wall      0.024s
+ Timestep   1035; Sim Time  62100.0s; Wall      0.017s
+ Timestep   1036; Sim Time  62160.0s; Wall      0.020s
+ Timestep   1037; Sim Time  62220.0s; Wall      0.021s
+ Timestep   1038; Sim Time  62280.0s; Wall      0.021s
+ Timestep   1039; Sim Time  62340.0s; Wall      0.020s
+ Timestep   1040; Sim Time  62400.0s; Wall      0.021s
+ Timestep   1041; Sim Time  62460.0s; Wall      0.090s
+ Timestep   1042; Sim Time  62520.0s; Wall      0.024s
+ Timestep   1043; Sim Time  62580.0s; Wall      0.022s
+ Timestep   1044; Sim Time  62640.0s; Wall      0.021s
+ Timestep   1045; Sim Time  62700.0s; Wall      0.029s
+ Timestep   1046; Sim Time  62760.0s; Wall      0.019s
+ Timestep   1047; Sim Time  62820.0s; Wall      0.025s
+ Timestep   1048; Sim Time  62880.0s; Wall      0.023s
+ Timestep   1049; Sim Time  62940.0s; Wall      0.019s
+ Timestep   1050; Sim Time  63000.0s; Wall      0.020s
+ Timestep   1051; Sim Time  63060.0s; Wall      0.027s
+ Timestep   1052; Sim Time  63120.0s; Wall      0.020s
+ Timestep   1053; Sim Time  63180.0s; Wall      0.020s
+ Timestep   1054; Sim Time  63240.0s; Wall      0.021s
+ Timestep   1055; Sim Time  63300.0s; Wall      0.020s
+ Timestep   1056; Sim Time  63360.0s; Wall      0.020s
+ Timestep   1057; Sim Time  63420.0s; Wall      0.024s
+ Timestep   1058; Sim Time  63480.0s; Wall      0.023s
+ Timestep   1059; Sim Time  63540.0s; Wall      0.020s
+ Timestep   1060; Sim Time  63600.0s; Wall      0.022s
+ Timestep   1061; Sim Time  63660.0s; Wall      0.089s
+ Timestep   1062; Sim Time  63720.0s; Wall      0.022s
+ Timestep   1063; Sim Time  63780.0s; Wall      0.020s
+ Timestep   1064; Sim Time  63840.0s; Wall      0.020s
+ Timestep   1065; Sim Time  63900.0s; Wall      0.021s
+ Timestep   1066; Sim Time  63960.0s; Wall      0.020s
+ Timestep   1067; Sim Time  64020.0s; Wall      0.022s
+ Timestep   1068; Sim Time  64080.0s; Wall      0.023s
+ Timestep   1069; Sim Time  64140.0s; Wall      0.019s
+ Timestep   1070; Sim Time  64200.0s; Wall      0.020s
+ Timestep   1071; Sim Time  64260.0s; Wall      0.026s
+ Timestep   1072; Sim Time  64320.0s; Wall      0.020s
+ Timestep   1073; Sim Time  64380.0s; Wall      0.020s
+ Timestep   1074; Sim Time  64440.0s; Wall      0.020s
+ Timestep   1075; Sim Time  64500.0s; Wall      0.021s
+ Timestep   1076; Sim Time  64560.0s; Wall      0.023s
+ Timestep   1077; Sim Time  64620.0s; Wall      0.019s
+ Timestep   1078; Sim Time  64680.0s; Wall      0.020s
+ Timestep   1079; Sim Time  64740.0s; Wall      0.020s
+ Timestep   1080; Sim Time  64800.0s; Wall      0.257s
+  
+  
+  
+ -------------------------------------------------------------
+ -----------       Varfile Input Inventory       -------------
+ -------------------------------------------------------------
+   1   20140127000000         0.  ./dataout/IVAR/meteo-only-V-2014-01-27-000000.tag
+   2   20140127060000     21600.  ./dataout/IVAR/meteo-only-V-2014-01-27-060000.tag
+   3   20140127120000     43200.  ./dataout/IVAR/meteo-only-V-2014-01-27-120000.tag
+   4   20140127180000     64800.  ./dataout/IVAR/meteo-only-V-2014-01-27-180000.tag
+   5   20140128000000     86400.  ./dataout/IVAR/meteo-only-V-2014-01-28-000000.tag
+ ------------------------------------------------------
+ Future varfile read of grid-           1
+ New varfile times:           5   64800.0000       86400.0000    
+ Timestep   1081; Sim Time  64860.0s; Wall      0.127s
+ Timestep   1082; Sim Time  64920.0s; Wall      0.024s
+ Timestep   1083; Sim Time  64980.0s; Wall      0.020s
+ Timestep   1084; Sim Time  65040.0s; Wall      0.021s
+ Timestep   1085; Sim Time  65100.0s; Wall      0.026s
+ Timestep   1086; Sim Time  65160.0s; Wall      0.017s
+ Timestep   1087; Sim Time  65220.0s; Wall      0.020s
+ Timestep   1088; Sim Time  65280.0s; Wall      0.020s
+ Timestep   1089; Sim Time  65340.0s; Wall      0.021s
+ Timestep   1090; Sim Time  65400.0s; Wall      0.022s
+ Timestep   1091; Sim Time  65460.0s; Wall      0.022s
+ Timestep   1092; Sim Time  65520.0s; Wall      0.027s
+ Timestep   1093; Sim Time  65580.0s; Wall      0.018s
+ Timestep   1094; Sim Time  65640.0s; Wall      0.020s
+ Timestep   1095; Sim Time  65700.0s; Wall      0.020s
+ Timestep   1096; Sim Time  65760.0s; Wall      0.022s
+ Timestep   1097; Sim Time  65820.0s; Wall      0.020s
+ Timestep   1098; Sim Time  65880.0s; Wall      0.021s
+ Timestep   1099; Sim Time  65940.0s; Wall      0.021s
+ Timestep   1100; Sim Time  66000.0s; Wall      0.022s
+ Timestep   1101; Sim Time  66060.0s; Wall      0.090s
+ Timestep   1102; Sim Time  66120.0s; Wall      0.020s
+ Timestep   1103; Sim Time  66180.0s; Wall      0.020s
+ Timestep   1104; Sim Time  66240.0s; Wall      0.021s
+ Timestep   1105; Sim Time  66300.0s; Wall      0.020s
+ Timestep   1106; Sim Time  66360.0s; Wall      0.020s
+ Timestep   1107; Sim Time  66420.0s; Wall      0.020s
+ Timestep   1108; Sim Time  66480.0s; Wall      0.023s
+ Timestep   1109; Sim Time  66540.0s; Wall      0.024s
+ Timestep   1110; Sim Time  66600.0s; Wall      0.019s
+ Timestep   1111; Sim Time  66660.0s; Wall      0.023s
+ Timestep   1112; Sim Time  66720.0s; Wall      0.024s
+ Timestep   1113; Sim Time  66780.0s; Wall      0.025s
+ Timestep   1114; Sim Time  66840.0s; Wall      0.018s
+ Timestep   1115; Sim Time  66900.0s; Wall      0.023s
+ Timestep   1116; Sim Time  66960.0s; Wall      0.017s
+ Timestep   1117; Sim Time  67020.0s; Wall      0.024s
+ Timestep   1118; Sim Time  67080.0s; Wall      0.026s
+ Timestep   1119; Sim Time  67140.0s; Wall      0.019s
+ Timestep   1120; Sim Time  67200.0s; Wall      0.021s
+ Timestep   1121; Sim Time  67260.0s; Wall      0.094s
+ Timestep   1122; Sim Time  67320.0s; Wall      0.017s
+ Timestep   1123; Sim Time  67380.0s; Wall      0.020s
+ Timestep   1124; Sim Time  67440.0s; Wall      0.021s
+ Timestep   1125; Sim Time  67500.0s; Wall      0.020s
+ Timestep   1126; Sim Time  67560.0s; Wall      0.020s
+ Timestep   1127; Sim Time  67620.0s; Wall      0.019s
+ Timestep   1128; Sim Time  67680.0s; Wall      0.020s
+ Timestep   1129; Sim Time  67740.0s; Wall      0.027s
+ Timestep   1130; Sim Time  67800.0s; Wall      0.018s
+ Timestep   1131; Sim Time  67860.0s; Wall      0.023s
+ Timestep   1132; Sim Time  67920.0s; Wall      0.020s
+ Timestep   1133; Sim Time  67980.0s; Wall      0.020s
+ Timestep   1134; Sim Time  68040.0s; Wall      0.023s
+ Timestep   1135; Sim Time  68100.0s; Wall      0.019s
+ Timestep   1136; Sim Time  68160.0s; Wall      0.023s
+ Timestep   1137; Sim Time  68220.0s; Wall      0.020s
+ Timestep   1138; Sim Time  68280.0s; Wall      0.019s
+ Timestep   1139; Sim Time  68340.0s; Wall      0.023s
+ Timestep   1140; Sim Time  68400.0s; Wall      0.248s
+ Timestep   1141; Sim Time  68460.0s; Wall      0.090s
+ Timestep   1142; Sim Time  68520.0s; Wall      0.020s
+ Timestep   1143; Sim Time  68580.0s; Wall      0.024s
+ Timestep   1144; Sim Time  68640.0s; Wall      0.017s
+ Timestep   1145; Sim Time  68700.0s; Wall      0.020s
+ Timestep   1146; Sim Time  68760.0s; Wall      0.020s
+ Timestep   1147; Sim Time  68820.0s; Wall      0.019s
+ Timestep   1148; Sim Time  68880.0s; Wall      0.024s
+ Timestep   1149; Sim Time  68940.0s; Wall      0.018s
+ Timestep   1150; Sim Time  69000.0s; Wall      0.020s
+ Timestep   1151; Sim Time  69060.0s; Wall      0.022s
+ Timestep   1152; Sim Time  69120.0s; Wall      0.019s
+ Timestep   1153; Sim Time  69180.0s; Wall      0.020s
+ Timestep   1154; Sim Time  69240.0s; Wall      0.021s
+ Timestep   1155; Sim Time  69300.0s; Wall      0.019s
+ Timestep   1156; Sim Time  69360.0s; Wall      0.019s
+ Timestep   1157; Sim Time  69420.0s; Wall      0.020s
+ Timestep   1158; Sim Time  69480.0s; Wall      0.021s
+ Timestep   1159; Sim Time  69540.0s; Wall      0.019s
+ Timestep   1160; Sim Time  69600.0s; Wall      0.027s
+ Timestep   1161; Sim Time  69660.0s; Wall      0.084s
+ Timestep   1162; Sim Time  69720.0s; Wall      0.022s
+ Timestep   1163; Sim Time  69780.0s; Wall      0.018s
+ Timestep   1164; Sim Time  69840.0s; Wall      0.020s
+ Timestep   1165; Sim Time  69900.0s; Wall      0.020s
+ Timestep   1166; Sim Time  69960.0s; Wall      0.020s
+ Timestep   1167; Sim Time  70020.0s; Wall      0.023s
+ Timestep   1168; Sim Time  70080.0s; Wall      0.020s
+ Timestep   1169; Sim Time  70140.0s; Wall      0.019s
+ Timestep   1170; Sim Time  70200.0s; Wall      0.021s
+ Timestep   1171; Sim Time  70260.0s; Wall      0.022s
+ Timestep   1172; Sim Time  70320.0s; Wall      0.019s
+ Timestep   1173; Sim Time  70380.0s; Wall      0.019s
+ Timestep   1174; Sim Time  70440.0s; Wall      0.021s
+ Timestep   1175; Sim Time  70500.0s; Wall      0.019s
+ Timestep   1176; Sim Time  70560.0s; Wall      0.021s
+ Timestep   1177; Sim Time  70620.0s; Wall      0.022s
+ Timestep   1178; Sim Time  70680.0s; Wall      0.021s
+ Timestep   1179; Sim Time  70740.0s; Wall      0.024s
+ Timestep   1180; Sim Time  70800.0s; Wall      0.017s
+ Timestep   1181; Sim Time  70860.0s; Wall      0.090s
+ Timestep   1182; Sim Time  70920.0s; Wall      0.021s
+ Timestep   1183; Sim Time  70980.0s; Wall      0.020s
+ Timestep   1184; Sim Time  71040.0s; Wall      0.019s
+ Timestep   1185; Sim Time  71100.0s; Wall      0.022s
+ Timestep   1186; Sim Time  71160.0s; Wall      0.019s
+ Timestep   1187; Sim Time  71220.0s; Wall      0.020s
+ Timestep   1188; Sim Time  71280.0s; Wall      0.022s
+ Timestep   1189; Sim Time  71340.0s; Wall      0.019s
+ Timestep   1190; Sim Time  71400.0s; Wall      0.019s
+ Timestep   1191; Sim Time  71460.0s; Wall      0.022s
+ Timestep   1192; Sim Time  71520.0s; Wall      0.020s
+ Timestep   1193; Sim Time  71580.0s; Wall      0.019s
+ Timestep   1194; Sim Time  71640.0s; Wall      0.020s
+ Timestep   1195; Sim Time  71700.0s; Wall      0.020s
+ Timestep   1196; Sim Time  71760.0s; Wall      0.020s
+ Timestep   1197; Sim Time  71820.0s; Wall      0.022s
+ Timestep   1198; Sim Time  71880.0s; Wall      0.021s
+ Timestep   1199; Sim Time  71940.0s; Wall      0.022s
+ Timestep   1200; Sim Time  72000.0s; Wall      0.252s
+ Timestep   1201; Sim Time  72060.0s; Wall      0.090s
+ Timestep   1202; Sim Time  72120.0s; Wall      0.020s
+ Timestep   1203; Sim Time  72180.0s; Wall      0.022s
+ Timestep   1204; Sim Time  72240.0s; Wall      0.017s
+ Timestep   1205; Sim Time  72300.0s; Wall      0.025s
+ Timestep   1206; Sim Time  72360.0s; Wall      0.019s
+ Timestep   1207; Sim Time  72420.0s; Wall      0.021s
+ Timestep   1208; Sim Time  72480.0s; Wall      0.020s
+ Timestep   1209; Sim Time  72540.0s; Wall      0.020s
+ Timestep   1210; Sim Time  72600.0s; Wall      0.019s
+ Timestep   1211; Sim Time  72660.0s; Wall      0.025s
+ Timestep   1212; Sim Time  72720.0s; Wall      0.024s
+ Timestep   1213; Sim Time  72780.0s; Wall      0.021s
+ Timestep   1214; Sim Time  72840.0s; Wall      0.020s
+ Timestep   1215; Sim Time  72900.0s; Wall      0.019s
+ Timestep   1216; Sim Time  72960.0s; Wall      0.027s
+ Timestep   1217; Sim Time  73020.0s; Wall      0.017s
+ Timestep   1218; Sim Time  73080.0s; Wall      0.021s
+ Timestep   1219; Sim Time  73140.0s; Wall      0.021s
+ Timestep   1220; Sim Time  73200.0s; Wall      0.020s
+ Timestep   1221; Sim Time  73260.0s; Wall      0.092s
+ Timestep   1222; Sim Time  73320.0s; Wall      0.017s
+ Timestep   1223; Sim Time  73380.0s; Wall      0.022s
+ Timestep   1224; Sim Time  73440.0s; Wall      0.017s
+ Timestep   1225; Sim Time  73500.0s; Wall      0.025s
+ Timestep   1226; Sim Time  73560.0s; Wall      0.020s
+ Timestep   1227; Sim Time  73620.0s; Wall      0.021s
+ Timestep   1228; Sim Time  73680.0s; Wall      0.022s
+ Timestep   1229; Sim Time  73740.0s; Wall      0.026s
+ Timestep   1230; Sim Time  73800.0s; Wall      0.017s
+ Timestep   1231; Sim Time  73860.0s; Wall      0.023s
+ Timestep   1232; Sim Time  73920.0s; Wall      0.021s
+ Timestep   1233; Sim Time  73980.0s; Wall      0.019s
+ Timestep   1234; Sim Time  74040.0s; Wall      0.020s
+ Timestep   1235; Sim Time  74100.0s; Wall      0.020s
+ Timestep   1236; Sim Time  74160.0s; Wall      0.020s
+ Timestep   1237; Sim Time  74220.0s; Wall      0.021s
+ Timestep   1238; Sim Time  74280.0s; Wall      0.019s
+ Timestep   1239; Sim Time  74340.0s; Wall      0.019s
+ Timestep   1240; Sim Time  74400.0s; Wall      0.020s
+ Timestep   1241; Sim Time  74460.0s; Wall      0.092s
+ Timestep   1242; Sim Time  74520.0s; Wall      0.025s
+ Timestep   1243; Sim Time  74580.0s; Wall      0.025s
+ Timestep   1244; Sim Time  74640.0s; Wall      0.021s
+ Timestep   1245; Sim Time  74700.0s; Wall      0.025s
+ Timestep   1246; Sim Time  74760.0s; Wall      0.021s
+ Timestep   1247; Sim Time  74820.0s; Wall      0.018s
+ Timestep   1248; Sim Time  74880.0s; Wall      0.019s
+ Timestep   1249; Sim Time  74940.0s; Wall      0.020s
+ Timestep   1250; Sim Time  75000.0s; Wall      0.024s
+ Timestep   1251; Sim Time  75060.0s; Wall      0.024s
+ Timestep   1252; Sim Time  75120.0s; Wall      0.019s
+ Timestep   1253; Sim Time  75180.0s; Wall      0.019s
+ Timestep   1254; Sim Time  75240.0s; Wall      0.020s
+ Timestep   1255; Sim Time  75300.0s; Wall      0.020s
+ Timestep   1256; Sim Time  75360.0s; Wall      0.019s
+ Timestep   1257; Sim Time  75420.0s; Wall      0.021s
+ Timestep   1258; Sim Time  75480.0s; Wall      0.019s
+ Timestep   1259; Sim Time  75540.0s; Wall      0.020s
+ Timestep   1260; Sim Time  75600.0s; Wall      0.263s
+ Timestep   1261; Sim Time  75660.0s; Wall      0.090s
+ Timestep   1262; Sim Time  75720.0s; Wall      0.021s
+ Timestep   1263; Sim Time  75780.0s; Wall      0.024s
+ Timestep   1264; Sim Time  75840.0s; Wall      0.019s
+ Timestep   1265; Sim Time  75900.0s; Wall      0.026s
+ Timestep   1266; Sim Time  75960.0s; Wall      0.020s
+ Timestep   1267; Sim Time  76020.0s; Wall      0.020s
+ Timestep   1268; Sim Time  76080.0s; Wall      0.019s
+ Timestep   1269; Sim Time  76140.0s; Wall      0.019s
+ Timestep   1270; Sim Time  76200.0s; Wall      0.022s
+ Timestep   1271; Sim Time  76260.0s; Wall      0.021s
+ Timestep   1272; Sim Time  76320.0s; Wall      0.020s
+ Timestep   1273; Sim Time  76380.0s; Wall      0.021s
+ Timestep   1274; Sim Time  76440.0s; Wall      0.020s
+ Timestep   1275; Sim Time  76500.0s; Wall      0.020s
+ Timestep   1276; Sim Time  76560.0s; Wall      0.019s
+ Timestep   1277; Sim Time  76620.0s; Wall      0.024s
+ Timestep   1278; Sim Time  76680.0s; Wall      0.017s
+ Timestep   1279; Sim Time  76740.0s; Wall      0.020s
+ Timestep   1280; Sim Time  76800.0s; Wall      0.020s
+ Timestep   1281; Sim Time  76860.0s; Wall      0.094s
+ Timestep   1282; Sim Time  76920.0s; Wall      0.020s
+ Timestep   1283; Sim Time  76980.0s; Wall      0.020s
+ Timestep   1284; Sim Time  77040.0s; Wall      0.020s
+ Timestep   1285; Sim Time  77100.0s; Wall      0.020s
+ Timestep   1286; Sim Time  77160.0s; Wall      0.020s
+ Timestep   1287; Sim Time  77220.0s; Wall      0.020s
+ Timestep   1288; Sim Time  77280.0s; Wall      0.029s
+ Timestep   1289; Sim Time  77340.0s; Wall      0.022s
+ Timestep   1290; Sim Time  77400.0s; Wall      0.020s
+ Timestep   1291; Sim Time  77460.0s; Wall      0.028s
+ Timestep   1292; Sim Time  77520.0s; Wall      0.019s
+ Timestep   1293; Sim Time  77580.0s; Wall      0.019s
+ Timestep   1294; Sim Time  77640.0s; Wall      0.021s
+ Timestep   1295; Sim Time  77700.0s; Wall      0.019s
+ Timestep   1296; Sim Time  77760.0s; Wall      0.020s
+ Timestep   1297; Sim Time  77820.0s; Wall      0.021s
+ Timestep   1298; Sim Time  77880.0s; Wall      0.018s
+ Timestep   1299; Sim Time  77940.0s; Wall      0.025s
+ Timestep   1300; Sim Time  78000.0s; Wall      0.022s
+ Timestep   1301; Sim Time  78060.0s; Wall      0.092s
+ Timestep   1302; Sim Time  78120.0s; Wall      0.019s
+ Timestep   1303; Sim Time  78180.0s; Wall      0.024s
+ Timestep   1304; Sim Time  78240.0s; Wall      0.018s
+ Timestep   1305; Sim Time  78300.0s; Wall      0.025s
+ Timestep   1306; Sim Time  78360.0s; Wall      0.017s
+ Timestep   1307; Sim Time  78420.0s; Wall      0.021s
+ Timestep   1308; Sim Time  78480.0s; Wall      0.020s
+ Timestep   1309; Sim Time  78540.0s; Wall      0.020s
+ Timestep   1310; Sim Time  78600.0s; Wall      0.022s
+ Timestep   1311; Sim Time  78660.0s; Wall      0.022s
+ Timestep   1312; Sim Time  78720.0s; Wall      0.020s
+ Timestep   1313; Sim Time  78780.0s; Wall      0.019s
+ Timestep   1314; Sim Time  78840.0s; Wall      0.021s
+ Timestep   1315; Sim Time  78900.0s; Wall      0.022s
+ Timestep   1316; Sim Time  78960.0s; Wall      0.020s
+ Timestep   1317; Sim Time  79020.0s; Wall      0.019s
+ Timestep   1318; Sim Time  79080.0s; Wall      0.021s
+ Timestep   1319; Sim Time  79140.0s; Wall      0.021s
+ Timestep   1320; Sim Time  79200.0s; Wall      0.234s
+ Timestep   1321; Sim Time  79260.0s; Wall      0.098s
+ Timestep   1322; Sim Time  79320.0s; Wall      0.020s
+ Timestep   1323; Sim Time  79380.0s; Wall      0.020s
+ Timestep   1324; Sim Time  79440.0s; Wall      0.021s
+ Timestep   1325; Sim Time  79500.0s; Wall      0.019s
+ Timestep   1326; Sim Time  79560.0s; Wall      0.024s
+ Timestep   1327; Sim Time  79620.0s; Wall      0.020s
+ Timestep   1328; Sim Time  79680.0s; Wall      0.020s
+ Timestep   1329; Sim Time  79740.0s; Wall      0.028s
+ Timestep   1330; Sim Time  79800.0s; Wall      0.017s
+ Timestep   1331; Sim Time  79860.0s; Wall      0.024s
+ Timestep   1332; Sim Time  79920.0s; Wall      0.019s
+ Timestep   1333; Sim Time  79980.0s; Wall      0.020s
+ Timestep   1334; Sim Time  80040.0s; Wall      0.020s
+ Timestep   1335; Sim Time  80100.0s; Wall      0.020s
+ Timestep   1336; Sim Time  80160.0s; Wall      0.021s
+ Timestep   1337; Sim Time  80220.0s; Wall      0.022s
+ Timestep   1338; Sim Time  80280.0s; Wall      0.020s
+ Timestep   1339; Sim Time  80340.0s; Wall      0.021s
+ Timestep   1340; Sim Time  80400.0s; Wall      0.020s
+ Timestep   1341; Sim Time  80460.0s; Wall      0.106s
+ Timestep   1342; Sim Time  80520.0s; Wall      0.021s
+ Timestep   1343; Sim Time  80580.0s; Wall      0.019s
+ Timestep   1344; Sim Time  80640.0s; Wall      0.021s
+ Timestep   1345; Sim Time  80700.0s; Wall      0.020s
+ Timestep   1346; Sim Time  80760.0s; Wall      0.020s
+ Timestep   1347; Sim Time  80820.0s; Wall      0.020s
+ Timestep   1348; Sim Time  80880.0s; Wall      0.020s
+ Timestep   1349; Sim Time  80940.0s; Wall      0.020s
+ Timestep   1350; Sim Time  81000.0s; Wall      0.020s
+ Timestep   1351; Sim Time  81060.0s; Wall      0.022s
+ Timestep   1352; Sim Time  81120.0s; Wall      0.020s
+ Timestep   1353; Sim Time  81180.0s; Wall      0.022s
+ Timestep   1354; Sim Time  81240.0s; Wall      0.019s
+ Timestep   1355; Sim Time  81300.0s; Wall      0.023s
+ Timestep   1356; Sim Time  81360.0s; Wall      0.021s
+ Timestep   1357; Sim Time  81420.0s; Wall      0.019s
+ Timestep   1358; Sim Time  81480.0s; Wall      0.022s
+ Timestep   1359; Sim Time  81540.0s; Wall      0.020s
+ Timestep   1360; Sim Time  81600.0s; Wall      0.020s
+ Timestep   1361; Sim Time  81660.0s; Wall      0.095s
+ Timestep   1362; Sim Time  81720.0s; Wall      0.021s
+ Timestep   1363; Sim Time  81780.0s; Wall      0.021s
+ Timestep   1364; Sim Time  81840.0s; Wall      0.020s
+ Timestep   1365; Sim Time  81900.0s; Wall      0.020s
+ Timestep   1366; Sim Time  81960.0s; Wall      0.020s
+ Timestep   1367; Sim Time  82020.0s; Wall      0.020s
+ Timestep   1368; Sim Time  82080.0s; Wall      0.023s
+ Timestep   1369; Sim Time  82140.0s; Wall      0.018s
+ Timestep   1370; Sim Time  82200.0s; Wall      0.027s
+ Timestep   1371; Sim Time  82260.0s; Wall      0.021s
+ Timestep   1372; Sim Time  82320.0s; Wall      0.025s
+ Timestep   1373; Sim Time  82380.0s; Wall      0.018s
+ Timestep   1374; Sim Time  82440.0s; Wall      0.020s
+ Timestep   1375; Sim Time  82500.0s; Wall      0.024s
+ Timestep   1376; Sim Time  82560.0s; Wall      0.020s
+ Timestep   1377; Sim Time  82620.0s; Wall      0.020s
+ Timestep   1378; Sim Time  82680.0s; Wall      0.020s
+ Timestep   1379; Sim Time  82740.0s; Wall      0.019s
+ Timestep   1380; Sim Time  82800.0s; Wall      0.265s
+ Timestep   1381; Sim Time  82860.0s; Wall      0.096s
+ Timestep   1382; Sim Time  82920.0s; Wall      0.019s
+ Timestep   1383; Sim Time  82980.0s; Wall      0.020s
+ Timestep   1384; Sim Time  83040.0s; Wall      0.021s
+ Timestep   1385; Sim Time  83100.0s; Wall      0.023s
+ Timestep   1386; Sim Time  83160.0s; Wall      0.018s
+ Timestep   1387; Sim Time  83220.0s; Wall      0.023s
+ Timestep   1388; Sim Time  83280.0s; Wall      0.021s
+ Timestep   1389; Sim Time  83340.0s; Wall      0.020s
+ Timestep   1390; Sim Time  83400.0s; Wall      0.022s
+ Timestep   1391; Sim Time  83460.0s; Wall      0.023s
+ Timestep   1392; Sim Time  83520.0s; Wall      0.020s
+ Timestep   1393; Sim Time  83580.0s; Wall      0.020s
+ Timestep   1394; Sim Time  83640.0s; Wall      0.020s
+ Timestep   1395; Sim Time  83700.0s; Wall      0.026s
+ Timestep   1396; Sim Time  83760.0s; Wall      0.021s
+ Timestep   1397; Sim Time  83820.0s; Wall      0.018s
+ Timestep   1398; Sim Time  83880.0s; Wall      0.026s
+ Timestep   1399; Sim Time  83940.0s; Wall      0.018s
+ Timestep   1400; Sim Time  84000.0s; Wall      0.020s
+ Timestep   1401; Sim Time  84060.0s; Wall      0.097s
+ Timestep   1402; Sim Time  84120.0s; Wall      0.020s
+ Timestep   1403; Sim Time  84180.0s; Wall      0.020s
+ Timestep   1404; Sim Time  84240.0s; Wall      0.021s
+ Timestep   1405; Sim Time  84300.0s; Wall      0.020s
+ Timestep   1406; Sim Time  84360.0s; Wall      0.020s
+ Timestep   1407; Sim Time  84420.0s; Wall      0.020s
+ Timestep   1408; Sim Time  84480.0s; Wall      0.020s
+ Timestep   1409; Sim Time  84540.0s; Wall      0.020s
+ Timestep   1410; Sim Time  84600.0s; Wall      0.020s
+ Timestep   1411; Sim Time  84660.0s; Wall      0.024s
+ Timestep   1412; Sim Time  84720.0s; Wall      0.022s
+ Timestep   1413; Sim Time  84780.0s; Wall      0.020s
+ Timestep   1414; Sim Time  84840.0s; Wall      0.021s
+ Timestep   1415; Sim Time  84900.0s; Wall      0.020s
+ Timestep   1416; Sim Time  84960.0s; Wall      0.020s
+ Timestep   1417; Sim Time  85020.0s; Wall      0.021s
+ Timestep   1418; Sim Time  85080.0s; Wall      0.026s
+ Timestep   1419; Sim Time  85140.0s; Wall      0.018s
+ Timestep   1420; Sim Time  85200.0s; Wall      0.024s
+ Timestep   1421; Sim Time  85260.0s; Wall      0.097s
+ Timestep   1422; Sim Time  85320.0s; Wall      0.026s
+ Timestep   1423; Sim Time  85380.0s; Wall      0.022s
+ Timestep   1424; Sim Time  85440.0s; Wall      0.024s
+ Timestep   1425; Sim Time  85500.0s; Wall      0.021s
+ Timestep   1426; Sim Time  85560.0s; Wall      0.022s
+ Timestep   1427; Sim Time  85620.0s; Wall      0.023s
+ Timestep   1428; Sim Time  85680.0s; Wall      0.023s
+ Timestep   1429; Sim Time  85740.0s; Wall      0.021s
+ Timestep   1430; Sim Time  85800.0s; Wall      0.024s
+ Timestep   1431; Sim Time  85860.0s; Wall      0.023s
+ Timestep   1432; Sim Time  85920.0s; Wall      0.020s
+ Timestep   1433; Sim Time  85980.0s; Wall      0.021s
+ Timestep   1434; Sim Time  86040.0s; Wall      0.020s
+ Timestep   1435; Sim Time  86100.0s; Wall      0.020s
+ Timestep   1436; Sim Time  86160.0s; Wall      0.020s
+ Timestep   1437; Sim Time  86220.0s; Wall      0.020s
+ Timestep   1438; Sim Time  86280.0s; Wall      0.022s
+ Timestep   1439; Sim Time  86340.0s; Wall      0.020s
+ Timestep   1440; Sim Time  86400.0s; Wall      0.481s
+
+ === Time integration ends; Total run time=1504.2s ===
+
+ ****** BRAMS execution ends ******
