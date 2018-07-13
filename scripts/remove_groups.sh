@@ -10,3 +10,5 @@ do
 	az group delete -n $i --yes --no-wait
 	# az storage share delete --name ${FILESHARE} --account-name ${USERNAME} --account-key ${PASSMOUNT}
 done
+
+rm $PARENT_DIR/groups
