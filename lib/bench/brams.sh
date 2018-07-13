@@ -17,8 +17,6 @@ run_brams() {
   scp -r $SAMPLEDIR $SSH_ADDR:
 
   scp lib/bench/brams_dir.sh ${SSH_ADDR}:
-  scp lib/bench/brams_disable_cores.sh ${SSH_ADDR}:
-
   ssh ${SSH_ADDR} ./brams_dir.sh ${NUMBER_INSTANCES}
 
   scp ${LOG_DIR}/hostfile ${SSH_ADDR}:meteo-only
