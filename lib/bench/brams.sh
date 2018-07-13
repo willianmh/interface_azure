@@ -18,22 +18,22 @@ run_brams() {
 
   scp lib/bench/brams_dir.sh ${SSH_ADDR}:
   scp lib/bench/brams_disable_cores.sh ${SSH_ADDR}:
-  
-  ssh ${SSH_ADDR} ./brams_dir.sh ${NUMBER_INSTANCES} $((${TOTAL_CORES}/${NUMBER_INSTANCES}))
+
+  ssh ${SSH_ADDR} ./brams_dir.sh ${NUMBER_INSTANCES}
 
   scp ${LOG_DIR}/hostfile ${SSH_ADDR}:meteo-only
 
   echo $TOTAL_CORES > total_cores
   scp total_cores ${SSH_ADDR}:meteo-only
 
-  ssh ${SSH_ADDR} << EOF
-    set -x
-    cd meteo-only
-    export TMPDIR=./tmp
-    ulimit -s 65536
-    /opt/mpich3/bin/mpirun -n `cat total_cores` -f hostfile ./brams 2>&1 | tee log_brams_meteo_only.out
-EOF
-
-  scp ${SSH_ADDR}:meteo-only/log_brams_meteo_only.out $RESULTS_DIR/log_meteo_only_${VM_SIZE_FORMATTED}.out
+#   ssh ${SSH_ADDR} << EOF
+#     set -x
+#     cd meteo-only
+#     export TMPDIR=./tmp
+#     ulimit -s 65536
+#     /opt/mpich3/bin/mpirun -n `cat total_cores` -f hostfile ./brams 2>&1 | tee log_brams_meteo_only.out
+# EOF
+#
+#   scp ${SSH_ADDR}:meteo-only/log_brams_meteo_only.out $RESULTS_DIR/log_meteo_only_${VM_SIZE_FORMATTED}.out
 
 }
