@@ -1,9 +1,9 @@
-Standard_F64s_v2,64
-#Standard_D64_v3,64
 #Standard_D64s_v3,64
-#Standard_E64i_v3,64
-#Standard_E64_v3,64
+#Standard_D64_v3,64
 #Standard_E64_16s_v3,64
 #Standard_E64_32s_v3,64
 #Standard_E64is_v3,64
+#Standard_E64i_v3,64
 #Standard_E64s_v3,64
+#Standard_E64_v3,64
+Standard_F64s_v2,64
