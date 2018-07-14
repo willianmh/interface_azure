@@ -63,28 +63,30 @@ do
   for instance in $(cat $INTERFACE_DIR/machines/vm_sizes_${LOCATION}_$cores)
   do
 
-    VM_SIZE=$(sed 's/,.*//' <<<$instance )
 
     if [ ! -z $(grep "#" <<< "$instance") ]
     then
-      echo "$VM_SIZE commented"
-    else
-      echo "$VM_SIZE" | tr '\n' ',' >> time_brams.out
-
-      for number_instances in $CONFIGURE_INSTANCES
-      do
-        echo "$instance $number_instances"
-        # set -x
-
-        is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
-          && postprocess ${VM_SIZE} ${number_instances}
-
-        is_not_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
-          && echo "0.00" | tr '\n' ',' >> time_brams.out
-        # set +x
-      done
-      echo "" >> time_brams.out
+      instance=$(sed 's/#//g' <<< $instance)
     fi
+    
+    VM_SIZE=$(sed 's/,.*//' <<<$instance )
+
+    echo "$VM_SIZE" | tr '\n' ',' >> time_brams.out
+
+    for number_instances in $CONFIGURE_INSTANCES
+    do
+      echo "$instance $number_instances"
+      # set -x
+
+      is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
+        && postprocess ${VM_SIZE} ${number_instances}
+
+      is_not_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
+        && echo "0.00" | tr '\n' ',' >> time_brams.out
+      # set +x
+    done
+    echo "" >> time_brams.out
+
   done
 done
 sed -i 's/\,[^\,]*$//' time_brams.out
