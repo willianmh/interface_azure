@@ -68,14 +68,14 @@ do
     then
       instance=$(sed 's/#//g' <<< $instance)
     fi
-    
+
     VM_SIZE=$(sed 's/,.*//' <<<$instance )
 
     echo "$VM_SIZE" | tr '\n' ',' >> time_brams.out
 
     for number_instances in $CONFIGURE_INSTANCES
     do
-      echo "$instance $number_instances"
+      # echo "$instance $number_instances"
       # set -x
 
       is_dir $INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances} \
