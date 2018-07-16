@@ -38,9 +38,9 @@ cmdline() {
               export DEBUG='-x'
               set -x
               ;;
-            -d|--not-delete)
-                export DELETE="no"
-                ;;
+          -d|--not-delete)
+              export DELETE="no"
+              ;;
           -l|--location)
               if [ "$2" ]; then
                   export LOCATION=$2
@@ -49,22 +49,22 @@ cmdline() {
                 die 'ERROR: "--location" requires a non-empty option argument.'
               fi
               ;;
-              -f|--file)
-                  if [ "$2" ]; then
-                      export CONFIG_FILE=$2
-                      shift
-                  else
-                    die 'ERROR: "--file" requires a non-empty option argument.'
-                  fi
-                  ;;
-              -s|--subscription)
-                if [ "$2" ]; then
-                  export SUBSCRIPTION=$2
+          -f|--file)
+              if [ "$2" ]; then
+                  export CONFIG_FILE=$2
                   shift
-                else
-                  die 'ERROR: "--subscription" requires a non-empty option argument.'
-                fi
-                ;;
+              else
+                die 'ERROR: "--file" requires a non-empty option argument.'
+              fi
+              ;;
+          -s|--subscription)
+            if [ "$2" ]; then
+              export SUBSCRIPTION=$2
+              shift
+            else
+              die 'ERROR: "--subscription" requires a non-empty option argument.'
+            fi
+            ;;
           --)              # End of all options.
               shift
               break
@@ -96,14 +96,13 @@ usage() {
     keep certain files.
 
     OPTIONS:
-       -c --config              configuration file containing the rules. use --help-config to see the syntax.
-       -n --pretend             do not really delete, just how what you are going to do.
-       -t --test                run unit test to check the program
-       -v --verbose             Verbose. You can specify more then one -v to have more verbose
-       -x --debug               debug
-       -h --help                show this help
-          --help-config         configuration help
-
+       -h --help            Configuration file containing the rules. use --help-config to see the syntax.
+       -f --file            File with configure
+       -v --verbose         Increase verbose log
+       -d --not-delete      Dont delete the resource group. (by default the group will be deleted)
+       -l --location        Location
+       -s --subscription    Azure subscription
+       -x --debug           Increase verbose
 
     Examples:
        Run all tests:

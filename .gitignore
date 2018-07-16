@@ -4,3 +4,4 @@ log/
 results/
 ssh_addrs
 complete_logs/
+grep_ssh
