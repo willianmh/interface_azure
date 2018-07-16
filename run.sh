@@ -131,33 +131,35 @@ then
             if [ "$MODE" = "parallel" ]
             then
               echo "$VM_SIZE $VM_CORES $number_instances running parallel"
-              ./lib/main.sh $BENCHMARK \
-                ${ADMIN_USERNAME} \
-                ${ADMIN_PASSWORD} \
-                ${FILE_SHARED_PARAMETERS} \
-                ${number_instances} \
-                ${VM_SIZE} \
-                ${VM_CORES} \
-                ${TEMPLATE_FILE} \
-                ${IMAGE} \
-                ${LOCATION} 2>&1 | \
-                tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
-              sleep 5
+              sleep .5
+              # ./lib/main.sh $BENCHMARK \
+              #   ${ADMIN_USERNAME} \
+              #   ${ADMIN_PASSWORD} \
+              #   ${FILE_SHARED_PARAMETERS} \
+              #   ${number_instances} \
+              #   ${VM_SIZE} \
+              #   ${VM_CORES} \
+              #   ${TEMPLATE_FILE} \
+              #   ${IMAGE} \
+              #   ${LOCATION} 2>&1 | \
+              #   tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
+              # sleep 5
             elif [ "$MODE" = "sequencial" ]
             then
               echo "$VM_SIZE $VM_CORES $number_instances running sequencial"
-              ./lib/main.sh $BENCHMARK \
-                ${ADMIN_USERNAME} \
-                ${ADMIN_PASSWORD} \
-                ${FILE_SHARED_PARAMETERS} \
-                ${number_instances} \
-                ${VM_SIZE} \
-                ${VM_CORES} \
-                ${TEMPLATE_FILE} \
-                ${IMAGE} \
-                ${LOCATION} 2>&1 | \
-                tee -a complete_logs/${VM_SIZE}_${number_instances}.log
-              sleep 5
+              sleep .5
+              # ./lib/main.sh $BENCHMARK \
+              #   ${ADMIN_USERNAME} \
+              #   ${ADMIN_PASSWORD} \
+              #   ${FILE_SHARED_PARAMETERS} \
+              #   ${number_instances} \
+              #   ${VM_SIZE} \
+              #   ${VM_CORES} \
+              #   ${TEMPLATE_FILE} \
+              #   ${IMAGE} \
+              #   ${LOCATION} 2>&1 | \
+              #   tee -a complete_logs/${VM_SIZE}_${number_instances}.log
+              # sleep 5
             else
               die "ERROR: variable MODE in $CONFIG_FILE must be parallel or sequencial, got MODE=$MODE"
             fi
