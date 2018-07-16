@@ -80,6 +80,10 @@ then
 
         VM_SIZE=$(sed 's/,.*//' <<<$instance )
         VM_CORES=$(sed 's/[^,]*,\([^,]*\).*/\1/' <<<$instance )
+
+        VM_SIZE_FORMATTED=$(remove_special_characters $VM_SIZE )
+        VM_SIZE_FORMATTED=$(to_lower_case $VM_SIZE_FORMATTED )
+
         # echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
 
         # character '#' means thtatz
@@ -91,14 +95,14 @@ then
           # se diretorio existe
           if [ -d "$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}" ]
           then
-            DIRFILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/log_meteo_only_${VM_SIZE_FORMATTED}.out
+            DIRFILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}/log_meteo_only_${VM_SIZE_FORMATTED}.out
 
             if [ ! -f "$FILE" ]
             then
               # arquivo nao existe
               EXECUTA="1"
             else
-              local TIME=$(grep "Time integration ends" $FILE | \
+              TIME=$(grep "Time integration ends" $FILE | \
                 sed 's/^.*time=//;s/=//g;s/..$//')
 
               if [ -z "$TIME" ]
