@@ -97,12 +97,12 @@ then
           then
             DIRFILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}/log_meteo_only_${VM_SIZE_FORMATTED}.out
 
-            if [ ! -f "$FILE" ]
+            if [ ! -f "$DIRFILE" ]
             then
               # arquivo nao existe
               EXECUTA="1"
             else
-              TIME=$(grep "Time integration ends" $FILE | \
+              TIME=$(grep "Time integration ends" $DIRFILE | \
                 sed 's/^.*time=//;s/=//g;s/..$//')
 
               if [ -z "$TIME" ]
