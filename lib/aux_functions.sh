@@ -38,6 +38,9 @@ cmdline() {
               export DEBUG='-x'
               set -x
               ;;
+            -d|--not-delete)
+                export DELETE="no"
+                ;;
           -l|--location)
               if [ "$2" ]; then
                   export LOCATION=$2
