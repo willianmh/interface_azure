@@ -89,7 +89,7 @@ then
         # character '#' means thtatz
         if [ ! -z $(grep "#" <<< "$instance") ]
         then
-          # echo "$VM_SIZE comentada"
+          echo "$VM_SIZE comentada" > h
         else
           EXECUTA="0"
           # se diretorio existe
