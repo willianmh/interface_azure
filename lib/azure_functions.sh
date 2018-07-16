@@ -85,6 +85,13 @@ deploy() {
                             grep provisioningState | \
                             sed 's/^.*://;s/[^a-zA-Z0-9]//g')
 
+  local DEPLOY_STATE_AUX=$(grep provisioningState $LOG_FILE | sed 's/^.*://;s/[^a-zA-Z0-9]//g' )
+
+  if [ ! "$DEPLOY_STATE_AUX" = "Succeeded" ]
+  then
+    echo "deploy state aux failed"
+  fi
+
   if [ ! "$DEPLOY_STATE" = "Succeeded" ]
   then
     echo "Something goes wrong"
