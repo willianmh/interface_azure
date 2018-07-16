@@ -5,6 +5,7 @@ readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
 
+INTERFACE_DIR=$(sed -e 's/interface_azure.*$/interface_azure/'<<<$PROGDIR)
 
 source lib/azure_functions.sh
 source lib/aux_functions.sh
@@ -86,40 +87,61 @@ then
         then
           echo "$VM_SIZE comentada"
         else
-          if [ "$MODE" = "parallel" ]
+          EXECUTA="0"
+          # se diretorio existe
+          if [  -d "$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}" ]
           then
-            echo "$VM_SIZE $VM_CORES $number_instances running parallel"
-            ./lib/main.sh $BENCHMARK \
-              ${ADMIN_USERNAME} \
-              ${ADMIN_PASSWORD} \
-              ${FILE_SHARED_PARAMETERS} \
-              ${number_instances} \
-              ${VM_SIZE} \
-              ${VM_CORES} \
-              ${TEMPLATE_FILE} \
-              ${IMAGE} \
-              ${LOCATION} 2>&1 | \
-              tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
-            sleep 5
-          elif [ "$MODE" = "sequencial" ]
-          then
-            echo "$VM_SIZE $VM_CORES $number_instances running sequencial"
-            ./lib/main.sh $BENCHMARK \
-              ${ADMIN_USERNAME} \
-              ${ADMIN_PASSWORD} \
-              ${FILE_SHARED_PARAMETERS} \
-              ${number_instances} \
-              ${VM_SIZE} \
-              ${VM_CORES} \
-              ${TEMPLATE_FILE} \
-              ${IMAGE} \
-              ${LOCATION} 2>&1 | \
-              tee -a complete_logs/${VM_SIZE}_${number_instances}.log
-            sleep 5
+            DIRFILES="$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)"
+            # se o arquivo nao existe
+            if [ ! -z "$DIRFILES" ]
+            then
+              EXECUTA="1"
+            fi
           else
-            die "ERROR: variable MODE in $CONFIG_FILE must be parallel or sequencial, got MODE=$MODE"
+            EXECUTA="1"
           fi
+
+          if [ "$EXECUTA" = "1" ]
+          then
+            if [ "$MODE" = "parallel" ]
+            then
+              echo "$VM_SIZE $VM_CORES $number_instances running parallel"
+              ./lib/main.sh $BENCHMARK \
+                ${ADMIN_USERNAME} \
+                ${ADMIN_PASSWORD} \
+                ${FILE_SHARED_PARAMETERS} \
+                ${number_instances} \
+                ${VM_SIZE} \
+                ${VM_CORES} \
+                ${TEMPLATE_FILE} \
+                ${IMAGE} \
+                ${LOCATION} 2>&1 | \
+                tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
+              sleep 5
+            elif [ "$MODE" = "sequencial" ]
+            then
+              echo "$VM_SIZE $VM_CORES $number_instances running sequencial"
+              ./lib/main.sh $BENCHMARK \
+                ${ADMIN_USERNAME} \
+                ${ADMIN_PASSWORD} \
+                ${FILE_SHARED_PARAMETERS} \
+                ${number_instances} \
+                ${VM_SIZE} \
+                ${VM_CORES} \
+                ${TEMPLATE_FILE} \
+                ${IMAGE} \
+                ${LOCATION} 2>&1 | \
+                tee -a complete_logs/${VM_SIZE}_${number_instances}.log
+              sleep 5
+            else
+              die "ERROR: variable MODE in $CONFIG_FILE must be parallel or sequencial, got MODE=$MODE"
+            fi
+          else
+            echo "Experiment with $NUMBER_INSTANCES instances of $VM_SIZE ($VM_CORES cores) already exists. Didn't deploy."
+          fi
+
         fi
+        EXECUTA="0"
       done
       wait
     done
