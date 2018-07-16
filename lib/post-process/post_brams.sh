@@ -18,10 +18,7 @@ postprocess() {
 
   local FILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/log_meteo_only_${VM_SIZE_FORMATTED}.out
 
-  local DIR="$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)"
-
-
-  if [ -z $DIR ]
+  if [ ! -f "$FILE" ]
   then
     echo "0.00" | tr '\n' ',' >> time_brams.out
   else
@@ -33,8 +30,22 @@ postprocess() {
 
     is_empty $TIME \
       && echo "0.00" | tr '\n' ',' >> time_brams.out
-
   fi
+
+  # local DIR="$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)"
+  # if [ -z $DIR ]
+  # then
+  #   echo "0.00" | tr '\n' ',' >> time_brams.out
+  # else
+  #   local TIME=$(grep "Time integration ends" $FILE | \
+  #     sed 's/^.*time=//;s/=//g;s/..$//')
+  #
+  #   is_not_empty $TIME \
+  #     && echo "$TIME" | tr '\n' ',' >> time_brams.out
+  #
+  #   is_empty $TIME \
+  #     && echo "0.00" | tr '\n' ',' >> time_brams.out
+  # fi
 
 }
 

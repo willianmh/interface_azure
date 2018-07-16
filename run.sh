@@ -89,17 +89,38 @@ then
         else
           EXECUTA="0"
           # se diretorio existe
-          if [  -d "$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}" ]
+          if [ -d "$INTERFACE_DIR/results/brams/${VM_SIZE}_${number_instances}" ]
           then
-            DIRFILES="$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)"
-            # se o arquivo nao existe
-            if [ ! -z "$DIRFILES" ]
+            DIRFILE=$INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/log_meteo_only_${VM_SIZE_FORMATTED}.out
+
+            if [ ! -f "$FILE" ]
             then
+              # arquivo nao existe
               EXECUTA="1"
+            else
+              local TIME=$(grep "Time integration ends" $FILE | \
+                sed 's/^.*time=//;s/=//g;s/..$//')
+
+              if [ -z "$TIME" ]
+              then
+                # nao tem tempo calculado
+                EXECUTA="1"
+              fi
             fi
           else
+            # diretorio nao existe
             EXECUTA="1"
           fi
+
+            # DIRFILES="$(ls $INTERFACE_DIR/results/brams/${VM_SIZE}_${NUMBER_INSTANCES}/)"
+            # se o arquivo nao existe
+          #   if [ ! -z "$DIRFILES" ]
+          #   then
+          #     EXECUTA="1"
+          #   fi
+          # else
+          #   EXECUTA="1"
+          # fi
 
           if [ "$EXECUTA" = "1" ]
           then
