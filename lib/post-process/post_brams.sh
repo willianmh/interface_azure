@@ -100,4 +100,7 @@ do
 
   done
 done
-sed -i 's/\,[^\,]*$//' time_brams.out
+sed 's/\,[^\,]*$//' time_brams.out > time_brams.csv
+sed 's/,/\t/g' time_brams.csv > time_brams.tsv
+
+rm time_brams.out
