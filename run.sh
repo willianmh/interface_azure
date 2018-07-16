@@ -164,7 +164,7 @@ then
               die "ERROR: variable MODE in $CONFIG_FILE must be parallel or sequencial, got MODE=$MODE"
             fi
           else
-            # echo "Experiment with $NUMBER_INSTANCES instances of $VM_SIZE ($VM_CORES cores) already exists. Didn't deploy."
+            echo "Experiment with $NUMBER_INSTANCES instances of $VM_SIZE ($VM_CORES cores) already exists. Didn't deploy." > g
           fi
 
         fi
