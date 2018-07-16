@@ -76,7 +76,7 @@ deploy() {
                                                       vmSize=$VM_SIZE \
                                                       vmName=$VM_NAME \
                                                       imageSourceID="$IMAGE" \
-                                                      numberOfInstances=$NUMBER_INSTANCES >> $LOG_FILE
+                                                      numberOfInstances=$NUMBER_INSTANCES 2>&1 | tee -a $LOG_FILE
 
   sleep 5
 
