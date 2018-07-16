@@ -56,7 +56,7 @@ then
   mkdir -p complete_logs
 
   # echo "$VM_SIZE $VM_CORES $NUMBER_INSTANCES"
-  # echo "$VM_SIZE $VM_CORES $number_instances $LOCATION $TEMPLATE_FILE"
+  echo "$VM_SIZE $VM_CORES $number_instances $LOCATION $TEMPLATE_FILE"
   ./lib/main.sh $BENCHMARK \
     ${ADMIN_USERNAME} \
     ${ADMIN_PASSWORD} \
@@ -89,7 +89,7 @@ then
         # character '#' means thtatz
         if [ ! -z $(grep "#" <<< "$instance") ]
         then
-          echo "$VM_SIZE comentada" > h
+          echo "$VM_SIZE comentada"
         else
           EXECUTA="0"
           # se diretorio existe
@@ -131,40 +131,38 @@ then
             if [ "$MODE" = "parallel" ]
             then
               echo "$VM_SIZE $VM_CORES $number_instances running parallel"
-              sleep .05
-              # ./lib/main.sh $BENCHMARK \
-              #   ${ADMIN_USERNAME} \
-              #   ${ADMIN_PASSWORD} \
-              #   ${FILE_SHARED_PARAMETERS} \
-              #   ${number_instances} \
-              #   ${VM_SIZE} \
-              #   ${VM_CORES} \
-              #   ${TEMPLATE_FILE} \
-              #   ${IMAGE} \
-              #   ${LOCATION} 2>&1 | \
-              #   tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
-              # sleep 5
+              ./lib/main.sh $BENCHMARK \
+                ${ADMIN_USERNAME} \
+                ${ADMIN_PASSWORD} \
+                ${FILE_SHARED_PARAMETERS} \
+                ${number_instances} \
+                ${VM_SIZE} \
+                ${VM_CORES} \
+                ${TEMPLATE_FILE} \
+                ${IMAGE} \
+                ${LOCATION} 2>&1 | \
+                tee -a complete_logs/${VM_SIZE}_${number_instances}.log &
+              sleep 5
             elif [ "$MODE" = "sequencial" ]
             then
               echo "$VM_SIZE $VM_CORES $number_instances running sequencial"
-              sleep .05
-              # ./lib/main.sh $BENCHMARK \
-              #   ${ADMIN_USERNAME} \
-              #   ${ADMIN_PASSWORD} \
-              #   ${FILE_SHARED_PARAMETERS} \
-              #   ${number_instances} \
-              #   ${VM_SIZE} \
-              #   ${VM_CORES} \
-              #   ${TEMPLATE_FILE} \
-              #   ${IMAGE} \
-              #   ${LOCATION} 2>&1 | \
-              #   tee -a complete_logs/${VM_SIZE}_${number_instances}.log
-              # sleep 5
+              ./lib/main.sh $BENCHMARK \
+                ${ADMIN_USERNAME} \
+                ${ADMIN_PASSWORD} \
+                ${FILE_SHARED_PARAMETERS} \
+                ${number_instances} \
+                ${VM_SIZE} \
+                ${VM_CORES} \
+                ${TEMPLATE_FILE} \
+                ${IMAGE} \
+                ${LOCATION} 2>&1 | \
+                tee -a complete_logs/${VM_SIZE}_${number_instances}.log
+              sleep 5
             else
               die "ERROR: variable MODE in $CONFIG_FILE must be parallel or sequencial, got MODE=$MODE"
             fi
           else
-            echo "Experiment with $NUMBER_INSTANCES instances of $VM_SIZE ($VM_CORES cores) already exists. Didn't deploy." > g
+            echo "Experiment with $NUMBER_INSTANCES instances of $VM_SIZE ($VM_CORES cores) already exists. Didn't deploy."
           fi
 
         fi
