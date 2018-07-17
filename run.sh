@@ -126,7 +126,7 @@ then
           #   EXECUTA="1"
           # fi
 
-          if [ "$EXECUTA" = "1" ]
+          if [ "$EXECUTA" = "1" ] || [ "$FORCE" = "1" ]
           then
             if [ "$MODE" = "parallel" ]
             then
@@ -174,6 +174,6 @@ then
 else
   die "ERROR: variable ROLE in $CONFIG_FILE must be single or multiple, got ROLE=$ROLE"
 fi
-
+FORCE=0
 }
 main

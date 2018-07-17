@@ -57,6 +57,9 @@ cmdline() {
                 die 'ERROR: "--file" requires a non-empty option argument.'
               fi
               ;;
+          -w|--overwrite)
+              export FORCE="1"
+            ;;
           -s|--subscription)
             if [ "$2" ]; then
               export SUBSCRIPTION=$2
