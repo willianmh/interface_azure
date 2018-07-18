@@ -18,9 +18,9 @@
 #Standard_E16_8s_v3,16
 #Standard_E16s_v3,16
 #Standard_E16_v3,16
-Standard_F16,16
-Standard_F16s,16
-#Standard_F16s_v2,16
+#Standard_F16,16
+#Standard_F16s,16
+Standard_F16s_v2,16
 #Standard_H16,16
 #Standard_H16m,16
 #Standard_H16mr,16
