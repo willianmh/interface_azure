@@ -198,7 +198,6 @@ create_machines() {
                       ${DISKURL}${DISKUSERNAME} \
                       ${DISKUSERNAME} \
                       $IMAGE &
-	    sleep 20
 	done
 	wait
 	sleep 190
