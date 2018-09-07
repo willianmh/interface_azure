@@ -123,12 +123,12 @@ main() {
   local BRAMSDIRBIN="/home/username/bin"
   local SAMPLEDIR="/home/username/meteo-only"
 
-  # run_brams $BRAMSDIR \
-  #           $BRAMSDIRBIN \
-  #           $SAMPLEDIR \
-  #           $NUMBER_INSTANCES \
-  #           $VM_SIZE_FORMATTED \
-  #           $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
+  run_brams $BRAMSDIR \
+            $BRAMSDIRBIN \
+            $SAMPLEDIR \
+            $NUMBER_INSTANCES \
+            $VM_SIZE_FORMATTED \
+            $(($NUMBER_PROCESSORS * $NUMBER_INSTANCES))
   #
   # is_empty $DELETE \
   #   && delete_group $RESOURCE_GROUP
