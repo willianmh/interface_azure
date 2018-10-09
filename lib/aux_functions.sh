@@ -16,20 +16,6 @@ cmdline() {
               usage    # Display a usage synopsis.
               exit 0
               ;;
-          # -f|--file)       # Takes an option argument; ensure it has been specified.
-          #     if [ "$2" ]; then
-          #         file=$2
-          #         shift
-          #     else
-          #         die 'ERROR: "--file" requires a non-empty option argument.'
-          #     fi
-          #     ;;
-          # --file=?*)
-          #     file=${1#*=} # Delete everything up to "=" and assign the remainder.
-          #     ;;
-          # --file=)         # Handle the case of an empty --file=
-          #     die 'ERROR: "--file" requires a non-empty option argument.'
-          #     ;;
           -v|--verbose)
               verbose=1  # Each -v adds 1 to verbosity.
               export VERBOSE="--verbose"
@@ -92,33 +78,27 @@ cmdline() {
 
 usage() {
     cat << EOF
-    usage: $PROGNAME options
+    usage: $PROGNAME [-f,--file] <PATH_TO_FILE> [options]
 
-    Program deletes files from filesystems to release space.
-    It gets config file that define fileystem paths to work on, and whitelist rules to
-    keep certain files.
+    Program create a cloud enviroment in Microsoft Azure.
+    The information, parameters about the cluster instance  configuration and the behavior of the launcher is defined on a configure file.
 
     OPTIONS:
-       -h --help            Configuration file containing the rules. use --help-config to see the syntax.
-       -f --file            File with configure
+       -h --help            Configuration file containing the rules
+       -f --file            File with cluster
        -v --verbose         Increase verbose log
        -d --not-delete      Dont delete the resource group. (by default the group will be deleted)
-       -l --location        Location
+       -l --location        Location in azure
        -s --subscription    Azure subscription
        -x --debug           Increase verbose
 
     Examples:
-       Run all tests:
-       $PROGNAME --test all
+       Simple run:
+       $PROGNAME -f example.config
 
-       Run specific test:
-       $PROGNAME --test test_string.sh
-
-       Run:
-       $PROGNAME --config /path/to/config/$PROGNAME.conf
-
-       Just show what you are going to do:
-       $PROGNAME -vn -c /path/to/config/$PROGNAME.conf
+       Run and view program status:
+       $PROGNAME -v -f example.config
+       
 EOF
 }
 
